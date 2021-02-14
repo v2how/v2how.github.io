@@ -18,7 +18,7 @@ Before you begin this tutorial, you will need:
 
 - A virtual private server (VPS) running Ubuntu 20.04. You can rent servers from providers such as [Google Cloud](https://cloud.google.com) or [Vultr](https://www.vultr.com).
 - Your own domain name, which may be [free](https://www.freenom.com) or [paid](https://www.namesilo.com).
-- A DNS type `A` record pointing from the fully qualified domain name of your server to the server's IP address. Usually you set up the DNS record at your domain name registrar, but you can also set up DNS records elsewhere, such as at [Cloudflare](https://www.cloudflare.com). If you are using Cloudflare, note that some Xray configurations require DNS services only and will not work with proxying.
+- A DNS type `A` record pointing from the fully qualified domain name of your server to the server's IP address. Usually you set up the DNS record at your domain name registrar. You can also set up DNS records elsewhere, such as at [Cloudflare](https://www.cloudflare.com). If you are using Cloudflare, note that some Xray configurations require DNS services only and will not work with proxying.
 
 ## Step 1 — Logging In as Root
 
@@ -187,6 +187,8 @@ To                         Action      From
 443/tcp (v6)               ALLOW       Anywhere (v6)
 ```
 
+If your VPS provider implements the concept of security groups, you will also need to open your security group assignments for ports 22, 80, and 443 in their control panel.
+
 ## Step 3 — Creating a Camouflage Website
 
 Now you'll install Nginx and obtain an SSL certificate to camouflage your Xray server.
@@ -194,7 +196,7 @@ Now you'll install Nginx and obtain an SSL certificate to camouflage your Xray s
 Install the Nginx web server package:
 
 ```bash
-apt install nginx
+apt install nginx -y
 ```
 
 If Nginx was not already installed, you will see the package installation messages.
@@ -211,7 +213,7 @@ Find the line containing `server_name _;`. Change it so that it refers to the fu
         server_name your_domain;
 ```
 
-Write the file to disk, and exit the editor.
+Write the file out to disk, and exit the editor.
 
 Restart Nginx with your revised change configuration:
 
@@ -258,7 +260,7 @@ The installation ends with a message:
 certbot 1.12.0 from Certbot Project (certbot-eff✓) installed
 ```
 
-The snap executable for `certbot` is in the directory `/snap/bin`, which should be in your execution PATH. If you want to make extra sure that `certbot` is executable, then create a symbolic link to `certbot` in your `/usr/bin` directory, which should definitely be in your PATH:
+The snap executable for `certbot` is in the directory `/snap/bin`, which should be in your execution PATH. If you want to make extra sure that `certbot` is executable, then also create a symbolic link to `certbot` in your `/usr/bin` directory, which should definitely be in your PATH:
 
 ```bash
 ln -s /snap/bin/certbot /usr/bin/certbot
@@ -365,7 +367,7 @@ In this step, you'll generate a universally unique id (UUID) that will act as a 
 Install the UUID package:
 
 ```bash
-apt install uuid
+apt install uuid -y
 ```
 
 You will see the package installation messages. 
@@ -406,7 +408,7 @@ bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release
 
 The `-u root` option is to set up an installation running as `root`. This is required so that Xray can access the SSL certificate private key.
 
-The script takes a few minutes to run. It should end with confirmation messages like this:
+The script can take a minute or so to run. It should end with confirmation messages like this:
 
 ```bash
 info: Xray v1.2.4 is installed.
@@ -517,7 +519,7 @@ When you've pasted in the template, customize it for your situation by making th
 - Optionally replace the identifier `love@example.com`
 - In the Let's Encrpyt certificate and key locations, replace *your_domain* by your server's fully qualified domain name
 
-Once you've made all the required changes, write the file to disk, and exit the editor.
+Once you've made all the required changes, write the file out to disk, and exit the editor.
 
 ## Step 7 — Restarting Xray
 
@@ -533,7 +535,9 @@ Confirm that Xray is running with the new configuration with the command:
 systemctl status xray
 ```
 
-At this point, Xray is listening on port `443` and Nginx is listening on port `80`.
+Again, you should see a status of `active (running)`.
+
+At this point, Xray is listening on port `443` and Nginx is listening on port `80`. In the case of a request with a bad or missing UUID coming in on port `443`, Xray will "fall back" to sending the request to Nginx on port `80`.
 
 ## Step 8 — Testing with Client
 
@@ -571,22 +575,26 @@ Now that the kernel settings are configured, you can add your server configurati
 1. Select the **Default Group** and click the **New** button.
 2. For **Host**, type *your_domain* (i.e., your server's fully qualified domain name).
 3. For **Port**, type `443`.
-4. For **Type**, select `VLESS`.
+4. For **Type**, select **VLESS**.
 5. Under **Outbound Settings**, for **UUID** put your universally unique id (`65183eac-c09f-4fe7-8f0f-95f55281cbb4` in the examples in this tutorial), and for **Flow** select `xtls-rprx-direct`.
 6. Under **Stream Settings**, select the **TLS Settings** tab.
-7. Set **Security Type** to `XTLS`.
+7. Set **Security Type** to **XTLS**.
 8. Set **Server Address (SNI)** to *your_domain*.
 9. Click **OK**.
 
 ![Qv2ray Connections Settings](/images/qv2ray-connection-settings.png)
 
-Now select your server. Click the Connect icon for your server. 
+Now select your server under the **Default Group**. 
+
+Click the Connect icon for your server. Notifications appear in Windows to say you are connected.
 
 On Windows, by default your Qv2ray proxy server will listen on `127.0.0.1` port `8889`. You can optionally check this in **Settings** &gt; **Network & Internet** &gt; **Proxy** &gt; **Manual proxy setup**.
 
 In your browser, visit https://www.iplocation.net to confirm that your web browsing is now coming from your server location.
 
-When you have finished browsing, go back to your server in Qv2ray. If you have closed the Qv2ray panel, you can open it again by clicking the Qv2ray icon in the system tray at the bottom right of the Windows desktop. Select your server and click the Disconnect icon.
+When you have finished browsing, go back to your server in Qv2ray. (If you have closed the Qv2ray panel, you can open it again by clicking the Qv2ray icon in the system tray at the bottom right of the Windows desktop.)
+
+Select your server and click the Disconnect icon.
 
 ## Conclusion
 

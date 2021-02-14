@@ -62,7 +62,7 @@ Prerequisites Before you begin this tutorial, you will need:">
   "headline": "How to Create an Xray VLESS XTLS Server on Ubuntu 20.04",
   "description" : "Introduction In this tutorial you\u0026rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.\nYou\u0026rsquo;ll see how to create a camouflage web server with Nginx, and then you\u0026rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You\u0026rsquo;ll then test your server with the Qv2ray graphical user interface.\nAt the end of this tutorial, you\u0026rsquo;ll have a working and tested Xray server.\nPrerequisites Before you begin this tutorial, you will need:",
   "inLanguage" : "en",
-  "wordCount":  2953 ,
+  "wordCount":  3041 ,
   "datePublished" : "2021-02-12T00:00:00",
   "dateModified" : "2021-02-12T00:00:00",
   "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
@@ -247,10 +247,10 @@ You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&
   <i class="fas fa-calendar"></i>&nbsp;Posted on February 12, 2021
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;14&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;15&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2953&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3041&nbsp;words
   
   
     
@@ -284,7 +284,7 @@ You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&
 <ul>
 <li>A virtual private server (VPS) running Ubuntu 20.04. You can rent servers from providers such as <a href="https://cloud.google.com">Google Cloud</a> or <a href="https://www.vultr.com">Vultr</a>.</li>
 <li>Your own domain name, which may be <a href="https://www.freenom.com">free</a> or <a href="https://www.namesilo.com">paid</a>.</li>
-<li>A DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address. Usually you set up the DNS record at your domain name registrar, but you can also set up DNS records elsewhere, such as at <a href="https://www.cloudflare.com">Cloudflare</a>. If you are using Cloudflare, note that some Xray configurations require DNS services only and will not work with proxying.</li>
+<li>A DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address. Usually you set up the DNS record at your domain name registrar. You can also set up DNS records elsewhere, such as at <a href="https://www.cloudflare.com">Cloudflare</a>. If you are using Cloudflare, note that some Xray configurations require DNS services only and will not work with proxying.</li>
 </ul>
 <h2 id="step-1--logging-in-as-root">Step 1 — Logging In as Root</h2>
 <p>SSH into your server. On Linux and macOS, you can use the terminal command SSH to reach your server On Windows, you can either use <a href="https://docs.microsoft.com/en-us/powershell">PowerShell</a> or a graphical user interface (GUI) such as <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty">PuTTY</a> or <a href="https://www.netsarang.com">XSHELL</a>.</p>
@@ -352,16 +352,17 @@ To                         Action      From
 443/tcp                    ALLOW       Anywhere
 80/tcp <span class="o">(</span>v6<span class="o">)</span>                ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
 443/tcp <span class="o">(</span>v6<span class="o">)</span>               ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
-</code></pre></div><h2 id="step-3--creating-a-camouflage-website">Step 3 — Creating a Camouflage Website</h2>
+</code></pre></div><p>If your VPS provider implements the concept of security groups, you will also need to open your security group assignments for ports 22, 80, and 443 in their control panel.</p>
+<h2 id="step-3--creating-a-camouflage-website">Step 3 — Creating a Camouflage Website</h2>
 <p>Now you&rsquo;ll install Nginx and obtain an SSL certificate to camouflage your Xray server.</p>
 <p>Install the Nginx web server package:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install nginx
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install nginx -y
 </code></pre></div><p>If Nginx was not already installed, you will see the package installation messages.</p>
 <p>Edit the default virtual host configuration file, <code>/etc/nginx/sites-available/default</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /etc/nginx/sites-available/default
 </code></pre></div><p>Find the line containing <code>server_name _;</code>. Change it so that it refers to the fully qualified domain name of your server:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">        server_name your_domain<span class="p">;</span>
-</code></pre></div><p>Write the file to disk, and exit the editor.</p>
+</code></pre></div><p>Write the file out to disk, and exit the editor.</p>
 <p>Restart Nginx with your revised change configuration:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl restart nginx
 </code></pre></div><p>You will use <code>snap</code> to install <code>certbot</code>, the Let&rsquo;s Encrypt client. First install the <code>core</code> snap:</p>
@@ -377,7 +378,7 @@ To                         Action      From
 </code></pre></div><p>The <code>--classic</code> option means that <code>certbot</code> will not be confined to a restricted environment in the same way as normal snaps are.</p>
 <p>The installation ends with a message:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">certbot 1.12.0 from Certbot Project <span class="o">(</span>certbot-eff✓<span class="o">)</span> installed
-</code></pre></div><p>The snap executable for <code>certbot</code> is in the directory <code>/snap/bin</code>, which should be in your execution PATH. If you want to make extra sure that <code>certbot</code> is executable, then create a symbolic link to <code>certbot</code> in your <code>/usr/bin</code> directory, which should definitely be in your PATH:</p>
+</code></pre></div><p>The snap executable for <code>certbot</code> is in the directory <code>/snap/bin</code>, which should be in your execution PATH. If you want to make extra sure that <code>certbot</code> is executable, then also create a symbolic link to <code>certbot</code> in your <code>/usr/bin</code> directory, which should definitely be in your PATH:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ln -s /snap/bin/certbot /usr/bin/certbot
 </code></pre></div><p>The symbolic link <code>/usr/bin/certbot</code> now points to the actual executable at <code>/snap/bin/certbot</code>.</p>
 <p>Now you can invoke <code>certbot</code> to obtain your SSL certificate from the Let&rsquo;s Encrypt project:</p>
@@ -438,7 +439,7 @@ Congratulations, all simulated renewals succeeded:
 </code></pre></div><h2 id="step-4--generating-universally-unique-id-and-path">Step 4 — Generating Universally Unique Id and Path</h2>
 <p>In this step, you&rsquo;ll generate a universally unique id (UUID) that will act as a password for your Xray server.</p>
 <p>Install the UUID package:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install uuid
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install uuid -y
 </code></pre></div><p>You will see the package installation messages.</p>
 <p>Once the install is done, generate a UUID:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">uuid -v <span class="m">4</span>
@@ -453,7 +454,7 @@ Congratulations, all simulated renewals succeeded:
 </code></pre></div><p>Copy and paste the command below to download and run the installation script:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh<span class="k">)</span><span class="s2">&#34;</span> @ install -u root
 </code></pre></div><p>The <code>-u root</code> option is to set up an installation running as <code>root</code>. This is required so that Xray can access the SSL certificate private key.</p>
-<p>The script takes a few minutes to run. It should end with confirmation messages like this:</p>
+<p>The script can take a minute or so to run. It should end with confirmation messages like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">info: Xray v1.2.4 is installed.
 You may need to execute a <span class="nb">command</span> to remove dependent software: apt purge curl unzip
 Created symlink /etc/systemd/system/multi-user.target.wants/xray.service → /etc/systemd/system/xray.service.
@@ -535,13 +536,14 @@ info: Enable and start the Xray service
 <li>Optionally replace the identifier <code>love@example.com</code></li>
 <li>In the Let&rsquo;s Encrpyt certificate and key locations, replace <em>your_domain</em> by your server&rsquo;s fully qualified domain name</li>
 </ul>
-<p>Once you&rsquo;ve made all the required changes, write the file to disk, and exit the editor.</p>
+<p>Once you&rsquo;ve made all the required changes, write the file out to disk, and exit the editor.</p>
 <h2 id="step-7--restarting-xray">Step 7 — Restarting Xray</h2>
 <p>Now that your configuration file is correct, restart the Xray service:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl restart xray
 </code></pre></div><p>Confirm that Xray is running with the new configuration with the command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status xray
-</code></pre></div><p>At this point, Xray is listening on port <code>443</code> and Nginx is listening on port <code>80</code>.</p>
+</code></pre></div><p>Again, you should see a status of <code>active (running)</code>.</p>
+<p>At this point, Xray is listening on port <code>443</code> and Nginx is listening on port <code>80</code>. In the case of a request with a bad or missing UUID coming in on port <code>443</code>, Xray will &ldquo;fall back&rdquo; to sending the request to Nginx on port <code>80</code>.</p>
 <h2 id="step-8--testing-with-client">Step 8 — Testing with Client</h2>
 <p>Before you go any further, test your camouflage:</p>
 <ul>
@@ -569,18 +571,20 @@ info: Enable and start the Xray service
 <li>Select the <strong>Default Group</strong> and click the <strong>New</strong> button.</li>
 <li>For <strong>Host</strong>, type <em>your_domain</em> (i.e., your server&rsquo;s fully qualified domain name).</li>
 <li>For <strong>Port</strong>, type <code>443</code>.</li>
-<li>For <strong>Type</strong>, select <code>VLESS</code>.</li>
+<li>For <strong>Type</strong>, select <strong>VLESS</strong>.</li>
 <li>Under <strong>Outbound Settings</strong>, for <strong>UUID</strong> put your universally unique id (<code>65183eac-c09f-4fe7-8f0f-95f55281cbb4</code> in the examples in this tutorial), and for <strong>Flow</strong> select <code>xtls-rprx-direct</code>.</li>
 <li>Under <strong>Stream Settings</strong>, select the <strong>TLS Settings</strong> tab.</li>
-<li>Set <strong>Security Type</strong> to <code>XTLS</code>.</li>
+<li>Set <strong>Security Type</strong> to <strong>XTLS</strong>.</li>
 <li>Set <strong>Server Address (SNI)</strong> to <em>your_domain</em>.</li>
 <li>Click <strong>OK</strong>.</li>
 </ol>
 <p><img src="/images/qv2ray-connection-settings.png" alt="Qv2ray Connections Settings"></p>
-<p>Now select your server. Click the Connect icon for your server.</p>
+<p>Now select your server under the <strong>Default Group</strong>.</p>
+<p>Click the Connect icon for your server. Notifications appear in Windows to say you are connected.</p>
 <p>On Windows, by default your Qv2ray proxy server will listen on <code>127.0.0.1</code> port <code>8889</code>. You can optionally check this in <strong>Settings</strong> &gt; <strong>Network &amp; Internet</strong> &gt; <strong>Proxy</strong> &gt; <strong>Manual proxy setup</strong>.</p>
 <p>In your browser, visit <a href="https://www.iplocation.net">https://www.iplocation.net</a> to confirm that your web browsing is now coming from your server location.</p>
-<p>When you have finished browsing, go back to your server in Qv2ray. If you have closed the Qv2ray panel, you can open it again by clicking the Qv2ray icon in the system tray at the bottom right of the Windows desktop. Select your server and click the Disconnect icon.</p>
+<p>When you have finished browsing, go back to your server in Qv2ray. (If you have closed the Qv2ray panel, you can open it again by clicking the Qv2ray icon in the system tray at the bottom right of the Windows desktop.)</p>
+<p>Select your server and click the Disconnect icon.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>You now have a working Xray server that you&rsquo;ve tested with the Qv2ray client.</p>
 <p>You can find more examples of Xray configurations at <a href="https://github.com/XTLS/Xray-examples">https://github.com/XTLS/Xray-examples</a>. You can read the documentation for Qv2ray at <a href="https://qv2ray.net/en/">https://qv2ray.net/en/</a>.</p>
