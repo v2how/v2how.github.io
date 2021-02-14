@@ -180,7 +180,7 @@ Status: active
 
 To                         Action      From
 --                         ------      ----
-22/tcp                     ALLOW       12.12.12.0/34
+22/tcp                     ALLOW       12.12.12.0/24
 80/tcp                     ALLOW       Anywhere
 443/tcp                    ALLOW       Anywhere
 80/tcp (v6)                ALLOW       Anywhere (v6)
