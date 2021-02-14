@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on v2how</title>
+    <link>https://v2how.github.io/page/</link>
+    <description>Recent content in Pages on v2how</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
+    <webMaster>amyw32@protonmail.com (Amy)</webMaster><atom:link href="https://v2how.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://v2how.github.io/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/page/about/</guid>
+      <description>We started this website because we love technology. I have a PhD in Computer Science, and my partner is a Linux expert. Our mission is to bring you the how-to information you crave. That&amp;rsquo;s how our blog got its name! We want to be your authoritative source for tech &amp;ldquo;how-to&amp;rdquo; articles.
+Starting small is not a problem. When reviewing niches for blogs, we both realized that technology was our passion. We love what we do.</description>
+    </item>
+    
+  </channel>
+</rss>

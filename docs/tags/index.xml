@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on v2how</title>
+    <link>https://v2how.github.io/tags/</link>
+    <description>Recent content in Tags on v2how</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
+    <webMaster>amyw32@protonmail.com (Amy)</webMaster>
+    <lastBuildDate>Fri, 12 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>server</title>
+      <link>https://v2how.github.io/tags/server/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://v2how.github.io/tags/ubuntu/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vless</title>
+      <link>https://v2how.github.io/tags/vless/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/vless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xray</title>
+      <link>https://v2how.github.io/tags/xray/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/xray/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

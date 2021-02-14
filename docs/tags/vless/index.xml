@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vless on v2how</title>
+    <link>https://v2how.github.io/tags/vless/</link>
+    <description>Recent content in vless on v2how</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
+    <webMaster>amyw32@protonmail.com (Amy)</webMaster>
+    <lastBuildDate>Fri, 12 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/vless/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Create an Xray VLESS XTLS Server on Ubuntu 20.04</title>
+      <link>https://v2how.github.io/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/</link>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/</guid>
+      <description>Introduction In this tutorial you&amp;rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.
+You&amp;rsquo;ll see how to create a camouflage web server with Nginx, and then you&amp;rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You&amp;rsquo;ll then test your server with the Qv2ray graphical user interface.
+At the end of this tutorial, you&amp;rsquo;ll have a working and tested Xray server.
+Prerequisites Before you begin this tutorial, you will need:</description>
+    </item>
+    
+  </channel>
+</rss>

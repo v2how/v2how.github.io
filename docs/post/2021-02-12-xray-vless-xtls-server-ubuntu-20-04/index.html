@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>How to Create an Xray VLESS XTLS Server on Ubuntu 20.04 - v2how</title>
+  <meta name="description" content="Introduction In this tutorial you&rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.
+You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You&rsquo;ll then test your server with the Qv2ray graphical user interface.
+At the end of this tutorial, you&rsquo;ll have a working and tested Xray server.
+Prerequisites Before you begin this tutorial, you will need:">
+  <meta name="author" content="Amy"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "v2how",
+    
+    "url": "https:\/\/v2how.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/v2how.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/v2how.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/v2how.github.io\/post\/2021-02-12-xray-vless-xtls-server-ubuntu-20-04\/",
+          "name": "How to create an xray v l e s s x t l s server on ubuntu 20.04"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Amy"
+  },
+  "headline": "How to Create an Xray VLESS XTLS Server on Ubuntu 20.04",
+  "description" : "Introduction In this tutorial you\u0026rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.\nYou\u0026rsquo;ll see how to create a camouflage web server with Nginx, and then you\u0026rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You\u0026rsquo;ll then test your server with the Qv2ray graphical user interface.\nAt the end of this tutorial, you\u0026rsquo;ll have a working and tested Xray server.\nPrerequisites Before you begin this tutorial, you will need:",
+  "inLanguage" : "en",
+  "wordCount":  2967 ,
+  "datePublished" : "2021-02-12T00:00:00",
+  "dateModified" : "2021-02-12T00:00:00",
+  "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
+  "keywords" : [ "xray, vless, server, ubuntu" ],
+  "mainEntityOfPage" : "https:\/\/v2how.github.io\/post\/2021-02-12-xray-vless-xtls-server-ubuntu-20-04\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/v2how.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="How to Create an Xray VLESS XTLS Server on Ubuntu 20.04" />
+<meta property="og:description" content="Introduction In this tutorial you&rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.
+You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You&rsquo;ll then test your server with the Qv2ray graphical user interface.
+At the end of this tutorial, you&rsquo;ll have a working and tested Xray server.
+Prerequisites Before you begin this tutorial, you will need:">
+<meta property="og:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
+<meta property="og:url" content="https://v2how.github.io/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="v2how" />
+
+  <meta name="twitter:title" content="How to Create an Xray VLESS XTLS Server on Ubuntu 20.04" />
+  <meta name="twitter:description" content="Introduction In this tutorial you&rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.
+You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&rsquo;ll see how to …">
+  <meta name="twitter:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://v2how.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="alternate" href="https://v2how.github.io/index.xml" type="application/rss+xml" title="v2how"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://v2how.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://v2how.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://v2how.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://v2how.github.io">v2how</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="v2how" href="https://v2how.github.io">
+            <img class="avatar-img" src="https://v2how.github.io/images/amy-avatar-icon.png" alt="v2how" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>How to Create an Xray VLESS XTLS Server on Ubuntu 20.04</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 12, 2021
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;14&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2967&nbsp;words
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Amy
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <h3 id="introduction">Introduction</h3>
+<p>In this tutorial you&rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.</p>
+<p>You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You&rsquo;ll then test your server with the Qv2ray graphical user interface.</p>
+<p>At the end of this tutorial, you&rsquo;ll have a working and tested Xray server.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before you begin this tutorial, you will need:</p>
+<ul>
+<li>A virtual private server (VPS) running Ubuntu 20.04. You can rent servers from providers such as <a href="https://cloud.google.com">Google Cloud</a> or <a href="https://www.vultr.com">Vultr</a>.</li>
+<li>Your own domain name, which may be <a href="https://www.freenom.com">free</a> or <a href="https://www.namesilo.com">paid</a>.</li>
+<li>A DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address. Usually you set up the DNS record at your domain name registrar, but you can also set up DNS records elsewhere, such as at <a href="https://www.cloudflare.com">Cloudflare</a>. If you are using Cloudflare, note that some Xray configurations require DNS services only and will not work with proxying.</li>
+</ul>
+<h2 id="step-1--logging-in-as-root">Step 1 — Logging In as Root</h2>
+<p>SSH into your server. On Linux and macOS, you can use the terminal command SSH to reach your server On Windows, you can either use <a href="https://docs.microsoft.com/en-us/powershell">PowerShell</a> or a graphical user interface (GUI) such as <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty">PuTTY</a> or <a href="https://www.netsarang.com">XSHELL</a>.</p>
+<p>If you&rsquo;re not logged in as <code>root</code>, then become <code>root</code> as follows. If you don&rsquo;t already know the root password, then set it by issuing the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo passwd root
+</code></pre></div><p>The <code>sudo</code> command allows non-root users to issue root commands. The <code>passwd</code> command allows you to set the password for yourself or another user, which in this case is the user named <code>root</code>.</p>
+<p>You are prompted to enter your own password:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> amy:
+</code></pre></div><p>Enter your own (non-root) password.</p>
+<p>You are then prompted to enter a new password for the user <code>root</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">New password:
+</code></pre></div><p>Choose and enter the new password for <code>root</code>.</p>
+<p>You are prompted to confirm the new password by retyping it:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Retype new password:
+</code></pre></div><p>Enter the same new password for <code>root</code>.</p>
+<p>If all is well, you will receive a feedback message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">passwd: password updated successfully
+</code></pre></div><p>Now you know the root password, become <code>root</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">su -
+</code></pre></div><p>The <code>su</code> command (short for switch user) allows you to switch to another user id, so that you can run commands with that user&rsquo;s privileges. Since no specific user is named, you will by default switch to the user <code>root</code>.  The hyphen (<code>-</code>) means create a new login environment for the new user, which will be completely separate from your existing login environment.</p>
+<p>You are prompted to enter the password for <code>root</code> that you set a few moments ago:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Password:
+</code></pre></div><p>Enter the root password.</p>
+<p>You will notice that your command prompt changes from a dollar sign to a hash sign:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#</span>
+</code></pre></div><p>This is a reminder that your are logged in as <code>root</code>. Now that you are <code>root</code>, you do not need to prefix privileged commands with <code>sudo</code>.</p>
+<p>Update your package lists, and upgrade all your packages to the latest version:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt update <span class="o">&amp;&amp;</span> apt upgrade -y
+</code></pre></div><p>You will see package upgrade messages in your terminal.</p>
+<h2 id="step-2--enabling-the-firewall-optional">Step 2 — Enabling the Firewall (Optional)</h2>
+<p>We recommend that you protect your server and especially port <code>22</code> (the SSH port) by installing a firewall. In this tutorial, you&rsquo;ll install and configure the uncomplicated firewall (<code>ufw</code>).</p>
+<p>On many Ubuntu systems, <code>ufw</code> is already installed. Check that <code>ufw</code> is installed on your system:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt list ufw
+</code></pre></div><p>You should see a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw/focal,now 0.36-6 all <span class="o">[</span>installed<span class="o">]</span>
+</code></pre></div><p>If you do not see the message stating that <code>ufw</code> is already installed, then install the software package now:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install ufw
+</code></pre></div><p>Now you&rsquo;ll set up the firewall. If you can guarantee that you will always SSH into your server from a single IP address, then limit SSH access to just that single address. For example, if your IP address is <code>12.12.12.12</code>, then issue the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow from 12.12.12.12/32 to any port <span class="m">22</span>
+</code></pre></div><p>When you execute that command, you will see a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Rule added
+</code></pre></div><p>If limiting access to a single IP address is not possible, but you can guarantee you will always connect from a known IP address range, then limit SSH access to just that range. For example, if you are in an office which always uses the IP address range <code>12.12.12.0/24</code>, then issue the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow from 12.12.12.0/24 to any port <span class="m">22</span>
+</code></pre></div><p>If limiting access to an IP address range is not possible, then you will have to open the SSH port for access from the entire world:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow ssh
+</code></pre></div><p>In any case, we recommend that you further protect port <code>22</code> by using SSH key authentication in preference to password authentication. SSH key pair generation and upload to your server are out of scope for this tutorial. You can find tutorials on this subject on the web.</p>
+<p>Open ports <code>80</code> (the HTTP port) and <code>443</code> (the HTTPS port). These will be used for Xray and for the Nginx camouflage website:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow http
+ufw allow https
+</code></pre></div><p>Enable UFW:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw <span class="nb">enable</span>
+</code></pre></div><p>You will see a warning message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Command may disrupt existing ssh connections. Proceed with operation <span class="o">(</span>y<span class="p">|</span>n<span class="o">)</span>?
+</code></pre></div><p>Type <code>Y</code> and press <code>ENTER</code> to confirm that you wish to enable <code>ufw</code>. You will see a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Firewall is active and enabled on system startup
+</code></pre></div><p>Check the status of your firewall:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw status
+</code></pre></div><p>You will see a firewall status display that looks like the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Status: active
+
+To                         Action      From
+--                         ------      ----
+OpenSSH                    ALLOW       Anywhere
+Nginx HTTP                 ALLOW       Anywhere
+<span class="m">22</span>                         ALLOW       12.12.12.0/24
+80/tcp                     ALLOW       Anywhere
+443/tcp                    ALLOW       Anywhere
+OpenSSH <span class="o">(</span>v6<span class="o">)</span>               ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
+Nginx HTTP <span class="o">(</span>v6<span class="o">)</span>            ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
+80/tcp <span class="o">(</span>v6<span class="o">)</span>                ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
+443/tcp <span class="o">(</span>v6<span class="o">)</span>               ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
+</code></pre></div><h2 id="step-3--creating-a-camouflage-website">Step 3 — Creating a Camouflage Website</h2>
+<p>Now you&rsquo;ll install Nginx and obtain an SSL certificate to camouflage your Xray server.</p>
+<p>Install the Nginx web server package:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install nginx
+</code></pre></div><p>If Nginx was not already installed, you will see the package installation messages.</p>
+<p>Edit the default virtual host configuration file, <code>/etc/nginx/sites-available/default</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /etc/nginx/sites-available/default
+</code></pre></div><p>Find the line containing <code>server_name _;</code>. Change it so that it refers to the fully qualified domain name of your server:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">        server_name your_domain<span class="p">;</span>
+</code></pre></div><p>Write the file to disk, and exit the editor.</p>
+<p>Restart Nginx with your revised change configuration:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl restart nginx
+</code></pre></div><p>You will use <code>snap</code> to install <code>certbot</code>, the Let&rsquo;s Encrypt client. First install the <code>core</code> snap:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">snap install core
+</code></pre></div><p>After the snap is installed, you will see a confirmation message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">core 16-2.48.2.1 from Canonical✓ installed
+</code></pre></div><p>Get the <code>core</code> snap up to date if necessary:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">snap refresh core
+</code></pre></div><p>Since <code>core</code> is already up to date, you should see a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">snap <span class="s2">&#34;core&#34;</span> has no updates available
+</code></pre></div><p>Now use snap to install the <code>certbot</code> client for Let&rsquo;s Encrypt:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">snap install --classic certbot
+</code></pre></div><p>The <code>--classic</code> option means that <code>certbot</code> will not be confined to a restricted environment in the same way as normal snaps are.</p>
+<p>The installation ends with a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">certbot 1.12.0 from Certbot Project <span class="o">(</span>certbot-eff✓<span class="o">)</span> installed
+</code></pre></div><p>The snap executable for <code>certbot</code> is in the directory <code>/snap/bin</code>, which should be in your execution PATH. If you want to make extra sure that <code>certbot</code> is executable, then create a symbolic link to <code>certbot</code> in your <code>/usr/bin</code> directory, which should definitely be in your PATH:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ln -s /snap/bin/certbot /usr/bin/certbot
+</code></pre></div><p>The symbolic link <code>/usr/bin/certbot</code> now points to the actual executable at <code>/snap/bin/certbot</code>.</p>
+<p>Now you can invoke <code>certbot</code> to obtain your SSL certificate from the Let&rsquo;s Encrypt project:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">certbot certonly --nginx 
+</code></pre></div><p>The <code>certonly</code> option means that you just want a certificate, with no further changes to your system. The <code>--nginx</code> option tells <code>certbot</code> that Nginx is already running and available for use by <code>certbot</code> to validate your request.</p>
+<p>You are asked to enter your email address in case Let&rsquo;s Encrypt has some urgent notices to send you:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Enter email address <span class="o">(</span>used <span class="k">for</span> urgent renewal and security notices<span class="o">)</span>
+ <span class="o">(</span>Enter <span class="s1">&#39;c&#39;</span> to cancel<span class="o">)</span>:
+</code></pre></div><p>Type your email address, and press <code>ENTER</code>.</p>
+<p>You are asked to read and agree to the terms of service:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please <span class="nb">read</span> the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
+agree in order to register with the ACME server. Do you agree?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+<span class="o">(</span>Y<span class="o">)</span>es/<span class="o">(</span>N<span class="o">)</span>o:
+</code></pre></div><p>Type <code>Y</code> and press <code>ENTER</code>.</p>
+<p>You are asked if you want to share your email address with the Electronic Frontier Foundation:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing, once your first certificate is successfully issued, to
+share your email address with the Electronic Frontier Foundation, a founding
+partner of the Let<span class="s1">&#39;s Encrypt project and the non-profit organization that
+</span><span class="s1">develops Certbot? We&#39;</span>d like to send you email about our work encrypting the web,
+EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+<span class="o">(</span>Y<span class="o">)</span>es/<span class="o">(</span>N<span class="o">)</span>o:
+</code></pre></div><p>Type <code>Y</code> or <code>N</code> as you prefer, and press <code>ENTER</code>.</p>
+<p>You are asked to confirm which fully qualified domain name(s) you want an SSL certificate for:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Which names would you like to activate HTTPS <span class="k">for</span>?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: your_domain
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate numbers separated by commas and/or spaces, or leave input
+blank to <span class="k">select</span> all options shown <span class="o">(</span>Enter <span class="s1">&#39;c&#39;</span> to cancel<span class="o">)</span>:
+</code></pre></div><p>Type the number of your server&rsquo;s fully qualified domain name, which would be <code>1</code> in our example, and press <code>ENTER</code>.</p>
+<p>The utility performs &ldquo;challenges&rdquo; to confirm that your domain name choice is legitimate. If all is well, you should see some closing messages:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"> - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/your_domain/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/your_domain/privkey.pem
+   Your certificate will expire on 2021-05-12. To obtain a new or
+   tweaked version of this certificate in the future, simply run
+   certbot again. To non-interactively renew *all* of your
+   certificates, run <span class="s2">&#34;certbot renew&#34;</span>
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let<span class="err">&#39;</span>s Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+
+
+</code></pre></div><p>Finally, do a dry run to check that the renewal process will work in 90 days' time:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">certbot renew --dry-run
+</code></pre></div><p>This should end with a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Congratulations, all simulated renewals succeeded:
+  /etc/letsencrypt/live/your_domain/fullchain.pem <span class="o">(</span>success<span class="o">)</span>
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</code></pre></div><h2 id="step-4--generating-universally-unique-id-and-path">Step 4 — Generating Universally Unique Id and Path</h2>
+<p>In this step, you&rsquo;ll generate a universally unique id (UUID) that will act as a password for your Xray server.</p>
+<p>Install the UUID package:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install uuid
+</code></pre></div><p>You will see the package installation messages.</p>
+<p>Once the install is done, generate a UUID:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">uuid -v <span class="m">4</span>
+</code></pre></div><p>The option <code>-v 4</code> causes the package to create a version 4 UUID. Version 4 UUIDs are completely random and not related to the system time. Since a UUID is composed of 128 random bits, the chances are no one else will ever generate the same UUID.</p>
+<p>You will see the sample result below used in the rest of this tutorial:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">65183eac-c09f-4fe7-8f0f-95f55281cbb4
+</code></pre></div><h2 id="step-5--installing-xray">Step 5 — Installing Xray</h2>
+<p>Now you are ready for the install of Xray. Install the prerequisite package <code>curl</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install curl
+</code></pre></div><p>It will probably already be present on your Ubuntu system. If so, you will see a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl is already the newest version <span class="o">(</span>7.68.0-1ubuntu2.4<span class="o">)</span>.
+</code></pre></div><p>Copy and paste the command below to download and run the installation script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh<span class="k">)</span><span class="s2">&#34;</span> @ install -u root
+</code></pre></div><p>The <code>-u root</code> option is to set up an installation running as <code>root</code>. This is required so that Xray can access the SSL certificate private key.</p>
+<p>The script takes a few minutes to run. It should end with confirmation messages like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">info: Xray v1.2.4 is installed.
+You may need to execute a <span class="nb">command</span> to remove dependent software: apt purge curl unzip
+Created symlink /etc/systemd/system/multi-user.target.wants/xray.service → /etc/systemd/system/xray.service.
+info: Enable and start the Xray service
+</code></pre></div><p>Confirm that Xray is running with the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status xray
+</code></pre></div><p>You should see a result that looks as below:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">xray.service - Xray Service
+     Loaded: loaded (/etc/systemd/system/xray.service; enabled; vendor preset: enabled)
+    Drop-In: /etc/systemd/system/xray.service.d
+             └─10-donot_touch_single_conf.conf
+     Active: active (running) since Sun 2021-02-12 09:05:34 UTC; 1min 21s ago
+       Docs: https://github.com/xtls
+   Main PID: 2565 (xray)
+      Tasks: 6 (limit: 1137)
+     Memory: 3.1M
+     CGroup: /system.slice/xray.service
+             └─2565 /usr/local/bin/xray run -config /usr/local/etc/xray/config.json
+</code></pre></div><p>As you can see from the above status display, the script has placed your Xray configuration file at <code>/usr/local/etc/xray/config.json</code>.</p>
+<p>If the status display extends over multiple screens, press the <code>Q</code> key on your keyboard to quit the status display.</p>
+<h2 id="step-6--configuring-xray">Step 6 — Configuring Xray</h2>
+<p>In this step, you&rsquo;ll configure Xray so that it accepts TCP with XTLS security on port <code>443</code>. If a wrong UUID is given, Xray will fall back to passing your traffic to Nginx on port <code>80</code>.</p>
+<p>Edit the Xray configuration file, <code>/usr/local/etc/xray/config.json</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /usr/local/etc/xray/config.json
+</code></pre></div><p>At first, the file contains only opening and closing curly braces:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">{}</span>
+</code></pre></div><p>Delete the initial content.</p>
+<p>Copy and paste in the template below:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">{
+    &#34;log&#34;: {
+        &#34;loglevel&#34;: &#34;warning&#34;
+    },
+    &#34;inbounds&#34;: [
+        {
+            &#34;port&#34;: 443,
+            &#34;protocol&#34;: &#34;vless&#34;,
+            &#34;settings&#34;: {
+                &#34;clients&#34;: [
+                    {
+                        &#34;id&#34;: &#34;65183eac-c09f-4fe7-8f0f-95f55281cbb4&#34;,
+                        &#34;flow&#34;: &#34;xtls-rprx-direct&#34;,
+                        &#34;level&#34;: 0,
+                        &#34;email&#34;: &#34;love@example.com&#34;
+                    }
+                ],
+                &#34;decryption&#34;: &#34;none&#34;,
+                &#34;fallbacks&#34;: [
+                    {
+                        &#34;dest&#34;: 80
+                    }
+                ]
+            },
+            &#34;streamSettings&#34;: {
+                &#34;network&#34;: &#34;tcp&#34;,
+                &#34;security&#34;: &#34;xtls&#34;,
+                &#34;xtlsSettings&#34;: {
+                    &#34;alpn&#34;: [
+                        &#34;http/1.1&#34;
+                    ],
+                    &#34;certificates&#34;: [
+                        {
+                            &#34;certificateFile&#34;: &#34;/etc/letsencrypt/live/your_domain/fullchain.pem&#34;,
+                            &#34;keyFile&#34;: &#34;/etc/letsencrypt/live/your_domain/privkey.pem&#34;
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    &#34;outbounds&#34;: [
+        {
+            &#34;protocol&#34;: &#34;freedom&#34;
+        }
+    ]
+}
+</code></pre></div><p>When you&rsquo;ve pasted in the template, customize it for your situation by making these changes:</p>
+<ul>
+<li>Replace the UUID <code>65183eac-c09f-4fe7-8f0f-95f55281cbb4</code> by your own UUID</li>
+<li>Optionally replace the identifier <code>love@example.com</code></li>
+<li>In the Let&rsquo;s Encrpyt certificate and key locations, replace <em>your_domain</em> by your server&rsquo;s fully qualified domain name</li>
+</ul>
+<p>Once you&rsquo;ve made all the required changes, write the file to disk, and exit the editor.</p>
+<h2 id="step-7--restarting-xray">Step 7 — Restarting Xray</h2>
+<p>Now that your configuration file is correct, restart the Xray service:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl restart xray
+</code></pre></div><p>Confirm that Xray is running with the new configuration with the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status xray
+</code></pre></div><p>At this point, Xray is listening on port <code>443</code> and Nginx is listening on port <code>80</code>.</p>
+<h2 id="step-8--testing-with-client">Step 8 — Testing with Client</h2>
+<p>Before you go any further, test your camouflage:</p>
+<ul>
+<li>In an ordinary browser, visit your fully qualified domain name on HTTP (<code>http://your_domain</code>). You should see the <code>Welcome to nginx!</code> page.</li>
+<li>Again in an ordinary browser, visit your fully qualified domain name on HTTPS (<code>https://your_domain</code>). You should see the <code>Welcome to nginx!</code> page.</li>
+</ul>
+<p>Now you know your camouflage is working, you can carry on.</p>
+<p>Download and install the most recent version of the Qv2ray client for Linux, Windows, or macOS from <a href="https://github.com/Qv2ray/Qv2ray/releases">https://github.com/Qv2ray/Qv2ray/releases</a>. For the rest of this section, we will give instructions for Windows.</p>
+<p>Download and unzip the corresponding Xray core from <a href="https://github.com/XTLS/Xray-core/releases/tag/v1.3.0">https://github.com/XTLS/Xray-core/releases/tag/v1.3.0</a>. You will typically have five files in the unzipped folder:</p>
+<ul>
+<li><code>geoip.dat</code></li>
+<li><code>geosite.dat</code></li>
+<li><code>LICENSE</code></li>
+<li><code>README.md</code></li>
+<li><code>xray</code> binary</li>
+</ul>
+<p>Create a folder to hold the core. On Windows it should be named <code>C:\Users\your_user\AppData\Local\qv2ray\vcore</code>.</p>
+<p>Copy the five files into place in the core folder.</p>
+<p>Start Qv2ray.</p>
+<p><img src="/images/qv2ray-new.png" alt="Qv2ray new install"></p>
+<p>Press the <strong>Preferences</strong> button, and on the <strong>Kernel Settings</strong> tab, specify your core folder and executable.</p>
+<p>Now that the kernel settings are configured, you can add your server configuration to the Qv2ray client.</p>
+<ol>
+<li>Select the <strong>Default Group</strong> and click the <strong>New</strong> button.</li>
+<li>For <strong>Host</strong>, type <em>your_domain</em> (i.e., your server&rsquo;s fully qualified domain name).</li>
+<li>For <strong>Port</strong>, type <code>443</code>.</li>
+<li>For <strong>Type</strong>, select <code>VLESS</code>.</li>
+<li>Under <strong>Outbound Settings</strong>, for <strong>UUID</strong> put your universally unique id (<code>65183eac-c09f-4fe7-8f0f-95f55281cbb4</code> in the examples in this tutorial), and for <strong>Flow</strong> select <code>xtls-rprx-direct</code>.</li>
+<li>Under <strong>Stream Settings</strong>, select the <strong>TLS Settings</strong> tab.</li>
+<li>Set <strong>Security Type</strong> to <code>XTLS</code>.</li>
+<li>Set <strong>Server Address (SNI)</strong> to <em>your_domain</em>.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p>Now select your server. Click the Connect icon for your server.</p>
+<p>On Windows, by default your Qv2ray proxy server will listen on <code>127.0.0.1</code> port <code>8889</code>. You can optionally check this in <strong>Settings</strong> &gt; <strong>Network &amp; Internet</strong> &gt; <strong>Proxy</strong> &gt; <strong>Manual proxy setup</strong>.</p>
+<p>In your browser, visit <a href="https://www.iplocation.net">https://www.iplocation.net</a> to confirm that your web browsing is now coming from your server location.</p>
+<p>When you have finished browsing, go back to your server in Qv2ray. If you have closed the Qv2ray panel, you can open it again by clicking the Qv2ray icon in the system tray at the bottom right of the Windows desktop. Select your server and click the Disconnect icon.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>You now have a working Xray server that you&rsquo;ve tested with the Qv2ray client.</p>
+<p>You can find more examples of Xray configurations at <a href="https://github.com/XTLS/Xray-examples">https://github.com/XTLS/Xray-examples</a>. You can read the documentation for Qv2ray at <a href="https://qv2ray.net/en/">https://qv2ray.net/en/</a>.</p>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://v2how.github.io/tags/xray/">xray</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/vless/">vless</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/server/">server</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/ubuntu/">ubuntu</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f&amp;text=How%20to%20Create%20an%20Xray%20VLESS%20XTLS%20Server%20on%20Ubuntu%2020.04&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f&amp;title=How%20to%20Create%20an%20Xray%20VLESS%20XTLS%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f&amp;title=How%20to%20Create%20an%20Xray%20VLESS%20XTLS%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f&amp;title=How%20to%20Create%20an%20Xray%20VLESS%20XTLS%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f&amp;description=How%20to%20Create%20an%20Xray%20VLESS%20XTLS%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:amyw32@protonmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Amy
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2021
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://v2how.github.io">v2how</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.80.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://v2how.github.io/js/main.js"></script>
+<script src="https://v2how.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://v2how.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
