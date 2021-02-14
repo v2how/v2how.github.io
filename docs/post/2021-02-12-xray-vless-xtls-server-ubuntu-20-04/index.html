@@ -62,7 +62,7 @@ Prerequisites Before you begin this tutorial, you will need:">
   "headline": "How to Create an Xray VLESS XTLS Server on Ubuntu 20.04",
   "description" : "Introduction In this tutorial you\u0026rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.\nYou\u0026rsquo;ll see how to create a camouflage web server with Nginx, and then you\u0026rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You\u0026rsquo;ll then test your server with the Qv2ray graphical user interface.\nAt the end of this tutorial, you\u0026rsquo;ll have a working and tested Xray server.\nPrerequisites Before you begin this tutorial, you will need:",
   "inLanguage" : "en",
-  "wordCount":  3041 ,
+  "wordCount":  3039 ,
   "datePublished" : "2021-02-12T00:00:00",
   "dateModified" : "2021-02-12T00:00:00",
   "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
@@ -250,7 +250,7 @@ You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;15&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3041&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3039&nbsp;words
   
   
     
@@ -287,7 +287,7 @@ You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&
 <li>A DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address. Usually you set up the DNS record at your domain name registrar. You can also set up DNS records elsewhere, such as at <a href="https://www.cloudflare.com">Cloudflare</a>. If you are using Cloudflare, note that some Xray configurations require DNS services only and will not work with proxying.</li>
 </ul>
 <h2 id="step-1--logging-in-as-root">Step 1 — Logging In as Root</h2>
-<p>SSH into your server. On Linux and macOS, you can use the terminal command SSH to reach your server On Windows, you can either use <a href="https://docs.microsoft.com/en-us/powershell">PowerShell</a> or a graphical user interface (GUI) such as <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty">PuTTY</a> or <a href="https://www.netsarang.com">XSHELL</a>.</p>
+<p>SSH into your server. On Linux and macOS, you can use the terminal command <code>ssh</code> to reach your server. On Windows, you can either use <a href="https://docs.microsoft.com/en-us/powershell">PowerShell</a> or a graphical user interface (GUI) such as <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty">PuTTY</a> or <a href="https://www.netsarang.com">XSHELL</a>.</p>
 <p>If you&rsquo;re not logged in as <code>root</code>, then become <code>root</code> as follows. If you don&rsquo;t already know the root password, then set it by issuing the command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo passwd root
 </code></pre></div><p>The <code>sudo</code> command allows non-root users to issue root commands. The <code>passwd</code> command allows you to set the password for yourself or another user, which in this case is the user named <code>root</code>.</p>
@@ -436,7 +436,7 @@ blank to <span class="k">select</span> all options shown <span class="o">(</span
 Congratulations, all simulated renewals succeeded:
   /etc/letsencrypt/live/your_domain/fullchain.pem <span class="o">(</span>success<span class="o">)</span>
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-</code></pre></div><h2 id="step-4--generating-universally-unique-id-and-path">Step 4 — Generating Universally Unique Id and Path</h2>
+</code></pre></div><h2 id="step-4--generating-universally-unique-id">Step 4 — Generating Universally Unique Id</h2>
 <p>In this step, you&rsquo;ll generate a universally unique id (UUID) that will act as a password for your Xray server.</p>
 <p>Install the UUID package:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install uuid -y

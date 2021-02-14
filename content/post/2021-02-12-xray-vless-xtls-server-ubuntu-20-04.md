@@ -22,7 +22,7 @@ Before you begin this tutorial, you will need:
 
 ## Step 1 — Logging In as Root
 
-SSH into your server. On Linux and macOS, you can use the terminal command SSH to reach your server On Windows, you can either use [PowerShell](https://docs.microsoft.com/en-us/powershell) or a graphical user interface (GUI) such as [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty) or [XSHELL](https://www.netsarang.com).
+SSH into your server. On Linux and macOS, you can use the terminal command `ssh` to reach your server. On Windows, you can either use [PowerShell](https://docs.microsoft.com/en-us/powershell) or a graphical user interface (GUI) such as [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty) or [XSHELL](https://www.netsarang.com).
 
 If you're not logged in as `root`, then become `root` as follows. If you don't already know the root password, then set it by issuing the command:
 
@@ -360,7 +360,7 @@ Congratulations, all simulated renewals succeeded:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ```
 
-## Step 4 — Generating Universally Unique Id and Path
+## Step 4 — Generating Universally Unique Id
 
 In this step, you'll generate a universally unique id (UUID) that will act as a password for your Xray server.
 
