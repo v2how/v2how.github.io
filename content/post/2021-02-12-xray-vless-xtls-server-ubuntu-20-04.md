@@ -564,6 +564,8 @@ Start Qv2ray.
 
 Press the **Preferences** button, and on the **Kernel Settings** tab, specify your core folder and executable.
 
+![Qv2ray Kernel Settings](/images/qv2ray-kernel-settings.png)
+
 Now that the kernel settings are configured, you can add your server configuration to the Qv2ray client.
 
 1. Select the **Default Group** and click the **New** button.
@@ -575,6 +577,8 @@ Now that the kernel settings are configured, you can add your server configurati
 7. Set **Security Type** to `XTLS`.
 8. Set **Server Address (SNI)** to *your_domain*.
 9. Click **OK**.
+
+![Qv2ray Connections Settings](/images/qv2ray-connection-settings.png)
 
 Now select your server. Click the Connect icon for your server. 
 
