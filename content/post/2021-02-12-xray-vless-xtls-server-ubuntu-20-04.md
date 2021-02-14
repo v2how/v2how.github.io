@@ -119,7 +119,7 @@ apt install ufw
 Now you'll set up the firewall. If you can guarantee that you will always SSH into your server from a single IP address, then limit SSH access to just that single address. For example, if your IP address is `12.12.12.12`, then issue the command: 
 
 ```bash
-ufw allow from 12.12.12.12/32 to any port 22
+ufw allow from 12.12.12.12/32 to any port 22 proto tcp
 ```
 
 When you execute that command, you will see a message:
@@ -131,7 +131,7 @@ Rule added
 If limiting access to a single IP address is not possible, but you can guarantee you will always connect from a known IP address range, then limit SSH access to just that range. For example, if you are in an office which always uses the IP address range `12.12.12.0/24`, then issue the command:
 
 ```bash
-ufw allow from 12.12.12.0/24 to any port 22
+ufw allow from 12.12.12.0/24 to any port 22 proto tcp
 ```
 
 If limiting access to an IP address range is not possible, then you will have to open the SSH port for access from the entire world:
@@ -180,13 +180,9 @@ Status: active
 
 To                         Action      From
 --                         ------      ----
-OpenSSH                    ALLOW       Anywhere
-Nginx HTTP                 ALLOW       Anywhere
-22                         ALLOW       12.12.12.0/24
+22/tcp                     ALLOW       12.12.12.0/34
 80/tcp                     ALLOW       Anywhere
 443/tcp                    ALLOW       Anywhere
-OpenSSH (v6)               ALLOW       Anywhere (v6)
-Nginx HTTP (v6)            ALLOW       Anywhere (v6)
 80/tcp (v6)                ALLOW       Anywhere (v6)
 443/tcp (v6)               ALLOW       Anywhere (v6)
 ```

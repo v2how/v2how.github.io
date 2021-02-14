@@ -62,7 +62,7 @@ Prerequisites Before you begin this tutorial, you will need:">
   "headline": "How to Create an Xray VLESS XTLS Server on Ubuntu 20.04",
   "description" : "Introduction In this tutorial you\u0026rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.\nYou\u0026rsquo;ll see how to create a camouflage web server with Nginx, and then you\u0026rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You\u0026rsquo;ll then test your server with the Qv2ray graphical user interface.\nAt the end of this tutorial, you\u0026rsquo;ll have a working and tested Xray server.\nPrerequisites Before you begin this tutorial, you will need:",
   "inLanguage" : "en",
-  "wordCount":  2967 ,
+  "wordCount":  2953 ,
   "datePublished" : "2021-02-12T00:00:00",
   "dateModified" : "2021-02-12T00:00:00",
   "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
@@ -250,7 +250,7 @@ You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;14&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2967&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2953&nbsp;words
   
   
     
@@ -323,11 +323,11 @@ You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&
 </code></pre></div><p>If you do not see the message stating that <code>ufw</code> is already installed, then install the software package now:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install ufw
 </code></pre></div><p>Now you&rsquo;ll set up the firewall. If you can guarantee that you will always SSH into your server from a single IP address, then limit SSH access to just that single address. For example, if your IP address is <code>12.12.12.12</code>, then issue the command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow from 12.12.12.12/32 to any port <span class="m">22</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow from 12.12.12.12/32 to any port <span class="m">22</span> proto tcp
 </code></pre></div><p>When you execute that command, you will see a message:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Rule added
 </code></pre></div><p>If limiting access to a single IP address is not possible, but you can guarantee you will always connect from a known IP address range, then limit SSH access to just that range. For example, if you are in an office which always uses the IP address range <code>12.12.12.0/24</code>, then issue the command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow from 12.12.12.0/24 to any port <span class="m">22</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow from 12.12.12.0/24 to any port <span class="m">22</span> proto tcp
 </code></pre></div><p>If limiting access to an IP address range is not possible, then you will have to open the SSH port for access from the entire world:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow ssh
 </code></pre></div><p>In any case, we recommend that you further protect port <code>22</code> by using SSH key authentication in preference to password authentication. SSH key pair generation and upload to your server are out of scope for this tutorial. You can find tutorials on this subject on the web.</p>
@@ -347,13 +347,9 @@ ufw allow https
 
 To                         Action      From
 --                         ------      ----
-OpenSSH                    ALLOW       Anywhere
-Nginx HTTP                 ALLOW       Anywhere
-<span class="m">22</span>                         ALLOW       12.12.12.0/24
+22/tcp                     ALLOW       12.12.12.0/34
 80/tcp                     ALLOW       Anywhere
 443/tcp                    ALLOW       Anywhere
-OpenSSH <span class="o">(</span>v6<span class="o">)</span>               ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
-Nginx HTTP <span class="o">(</span>v6<span class="o">)</span>            ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
 80/tcp <span class="o">(</span>v6<span class="o">)</span>                ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
 443/tcp <span class="o">(</span>v6<span class="o">)</span>               ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
 </code></pre></div><h2 id="step-3--creating-a-camouflage-website">Step 3 — Creating a Camouflage Website</h2>
