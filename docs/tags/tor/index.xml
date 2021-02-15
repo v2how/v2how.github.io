@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tor on v2how</title>
+    <link>https://v2how.github.io/tags/tor/</link>
+    <description>Recent content in tor on v2how</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
+    <webMaster>amyw32@protonmail.com (Amy)</webMaster>
+    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/tor/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04</title>
+      <link>https://v2how.github.io/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/</link>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/</guid>
+      <description>Introduction Are you in a country where the Tor Project website is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?
+If so, this post offers a last resort for situations when all other methods of reaching Tor have failed. You&amp;rsquo;ll learn how to create a Tor on-ramp on an Ubuntu 20.04 server located outside your country. With this method you can bypass censorship and connect to the Tor network from your existing browser.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -3,32 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://v2how.github.io/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/</loc>
+    <lastmod>2021-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://v2how.github.io/post/</loc>
+    <lastmod>2021-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://v2how.github.io/tags/</loc>
+    <lastmod>2021-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://v2how.github.io/tags/tor/</loc>
+    <lastmod>2021-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://v2how.github.io/tags/ubuntu/</loc>
+    <lastmod>2021-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://v2how.github.io/</loc>
+    <lastmod>2021-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://v2how.github.io/tags/v2ray/</loc>
+    <lastmod>2021-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://v2how.github.io/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/</loc>
     <lastmod>2021-02-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://v2how.github.io/post/</loc>
-    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://v2how.github.io/tags/server/</loc>
-    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://v2how.github.io/tags/</loc>
-    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://v2how.github.io/tags/ubuntu/</loc>
-    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://v2how.github.io/</loc>
     <lastmod>2021-02-12T00:00:00+00:00</lastmod>
   </url>
   

@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
     <webMaster>amyw32@protonmail.com (Amy)</webMaster>
-    <lastBuildDate>Fri, 12 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04</title>
+      <link>https://v2how.github.io/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/</link>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/</guid>
+      <description>Introduction Are you in a country where the Tor Project website is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?
+If so, this post offers a last resort for situations when all other methods of reaching Tor have failed. You&amp;rsquo;ll learn how to create a Tor on-ramp on an Ubuntu 20.04 server located outside your country. With this method you can bypass censorship and connect to the Tor network from your existing browser.</description>
+    </item>
+    
     <item>
       <title>How to Create an Xray VLESS XTLS Server on Ubuntu 20.04</title>
       <link>https://v2how.github.io/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/</link>

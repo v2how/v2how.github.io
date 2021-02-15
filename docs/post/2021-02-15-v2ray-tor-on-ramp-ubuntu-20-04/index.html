@@ -7,11 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>How to Create an Xray VLESS XTLS Server on Ubuntu 20.04 - v2how</title>
-  <meta name="description" content="Introduction In this tutorial you&rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.
-You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You&rsquo;ll then test your server with the Qv2ray graphical user interface.
-At the end of this tutorial, you&rsquo;ll have a working and tested Xray server.
-Prerequisites Before you begin this tutorial, you will need:">
+  <title>How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04 - v2how</title>
+  <meta name="description" content="Introduction Are you in a country where the Tor Project website is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?
+If so, this post offers a last resort for situations when all other methods of reaching Tor have failed. You&rsquo;ll learn how to create a Tor on-ramp on an Ubuntu 20.04 server located outside your country. With this method you can bypass censorship and connect to the Tor network from your existing browser.">
   <meta name="author" content="Amy"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -47,8 +45,8 @@ Prerequisites Before you begin this tutorial, you will need:">
         "@type": "ListItem",
         "position": 3,
         "item": {
-          "@id": "https:\/\/v2how.github.io\/post\/2021-02-12-xray-vless-xtls-server-ubuntu-20-04\/",
-          "name": "How to create an xray v l e s s x t l s server on ubuntu 20.04"
+          "@id": "https:\/\/v2how.github.io\/post\/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04\/",
+          "name": "How to build a v2 ray tor on ramp on ubuntu 20.04"
         }
     }]
 }
@@ -59,15 +57,15 @@ Prerequisites Before you begin this tutorial, you will need:">
   "author": {
     "name" : "Amy"
   },
-  "headline": "How to Create an Xray VLESS XTLS Server on Ubuntu 20.04",
-  "description" : "Introduction In this tutorial you\u0026rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.\nYou\u0026rsquo;ll see how to create a camouflage web server with Nginx, and then you\u0026rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You\u0026rsquo;ll then test your server with the Qv2ray graphical user interface.\nAt the end of this tutorial, you\u0026rsquo;ll have a working and tested Xray server.\nPrerequisites Before you begin this tutorial, you will need:",
+  "headline": "How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04",
+  "description" : "Introduction Are you in a country where the Tor Project website is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?\nIf so, this post offers a last resort for situations when all other methods of reaching Tor have failed. You\u0026rsquo;ll learn how to create a Tor on-ramp on an Ubuntu 20.04 server located outside your country. With this method you can bypass censorship and connect to the Tor network from your existing browser.",
   "inLanguage" : "en",
-  "wordCount":  3039 ,
-  "datePublished" : "2021-02-12T00:00:00",
-  "dateModified" : "2021-02-12T00:00:00",
+  "wordCount":  3542 ,
+  "datePublished" : "2021-02-15T00:00:00",
+  "dateModified" : "2021-02-15T00:00:00",
   "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
-  "keywords" : [ "xray, vless, server, ubuntu" ],
-  "mainEntityOfPage" : "https:\/\/v2how.github.io\/post\/2021-02-12-xray-vless-xtls-server-ubuntu-20-04\/",
+  "keywords" : [ "tor, v2ray, ubuntu" ],
+  "mainEntityOfPage" : "https:\/\/v2how.github.io\/post\/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04\/",
   "publisher" : {
     "@type": "Organization",
     "name" : "https:\/\/v2how.github.io",
@@ -81,19 +79,17 @@ Prerequisites Before you begin this tutorial, you will need:">
 }
 </script>
 
-<meta property="og:title" content="How to Create an Xray VLESS XTLS Server on Ubuntu 20.04" />
-<meta property="og:description" content="Introduction In this tutorial you&rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.
-You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You&rsquo;ll then test your server with the Qv2ray graphical user interface.
-At the end of this tutorial, you&rsquo;ll have a working and tested Xray server.
-Prerequisites Before you begin this tutorial, you will need:">
+<meta property="og:title" content="How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04" />
+<meta property="og:description" content="Introduction Are you in a country where the Tor Project website is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?
+If so, this post offers a last resort for situations when all other methods of reaching Tor have failed. You&rsquo;ll learn how to create a Tor on-ramp on an Ubuntu 20.04 server located outside your country. With this method you can bypass censorship and connect to the Tor network from your existing browser.">
 <meta property="og:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
-<meta property="og:url" content="https://v2how.github.io/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/" />
+<meta property="og:url" content="https://v2how.github.io/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="v2how" />
 
-  <meta name="twitter:title" content="How to Create an Xray VLESS XTLS Server on Ubuntu 20.04" />
-  <meta name="twitter:description" content="Introduction In this tutorial you&rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.
-You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&rsquo;ll see how to …">
+  <meta name="twitter:title" content="How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04" />
+  <meta name="twitter:description" content="Introduction Are you in a country where the Tor Project website is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?
+If so, this post offers a last resort for situations when all …">
   <meta name="twitter:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://v2how.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -236,7 +232,7 @@ You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
               
-                <h1>How to Create an Xray VLESS XTLS Server on Ubuntu 20.04</h1>
+                <h1>How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04</h1>
               
               
               
@@ -244,13 +240,13 @@ You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on February 12, 2021
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 15, 2021
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;15&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;17&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3039&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3542&nbsp;words
   
   
     
@@ -276,15 +272,16 @@ You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <h3 id="introduction">Introduction</h3>
-<p>In this tutorial you&rsquo;ll learn how to install Xray on an Ubuntu 20.04 server.</p>
-<p>You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&rsquo;ll see how to install and configure Xray for the VLESS protocol with XTLS security. You&rsquo;ll then test your server with the Qv2ray graphical user interface.</p>
-<p>At the end of this tutorial, you&rsquo;ll have a working and tested Xray server.</p>
+<p>Are you in a country where the <a href="https://www.torproject.org">Tor Project website</a> is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?</p>
+<p>If so, this post offers a last resort for situations when all other methods of reaching Tor have failed. You&rsquo;ll learn how to create a Tor on-ramp on an Ubuntu 20.04 server located outside your country. With this method you can bypass censorship and connect to the Tor network from your existing browser.</p>
+<p>By following along, you&rsquo;ll see how to create an Nginx camouflage web server and a hidden V2Ray server. The V2Ray server will relay your traffic to and from the Tor network. As a final step, you&rsquo;ll see how to test your Tor on-ramp using the Qv2ray graphical user interface.</p>
+<p>At the end of this tutorial, you&rsquo;ll have a working and tested Tor on-ramp.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Before you begin this tutorial, you will need:</p>
 <ul>
-<li>A virtual private server (VPS) running Ubuntu 20.04. You can rent servers from providers such as <a href="https://cloud.google.com">Google Cloud</a> or <a href="https://www.vultr.com">Vultr</a>.</li>
+<li>A virtual private server (VPS) running Ubuntu 20.04. You can rent servers from providers such as <a href="https://cloud.google.com">Google Cloud</a> or <a href="https://www.vultr.com">Vultr</a>. This server needs to be located in a country that does not block Tor.</li>
 <li>Your own domain name, which may be <a href="https://www.freenom.com">free</a> or <a href="https://www.namesilo.com">paid</a>.</li>
-<li>A DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address. Usually you set up the DNS record at your domain name registrar. You can also set up DNS records elsewhere, such as at <a href="https://www.cloudflare.com">Cloudflare</a>. If you are using Cloudflare, note that some Xray configurations require DNS services only and will not work with proxying.</li>
+<li>A DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address. Usually you set up the DNS record at your domain name registrar.</li>
 </ul>
 <h2 id="step-1--logging-in-as-root">Step 1 — Logging In as Root</h2>
 <p>SSH into your server. On Linux and macOS, you can use the terminal command <code>ssh</code> to reach your server. On Windows, you can either use <a href="https://docs.microsoft.com/en-us/powershell">PowerShell</a> or a graphical user interface (GUI) such as <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty">PuTTY</a> or <a href="https://www.netsarang.com">XSHELL</a>.</p>
@@ -331,7 +328,7 @@ You&rsquo;ll see how to create a camouflage web server with Nginx, and then you&
 </code></pre></div><p>If limiting access to an IP address range is not possible, then you will have to open the SSH port for access from the entire world:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow ssh
 </code></pre></div><p>In any case, we recommend that you further protect port <code>22</code> by using SSH key authentication in preference to password authentication. SSH key pair generation and upload to your server are out of scope for this tutorial. You can find tutorials on this subject on the web.</p>
-<p>Open ports <code>80</code> (the HTTP port) and <code>443</code> (the HTTPS port). These will be used for Xray and for the Nginx camouflage website:</p>
+<p>Open ports <code>80</code> (the HTTP port) and <code>443</code> (the HTTPS port). These will be used for the Nginx camouflage web server:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow http
 ufw allow https
 </code></pre></div><p>Enable UFW:</p>
@@ -352,9 +349,9 @@ To                         Action      From
 443/tcp                    ALLOW       Anywhere
 80/tcp <span class="o">(</span>v6<span class="o">)</span>                ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
 443/tcp <span class="o">(</span>v6<span class="o">)</span>               ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
-</code></pre></div><p>If your VPS provider implements the concept of security groups, you will also need to open your security group assignments for ports 22, 80, and 443 in their control panel.</p>
+</code></pre></div><p>If your VPS provider implements the concept of security groups, you will also need to open your security group assignments for ports <code>22</code>, <code>80</code>, and <code>443</code> in their control panel.</p>
 <h2 id="step-3--creating-a-camouflage-website">Step 3 — Creating a Camouflage Website</h2>
-<p>Now you&rsquo;ll install Nginx and obtain an SSL certificate to camouflage your Xray server.</p>
+<p>Now you&rsquo;ll install Nginx and obtain an SSL certificate. The purpose of Nginx is to camouflage your V2Ray server.</p>
 <p>Install the Nginx web server package:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install nginx -y
 </code></pre></div><p>If Nginx was not already installed, you will see the package installation messages.</p>
@@ -382,8 +379,8 @@ To                         Action      From
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ln -s /snap/bin/certbot /usr/bin/certbot
 </code></pre></div><p>The symbolic link <code>/usr/bin/certbot</code> now points to the actual executable at <code>/snap/bin/certbot</code>.</p>
 <p>Now you can invoke <code>certbot</code> to obtain your SSL certificate from the Let&rsquo;s Encrypt project:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">certbot certonly --nginx 
-</code></pre></div><p>The <code>certonly</code> option means that you just want a certificate, with no further changes to your system. The <code>--nginx</code> option tells <code>certbot</code> that Nginx is already running and available for use by <code>certbot</code> to validate your request.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">certbot --nginx 
+</code></pre></div><p>The <code>--nginx</code> option tells <code>certbot</code> that Nginx is already running and available for use by <code>certbot</code> to validate your request.</p>
 <p>You are asked to enter your email address in case Let&rsquo;s Encrypt has some urgent notices to send you:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Enter email address <span class="o">(</span>used <span class="k">for</span> urgent renewal and security notices<span class="o">)</span>
  <span class="o">(</span>Enter <span class="s1">&#39;c&#39;</span> to cancel<span class="o">)</span>:
@@ -419,7 +416,7 @@ blank to <span class="k">select</span> all options shown <span class="o">(</span
    /etc/letsencrypt/live/your_domain/fullchain.pem
    Your key file has been saved at:
    /etc/letsencrypt/live/your_domain/privkey.pem
-   Your certificate will expire on 2021-05-12. To obtain a new or
+   Your certificate will expire on 2021-05-15. To obtain a new or
    tweaked version of this certificate in the future, simply run
    certbot again. To non-interactively renew *all* of your
    certificates, run <span class="s2">&#34;certbot renew&#34;</span>
@@ -436,8 +433,12 @@ blank to <span class="k">select</span> all options shown <span class="o">(</span
 Congratulations, all simulated renewals succeeded:
   /etc/letsencrypt/live/your_domain/fullchain.pem <span class="o">(</span>success<span class="o">)</span>
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-</code></pre></div><h2 id="step-4--generating-universally-unique-id">Step 4 — Generating Universally Unique Id</h2>
-<p>In this step, you&rsquo;ll generate a universally unique id (UUID) that will act as a password for your Xray server.</p>
+</code></pre></div><h2 id="step-4--installing-tor">Step 4 — Installing Tor</h2>
+<p>Install the Tor package:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install tor -y
+</code></pre></div><p>Tor begins running right away. It listens for SOCKS connections on port <code>9050</code>.</p>
+<h2 id="step-5--generating-universally-unique-id-and-path">Step 5 — Generating Universally Unique Id and Path</h2>
+<p>In this step, you&rsquo;ll generate a universally unique id (UUID) that will act as a password for your V2Ray server. You&rsquo;ll also generate a random path to which requests are sent in order to access V2Ray instead of Nginx.</p>
 <p>Install the UUID package:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install uuid -y
 </code></pre></div><p>You will see the package installation messages.</p>
@@ -445,159 +446,233 @@ Congratulations, all simulated renewals succeeded:
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">uuid -v <span class="m">4</span>
 </code></pre></div><p>The option <code>-v 4</code> causes the package to create a version 4 UUID. Version 4 UUIDs are completely random and not related to the system time. Since a UUID is composed of 128 random bits, the chances are no one else will ever generate the same UUID.</p>
 <p>You will see the sample result below used in the rest of this tutorial:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">65183eac-c09f-4fe7-8f0f-95f55281cbb4
-</code></pre></div><h2 id="step-5--installing-xray">Step 5 — Installing Xray</h2>
-<p>Now you are ready for the install of Xray. Install the prerequisite package <code>curl</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install curl
-</code></pre></div><p>It will probably already be present on your Ubuntu system. If so, you will see a message:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl is already the newest version <span class="o">(</span>7.68.0-1ubuntu2.4<span class="o">)</span>.
-</code></pre></div><p>Copy and paste the command below to download and run the installation script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh<span class="k">)</span><span class="s2">&#34;</span> @ install -u root
-</code></pre></div><p>The <code>-u root</code> option is to set up an installation running as <code>root</code>. This is required so that Xray can access the SSL certificate private key.</p>
-<p>The script can take a minute or so to run. It should end with confirmation messages like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">info: Xray v1.2.4 is installed.
-You may need to execute a <span class="nb">command</span> to remove dependent software: apt purge curl unzip
-Created symlink /etc/systemd/system/multi-user.target.wants/xray.service → /etc/systemd/system/xray.service.
-info: Enable and start the Xray service
-</code></pre></div><p>Confirm that Xray is running with the command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status xray
-</code></pre></div><p>You should see a result that looks as below:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">xray.service - Xray Service
-     Loaded: loaded (/etc/systemd/system/xray.service; enabled; vendor preset: enabled)
-    Drop-In: /etc/systemd/system/xray.service.d
-             └─10-donot_touch_single_conf.conf
-     Active: active (running) since Sun 2021-02-12 09:05:34 UTC; 1min 21s ago
-       Docs: https://github.com/xtls
-   Main PID: 2565 (xray)
-      Tasks: 6 (limit: 1137)
-     Memory: 3.1M
-     CGroup: /system.slice/xray.service
-             └─2565 /usr/local/bin/xray run -config /usr/local/etc/xray/config.json
-</code></pre></div><p>As you can see from the above status display, the script has placed your Xray configuration file at <code>/usr/local/etc/xray/config.json</code>.</p>
-<p>If the status display extends over multiple screens, press the <code>Q</code> key on your keyboard to quit the status display.</p>
-<h2 id="step-6--configuring-xray">Step 6 — Configuring Xray</h2>
-<p>In this step, you&rsquo;ll configure Xray so that it accepts TCP with XTLS security on port <code>443</code>. If a wrong UUID is given, Xray will fall back to passing your traffic to Nginx on port <code>80</code>.</p>
-<p>Edit the Xray configuration file, <code>/usr/local/etc/xray/config.json</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /usr/local/etc/xray/config.json
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">e2a48137-a578-4ffa-beed-ca6c99350e0a
+</code></pre></div><p>Also generate a random 8-character path name:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">openssl rand -hex <span class="m">4</span>
+</code></pre></div><p>The <code>openssl rand</code> function generates a pseudo-random number. It will have <code>4</code> bytes, which when expressed with the <code>-hex</code> option gives 8 hexadecimal characters.</p>
+<p>You will see the sample result below used in the rest of this tutorial:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">144c0889
+</code></pre></div><h2 id="step-6--installing-v2ray">Step 6 — Installing V2Ray</h2>
+<p>Now you are ready for the install of V2Ray.</p>
+<p>Download the V2Ray installation script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget --no-check-certificate https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh
+</code></pre></div><p>You will see a message saying the script has been saved:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">2021-02-15 13:27:04 <span class="o">(</span>38.3 MB/s<span class="o">)</span> - ‘install-release.sh’ saved <span class="o">[</span>21613/21613<span class="o">]</span>
+</code></pre></div><p>Run the V2Ray installation script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bash install-release.sh
+</code></pre></div><p>The script can take a minute or so to run. The install ends with a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Please execute the command: systemctl <span class="nb">enable</span> v2ray<span class="p">;</span> systemctl start v2ray
+</code></pre></div><p>You will do these steps in a moment, after you have configured V2Ray.</p>
+<h2 id="step-7--configuring-v2ray-and-nginx">Step 7 — Configuring V2Ray and Nginx</h2>
+<p>In this step, you&rsquo;ll configure V2Ray so that it accepts WebSocket traffic on port <code>10000</code>.</p>
+<p>Edit the V2Ray configuration file, <code>/usr/local/etc/v2ray/config.json</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /usr/local/etc/v2ray/config.json
 </code></pre></div><p>At first, the file contains only opening and closing curly braces:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">{}</span>
 </code></pre></div><p>Delete the initial content.</p>
 <p>Copy and paste in the template below:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">{
-    &#34;log&#34;: {
-        &#34;loglevel&#34;: &#34;warning&#34;
+  &#34;log&#34;: {
+    &#34;loglevel&#34;: &#34;warning&#34;,
+    &#34;access&#34;: &#34;/var/log/v2ray/access.log&#34;, 
+    &#34;error&#34;: &#34;/var/log/v2ray/error.log&#34;
+  },
+  &#34;inbounds&#34;: [{
+    &#34;port&#34;: 10000,
+    &#34;protocol&#34;: &#34;vmess&#34;,
+    &#34;settings&#34;: {
+      &#34;clients&#34;: [
+        {
+          &#34;id&#34;: &#34;e2a48137-a578-4ffa-beed-ca6c99350e0a&#34;,
+          &#34;level&#34;: 1,
+          &#34;alterId&#34;: 4
+        }
+      ]
     },
-    &#34;inbounds&#34;: [
-        {
-            &#34;port&#34;: 443,
-            &#34;protocol&#34;: &#34;vless&#34;,
-            &#34;settings&#34;: {
-                &#34;clients&#34;: [
-                    {
-                        &#34;id&#34;: &#34;65183eac-c09f-4fe7-8f0f-95f55281cbb4&#34;,
-                        &#34;flow&#34;: &#34;xtls-rprx-direct&#34;,
-                        &#34;level&#34;: 0,
-                        &#34;email&#34;: &#34;love@example.com&#34;
-                    }
-                ],
-                &#34;decryption&#34;: &#34;none&#34;,
-                &#34;fallbacks&#34;: [
-                    {
-                        &#34;dest&#34;: 80
-                    }
-                ]
-            },
-            &#34;streamSettings&#34;: {
-                &#34;network&#34;: &#34;tcp&#34;,
-                &#34;security&#34;: &#34;xtls&#34;,
-                &#34;xtlsSettings&#34;: {
-                    &#34;alpn&#34;: [
-                        &#34;http/1.1&#34;
-                    ],
-                    &#34;certificates&#34;: [
-                        {
-                            &#34;certificateFile&#34;: &#34;/etc/letsencrypt/live/your_domain/fullchain.pem&#34;,
-                            &#34;keyFile&#34;: &#34;/etc/letsencrypt/live/your_domain/privkey.pem&#34;
-                        }
-                    ]
-                }
-            }
-        }
-    ],
-    &#34;outbounds&#34;: [
-        {
-            &#34;protocol&#34;: &#34;freedom&#34;
-        }
+    &#34;streamSettings&#34;: {
+      &#34;network&#34;: &#34;ws&#34;,
+      &#34;wsSettings&#34;: {
+        &#34;path&#34;: &#34;/144c0889&#34;
+      }
+    }
+  }],
+  &#34;outbounds&#34;: [{
+    &#34;protocol&#34;: &#34;socks&#34;,
+    &#34;settings&#34;: {
+      &#34;servers&#34;: [{
+        &#34;address&#34;: &#34;127.0.0.1&#34;,
+        &#34;port&#34;: 9050,
+        &#34;auth&#34;: &#34;noauth&#34;
+      }]
+    }
+  },{
+    &#34;protocol&#34;: &#34;blackhole&#34;,
+    &#34;settings&#34;: {},
+    &#34;tag&#34;: &#34;blocked&#34;
+  }],
+  &#34;routing&#34;: {
+    &#34;rules&#34;: [
+      {
+        &#34;type&#34;: &#34;field&#34;,
+        &#34;ip&#34;: [&#34;geoip:private&#34;],
+        &#34;outboundTag&#34;: &#34;blocked&#34;
+      }
     ]
+  }
 }
-</code></pre></div><p>When you&rsquo;ve pasted in the template, customize it for your situation by making these changes:</p>
+
+</code></pre></div><p>There is one inbound, which handles Vmess input on port <code>10000</code>. The traffic arrives as WebSocket packets requesting path <code>/144c0889</code>. The outbound is in SOCKS format to port <code>9050</code>. That is where Tor is listening.</p>
+<p>When you&rsquo;ve pasted in the template, customize it for your situation by making these changes:</p>
 <ul>
-<li>Replace the UUID <code>65183eac-c09f-4fe7-8f0f-95f55281cbb4</code> by your own UUID</li>
-<li>Optionally replace the identifier <code>love@example.com</code></li>
-<li>In the Let&rsquo;s Encrpyt certificate and key locations, replace <em>your_domain</em> by your server&rsquo;s fully qualified domain name</li>
+<li>Replace the UUID <code>e2a48137-a578-4ffa-beed-ca6c99350e0a</code> by your own UUID</li>
+<li>Replace the path <code>/144c0889</code> by your own random path name</li>
 </ul>
-<p>Once you&rsquo;ve made all the required changes, write the file out to disk, and exit the editor.</p>
-<h2 id="step-7--restarting-xray">Step 7 — Restarting Xray</h2>
-<p>Now that your configuration file is correct, restart the Xray service:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl restart xray
+<p>Once you&rsquo;ve made the required changes, write the file out to disk, and exit the editor.</p>
+<p>Now edit your Nginx configuration file, <code>/etc/nginx/sites-available/default</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /etc/nginx/sites-available/default
+</code></pre></div><p>Make Nginx pass requests for the secret path to V2Ray, which is listening on localhost port <code>10000</code>. Inside the <code>server</code> block that is listening for <code>443 ssl</code>, insert a new <code>location</code> block based on the following template:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">location /144c0889 <span class="o">{</span>
+	proxy_redirect off<span class="p">;</span>
+	proxy_pass http://127.0.0.1:10000<span class="p">;</span>
+	proxy_http_version 1.1<span class="p">;</span>
+	proxy_set_header Upgrade <span class="nv">$http_upgrade</span><span class="p">;</span>
+	proxy_set_header Connection <span class="s2">&#34;upgrade&#34;</span><span class="p">;</span>
+	proxy_set_header Host <span class="nv">$http_host</span><span class="p">;</span>
+	<span class="c1"># Show real IP if you enable V2Ray access log</span>
+	proxy_set_header X-Real-IP <span class="nv">$remote_addr</span><span class="p">;</span>
+	proxy_set_header X-Forwarded-For <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div><p>Replace the path <code>/144c0889</code> in the template above by your own secret path.</p>
+<p>Write the file out to disk, and exit the editor.</p>
+<h2 id="step-8--starting-v2ray-and-restarting-nginx">Step 8 — Starting V2Ray and Restarting Nginx</h2>
+<p>Now that your configuration file is correct, start the V2Ray service:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl <span class="nb">enable</span> v2ray
+systemctl start v2ray
 </code></pre></div><p>Confirm that Xray is running with the new configuration with the command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status xray
-</code></pre></div><p>Again, you should see a status of <code>active (running)</code>.</p>
-<p>At this point, Xray is listening on port <code>443</code> and Nginx is listening on port <code>80</code>. In the case of a request with a bad or missing UUID coming in on port <code>443</code>, Xray will &ldquo;fall back&rdquo; to sending the request to Nginx on port <code>80</code>.</p>
-<h2 id="step-8--testing-with-client">Step 8 — Testing with Client</h2>
-<p>Before you go any further, test your camouflage:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status v2ray
+</code></pre></div><p>You should see a status of <code>active (running)</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">v2ray.service - V2Ray Service
+     Loaded: loaded <span class="o">(</span>/etc/systemd/system/v2ray.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+    Drop-In: /etc/systemd/system/v2ray.service.d
+             └─10-donot_touch_single_conf.conf
+     Active: active <span class="o">(</span>running<span class="o">)</span> since Mon 2021-02-15 13:36:35 UTC<span class="p">;</span> 36s ago
+       Docs: https://www.v2fly.org/
+   Main PID: <span class="m">3260</span> <span class="o">(</span>v2ray<span class="o">)</span>
+      Tasks: <span class="m">7</span> <span class="o">(</span>limit: 1136<span class="o">)</span>
+     Memory: 54.6M
+     CGroup: /system.slice/v2ray.service
+             └─3260 /usr/local/bin/v2ray -config /usr/local/etc/v2ray/config.json
+
+Feb <span class="m">15</span> 13:36:35 v2ray systemd<span class="o">[</span>1<span class="o">]</span>: Started V2Ray Service.
+Feb <span class="m">15</span> 13:36:35 v2ray v2ray<span class="o">[</span>3260<span class="o">]</span>: V2Ray 4.34.0 <span class="o">(</span>V2Fly, a community-driven edition of V2Ray.<span class="o">)</span> Custom <span class="o">(</span>go1.15.6 linux/amd64<span class="o">)</span>
+Feb <span class="m">15</span> 13:36:35 v2ray v2ray<span class="o">[</span>3260<span class="o">]</span>: A unified platform <span class="k">for</span> anti-censorship.
+Feb <span class="m">15</span> 13:36:35 v2ray v2ray<span class="o">[</span>3260<span class="o">]</span>: 2021/02/15 13:36:35 <span class="o">[</span>Info<span class="o">]</span> v2ray.com/core/main/jsonem: Reading config: /usr/local/etc/v2ray/config.json
+</code></pre></div><p>Restart the Nginx service:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl restart nginx
+</code></pre></div><p>Confirm that Nginx is running with the new configuration with the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status nginx
+</code></pre></div><p>Again, you should see a status of <code>active (running)</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded <span class="o">(</span>/lib/systemd/system/nginx.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
+     Active: active <span class="o">(</span>running<span class="o">)</span> since Mon 2021-02-15 13:37:57 UTC<span class="p">;</span> 21s ago
+       Docs: man:nginx<span class="o">(</span>8<span class="o">)</span>
+    Process: <span class="m">3284</span> <span class="nv">ExecStartPre</span><span class="o">=</span>/usr/sbin/nginx -t -q -g daemon on<span class="p">;</span> master_process on<span class="p">;</span> <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
+    Process: <span class="m">3296</span> <span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/nginx -g daemon on<span class="p">;</span> master_process on<span class="p">;</span> <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
+   Main PID: <span class="m">3298</span> <span class="o">(</span>nginx<span class="o">)</span>
+      Tasks: <span class="m">3</span> <span class="o">(</span>limit: 1136<span class="o">)</span>
+     Memory: 3.5M
+     CGroup: /system.slice/nginx.service
+             ├─3298 nginx: master process /usr/sbin/nginx -g daemon on<span class="p">;</span> master_process on<span class="p">;</span>
+             ├─3299 nginx: worker process
+             └─3300 nginx: worker process
+
+Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<span class="o">]</span>: Starting A high performance web server and a reverse proxy server...
+Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<span class="o">]</span>: Started A high performance web server and a reverse proxy server.
+</code></pre></div><p>At this point:</p>
+<ul>
+<li>Nginx is listening on ports <code>80</code> and <code>443</code></li>
+<li>V2Ray is listening on port <code>10000</code></li>
+<li>Tor is listening on port <code>9050</code></li>
+</ul>
+<p>In the case of a request for the secret path, Nginx will pass the request to V2Ray on port <code>10000</code>. If the UUID is correct, V2Ray will pass the request to Tor on port <code>9050</code>.</p>
+<p>If you logged in as a non-root user and switched to root, you will have to <code>exit</code> your switched user session before you can exit the SSH session.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">exit</span>
+</code></pre></div><p>You can then <code>exit</code> your SSH session with the server:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">exit</span>
+</code></pre></div><h2 id="step-9--testing-with-client">Step 9 — Testing with Client</h2>
+<p>Now work on your client computer. Before you go any further, test your camouflage web server:</p>
 <ul>
 <li>In an ordinary browser, visit your fully qualified domain name on HTTP (<code>http://your_domain</code>). You should see the <code>Welcome to nginx!</code> page.</li>
 <li>Again in an ordinary browser, visit your fully qualified domain name on HTTPS (<code>https://your_domain</code>). You should see the <code>Welcome to nginx!</code> page.</li>
 </ul>
-<p>Now you know your camouflage is working, you can carry on.</p>
-<p>Download and install the most recent version of the Qv2ray client for Linux, Windows, or macOS from <a href="https://github.com/Qv2ray/Qv2ray/releases">https://github.com/Qv2ray/Qv2ray/releases</a>. For the rest of this section, we will give instructions for Windows.</p>
-<p>Download and unzip the corresponding Xray core from <a href="https://github.com/XTLS/Xray-core/releases/tag/v1.3.0">https://github.com/XTLS/Xray-core/releases/tag/v1.3.0</a>. You will typically have five files in the unzipped folder:</p>
-<ul>
-<li><code>geoip.dat</code></li>
-<li><code>geosite.dat</code></li>
-<li><code>LICENSE</code></li>
-<li><code>README.md</code></li>
-<li><code>xray</code> binary</li>
-</ul>
-<p>Create a folder to hold the core. On Windows it should be named <code>C:\Users\your_user\AppData\Local\qv2ray\vcore</code>.</p>
-<p>Copy the five files into place in the core folder.</p>
-<p>Start Qv2ray.</p>
-<p><img src="/images/qv2ray-new.png" alt="Qv2ray new install"></p>
+<p>Now you know your camouflage web server is working, you can carry on.</p>
+<p>The Qv2ray client is available for Linux, Windows, or macOS. For the rest of this section, we will give instructions for Ubuntu Linux.</p>
+<p>Download the most recent V2Ray core from <a href="https://github.com/v2fly/v2ray-core/releases">https://github.com/v2fly/v2ray-core/releases</a>. The V2Fly project is the successor to V2Ray. Your download will have a name that looks like <code>Xray-linux-64.zip</code>. In your terminal, unzip the download:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">unzip ~/Downloads/v2ray-linux-64.zip -d ~/Downloads/v2ray-core
+</code></pre></div><p>The contents of the extracted directory <code>~/Downloads/v2ray-core</code> are displayed as the extraction proceeds:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Archive:  /home/amy/Downloads/v2ray-linux-64.zip
+   creating: systemd/
+   creating: systemd/system/
+  inflating: systemd/system/v2ray@.service  
+  inflating: systemd/system/v2ray.service  
+  inflating: config.json             
+  inflating: geoip.dat               
+  inflating: geosite.dat             
+  inflating: v2ray                   
+  inflating: v2ctl                   
+  inflating: vpoint_socks_vmess.json  
+  inflating: vpoint_vmess_freedom.json
+</code></pre></div><p>Make a directory to hold the core:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir -p ~/.config/qv2ray/vcore/
+</code></pre></div><p>Copy the contents of the extracted V2Ray core into the new directory:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cp -rf ~/Downloads/v2ray-core/* ~/.config/qv2ray/vcore/
+</code></pre></div><p>Also download the most recent version of the Qv2ray client from <a href="https://github.com/Qv2ray/Qv2ray/releases">https://github.com/Qv2ray/Qv2ray/releases</a>. The Qv2ray client for Linux is provided as an <code>AppImage</code> file. An <code>AppImage</code> contains the program, its dependencies, and all files necessary for the program to work, in one self-contained file. Your download will have a name that looks like <code>Qv2ray.v2.7.0-pre2.linux-x64.AppImage</code>.</p>
+<p>Make Qv2ray executable and start the program. From <strong>Files</strong>:</p>
+<ol>
+<li>Right-click on the <code>AppImage</code> file</li>
+<li>Select <strong>Properties</strong></li>
+<li>Select the <strong>Permissions</strong> tab</li>
+<li>Check the box <strong>Allow executing file as program</strong></li>
+<li>Close the <strong>Properties</strong> dialog box</li>
+<li>Double-click on the <code>AppImage</code> file to launch the program</li>
+</ol>
+<p><img src="/images/qv2ray-linux-new.png" alt="Qv2Ray on Ubuntu Linux"></p>
 <p>Press the <strong>Preferences</strong> button, and on the <strong>Kernel Settings</strong> tab, specify your core folder and executable.</p>
-<p><img src="/images/qv2ray-kernel-settings.png" alt="Qv2ray Kernel Settings"></p>
+<p><img src="/images/qv2ray-linux-kernel-settings.png" alt="Qv2Ray on Ubuntu Linux Kernel Settings"></p>
 <p>Now that the kernel settings are configured, you can add your server configuration to the Qv2ray client.</p>
 <ol>
 <li>Select the <strong>Default Group</strong> and click the <strong>New</strong> button.</li>
 <li>For <strong>Host</strong>, type <em>your_domain</em> (i.e., your server&rsquo;s fully qualified domain name).</li>
 <li>For <strong>Port</strong>, type <code>443</code>.</li>
-<li>For <strong>Type</strong>, select <strong>VLESS</strong>.</li>
-<li>Under <strong>Outbound Settings</strong>, for <strong>UUID</strong> put your universally unique id (<code>65183eac-c09f-4fe7-8f0f-95f55281cbb4</code> in the examples in this tutorial), and for <strong>Flow</strong> select <code>xtls-rprx-direct</code>.</li>
-<li>Under <strong>Stream Settings</strong>, select the <strong>TLS Settings</strong> tab.</li>
-<li>Set <strong>Security Type</strong> to <strong>XTLS</strong>.</li>
-<li>Set <strong>Server Address (SNI)</strong> to <em>your_domain</em>.</li>
+<li>For <strong>Type</strong>, select <strong>VMess</strong>.</li>
+<li>Under <strong>Outbound Settings</strong>, for <strong>UUID</strong> put your universally unique id (<code>e2a48137-a578-4ffa-beed-ca6c99350e0a</code> in the examples in this tutorial).</li>
+<li>Set <strong>Alter ID</strong> to <code>4</code> to match the server settings.</li>
+<li>Under <strong>Stream Settings</strong>, select the <strong>Protocol Settings</strong> tab.</li>
+<li>Set <strong>Transport Protocol</strong> to <strong>ws</strong>.</li>
+<li>For <strong>Path</strong>, type <code>/144c0889</code> or whatever your path is.</li>
+<li>Still under <strong>Stream Settings</strong>, select the <strong>TLS Settings</strong> tab.</li>
+<li>Set <strong>Security Type</strong> to <strong>TLS</strong>.</li>
+<li>Set <strong>Server Address (SNI)</strong> to <em>your_domain</em> (i.e., your server&rsquo;s fully qualified domain name).</li>
 <li>Click <strong>OK</strong>.</li>
 </ol>
-<p><img src="/images/qv2ray-connection-settings.png" alt="Qv2ray Connections Settings"></p>
+<p><img src="/images/qv2ray-linux-connection-settings.png" alt="Qv2Ray on Ubuntu Linux Connection Settings"></p>
 <p>Now select your server under the <strong>Default Group</strong>.</p>
-<p>Click the Connect icon for your server. Notifications appear in Windows to say you are connected.</p>
-<p>On Windows, by default your Qv2ray proxy server will listen on <code>127.0.0.1</code> port <code>8889</code>. You can optionally check this in <strong>Settings</strong> &gt; <strong>Network &amp; Internet</strong> &gt; <strong>Proxy</strong> &gt; <strong>Manual proxy setup</strong>.</p>
-<p>In your browser, visit <a href="https://www.iplocation.net">https://www.iplocation.net</a> to confirm that your web browsing is now coming from your server location.</p>
-<p>When you have finished browsing, go back to your server in Qv2ray. (If you have closed the Qv2ray panel, you can open it again by clicking the Qv2ray icon in the system tray at the bottom right of the Windows desktop.)</p>
+<p>Click the Connect icon for your server. Notifications appear in Ubuntu to say you are connected.</p>
+<p>In your browser, visit <a href="https://check.torproject.org">https://check.torproject.org</a> to confirm that your web browsing is now passing through the Tor network.</p>
+<p><img src="/images/qv2ray-linux-check-tor.png" alt="Check Tor connection on Ubuntu Linux"></p>
+<p>When you have finished browsing, go back to the Qv2ray client.</p>
 <p>Select your server and click the Disconnect icon.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>You now have a working Xray server that you&rsquo;ve tested with the Qv2ray client.</p>
-<p>You can find more examples of Xray configurations at <a href="https://github.com/XTLS/Xray-examples">https://github.com/XTLS/Xray-examples</a>. You can read the documentation for Qv2ray at <a href="https://qv2ray.net/en/">https://qv2ray.net/en/</a>.</p>
+<p>You now have a working V2Ray Tor on-ramp that you&rsquo;ve tested with the Qv2ray client.</p>
+<p>You can read more about V2Ray&rsquo;s capabilities at <a href="https://www.v2fly.org/en_US/">https://www.v2fly.org/en_US/</a>. You can read the Qv2ray documentation at <a href="https://qv2ray.net/en/">https://qv2ray.net/en/</a>.</p>
 
 
         
           <div class="blog-tags">
             
-              <a href="https://v2how.github.io/tags/xray/">xray</a>&nbsp;
+              <a href="https://v2how.github.io/tags/tor/">tor</a>&nbsp;
             
-              <a href="https://v2how.github.io/tags/vless/">vless</a>&nbsp;
-            
-              <a href="https://v2how.github.io/tags/server/">server</a>&nbsp;
+              <a href="https://v2how.github.io/tags/v2ray/">v2ray</a>&nbsp;
             
               <a href="https://v2how.github.io/tags/ubuntu/">ubuntu</a>&nbsp;
             
@@ -614,42 +689,42 @@ info: Enable and start the Xray service
     <ul class="share">
       
       <li>
-        <a href="//twitter.com/share?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f&amp;text=How%20to%20Create%20an%20Xray%20VLESS%20XTLS%20Server%20on%20Ubuntu%2020.04&amp;via=" target="_blank" title="Share on Twitter">
+        <a href="//twitter.com/share?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f&amp;text=How%20to%20Build%20a%20V2Ray%20Tor%20On-Ramp%20on%20Ubuntu%2020.04&amp;via=" target="_blank" title="Share on Twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f" target="_blank" title="Share on Facebook">
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f" target="_blank" title="Share on Facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//reddit.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f&amp;title=How%20to%20Create%20an%20Xray%20VLESS%20XTLS%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on Reddit">
+        <a href="//reddit.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f&amp;title=How%20to%20Build%20a%20V2Ray%20Tor%20On-Ramp%20on%20Ubuntu%2020.04" target="_blank" title="Share on Reddit">
           <i class="fab fa-reddit"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f&amp;title=How%20to%20Create%20an%20Xray%20VLESS%20XTLS%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on LinkedIn">
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f&amp;title=How%20to%20Build%20a%20V2Ray%20Tor%20On-Ramp%20on%20Ubuntu%2020.04" target="_blank" title="Share on LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f&amp;title=How%20to%20Create%20an%20Xray%20VLESS%20XTLS%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on StumbleUpon">
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f&amp;title=How%20to%20Build%20a%20V2Ray%20Tor%20On-Ramp%20on%20Ubuntu%2020.04" target="_blank" title="Share on StumbleUpon">
           <i class="fab fa-stumbleupon"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-12-xray-vless-xtls-server-ubuntu-20-04%2f&amp;description=How%20to%20Create%20an%20Xray%20VLESS%20XTLS%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on Pinterest">
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f&amp;description=How%20to%20Build%20a%20V2Ray%20Tor%20On-Ramp%20on%20Ubuntu%2020.04" target="_blank" title="Share on Pinterest">
           <i class="fab fa-pinterest"></i>
         </a>
       </li>
@@ -671,7 +746,7 @@ info: Enable and start the Xray service
                   <ul>
                 
                 
-                    <li><a href="/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/">How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04</a></li>
+                    <li><a href="/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/">How to Create an Xray VLESS XTLS Server on Ubuntu 20.04</a></li>
                 
               </ul>
 
@@ -682,10 +757,10 @@ info: Enable and start the Xray service
       
         <ul class="pager blog-pager">
           
-          
-            <li class="next">
-              <a href="https://v2how.github.io/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/" data-toggle="tooltip" data-placement="top" title="How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04">Next Post &rarr;</a>
+            <li class="previous">
+              <a href="https://v2how.github.io/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/" data-toggle="tooltip" data-placement="top" title="How to Create an Xray VLESS XTLS Server on Ubuntu 20.04">&larr; Previous Post</a>
             </li>
+          
           
         </ul>
       
