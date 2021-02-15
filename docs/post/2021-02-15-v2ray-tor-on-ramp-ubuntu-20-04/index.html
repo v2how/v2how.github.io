@@ -60,11 +60,11 @@ If so, this post offers a last resort for situations when all other methods of r
   "headline": "How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04",
   "description" : "Introduction Are you in a country where the Tor Project website is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?\nIf so, this post offers a last resort for situations when all other methods of reaching Tor have failed. You\u0026rsquo;ll learn how to create a Tor on-ramp on an Ubuntu 20.04 server located outside your country. With this method you can bypass censorship and connect to the Tor network from your existing browser.",
   "inLanguage" : "en",
-  "wordCount":  3542 ,
+  "wordCount":  3683 ,
   "datePublished" : "2021-02-15T00:00:00",
   "dateModified" : "2021-02-15T00:00:00",
   "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
-  "keywords" : [ "tor, v2ray, ubuntu" ],
+  "keywords" : [ "tor, v2ray, server, ubuntu" ],
   "mainEntityOfPage" : "https:\/\/v2how.github.io\/post\/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04\/",
   "publisher" : {
     "@type": "Organization",
@@ -243,10 +243,10 @@ If so, this post offers a last resort for situations when all …">
   <i class="fas fa-calendar"></i>&nbsp;Posted on February 15, 2021
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;17&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;18&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3542&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3683&nbsp;words
   
   
     
@@ -281,7 +281,7 @@ If so, this post offers a last resort for situations when all …">
 <ul>
 <li>A virtual private server (VPS) running Ubuntu 20.04. You can rent servers from providers such as <a href="https://cloud.google.com">Google Cloud</a> or <a href="https://www.vultr.com">Vultr</a>. This server needs to be located in a country that does not block Tor.</li>
 <li>Your own domain name, which may be <a href="https://www.freenom.com">free</a> or <a href="https://www.namesilo.com">paid</a>.</li>
-<li>A DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address. Usually you set up the DNS record at your domain name registrar.</li>
+<li>A DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address. Usually you set up the DNS record at your domain name registrar. However, WebSocket will also work with a server proxied via a Content Distribution Network such as <a href="https://www.cloudflare.com/">Cloudflare</a>.</li>
 </ul>
 <h2 id="step-1--logging-in-as-root">Step 1 — Logging In as Root</h2>
 <p>SSH into your server. On Linux and macOS, you can use the terminal command <code>ssh</code> to reach your server. On Windows, you can either use <a href="https://docs.microsoft.com/en-us/powershell">PowerShell</a> or a graphical user interface (GUI) such as <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty">PuTTY</a> or <a href="https://www.netsarang.com">XSHELL</a>.</p>
@@ -330,6 +330,7 @@ If so, this post offers a last resort for situations when all …">
 </code></pre></div><p>In any case, we recommend that you further protect port <code>22</code> by using SSH key authentication in preference to password authentication. SSH key pair generation and upload to your server are out of scope for this tutorial. You can find tutorials on this subject on the web.</p>
 <p>Open ports <code>80</code> (the HTTP port) and <code>443</code> (the HTTPS port). These will be used for the Nginx camouflage web server:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow http
+
 ufw allow https
 </code></pre></div><p>Enable UFW:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw <span class="nb">enable</span>
@@ -372,7 +373,7 @@ To                         Action      From
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">snap <span class="s2">&#34;core&#34;</span> has no updates available
 </code></pre></div><p>Now use snap to install the <code>certbot</code> client for Let&rsquo;s Encrypt:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">snap install --classic certbot
-</code></pre></div><p>The <code>--classic</code> option means that <code>certbot</code> will not be confined to a restricted environment in the same way as normal snaps are.</p>
+</code></pre></div><p>The <code>--classic</code> option means that <code>certbot</code> will <!-- raw HTML omitted -->not<!-- raw HTML omitted --> be confined to a restricted environment in the same way as normal snaps are.</p>
 <p>The installation ends with a message:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">certbot 1.12.0 from Certbot Project <span class="o">(</span>certbot-eff✓<span class="o">)</span> installed
 </code></pre></div><p>The snap executable for <code>certbot</code> is in the directory <code>/snap/bin</code>, which should be in your execution PATH. If you want to make extra sure that <code>certbot</code> is executable, then also create a symbolic link to <code>certbot</code> in your <code>/usr/bin</code> directory, which should definitely be in your PATH:</p>
@@ -411,7 +412,13 @@ EFF news, campaigns, and ways to support digital freedom.
 Select the appropriate numbers separated by commas and/or spaces, or leave input
 blank to <span class="k">select</span> all options shown <span class="o">(</span>Enter <span class="s1">&#39;c&#39;</span> to cancel<span class="o">)</span>:
 </code></pre></div><p>Type the number of your server&rsquo;s fully qualified domain name, which would be <code>1</code> in our example, and press <code>ENTER</code>.</p>
-<p>The utility performs &ldquo;challenges&rdquo; to confirm that your domain name choice is legitimate. If all is well, you should see some closing messages:</p>
+<p>The utility performs &ldquo;challenges&rdquo; to confirm that your domain name choice is legitimate. If all is well, you should see some closing messages. Certbot amends your site definition to supplement the existing HTTP server with an HTTPS server:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Redirecting all traffic on port <span class="m">80</span> to ssl in /etc/nginx/sites-enabled/default
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Congratulations! You have successfully enabled https://your_domain
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</code></pre></div><p>You will then see some notes on the certificate and key locations:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"> - Congratulations! Your certificate and chain have been saved at:
    /etc/letsencrypt/live/your_domain/fullchain.pem
    Your key file has been saved at:
@@ -545,10 +552,11 @@ Congratulations, all simulated renewals succeeded:
 </code></pre></div><p>Replace the path <code>/144c0889</code> in the template above by your own secret path.</p>
 <p>Write the file out to disk, and exit the editor.</p>
 <h2 id="step-8--starting-v2ray-and-restarting-nginx">Step 8 — Starting V2Ray and Restarting Nginx</h2>
-<p>Now that your configuration file is correct, start the V2Ray service:</p>
+<p>Now that your configuration file is correct, enable the V2Ray service so that it starts after every reboot:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl <span class="nb">enable</span> v2ray
-systemctl start v2ray
-</code></pre></div><p>Confirm that Xray is running with the new configuration with the command:</p>
+</code></pre></div><p>Also start the V2Ray service now:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl start v2ray
+</code></pre></div><p>Confirm that V2Ray is running with the new configuration with the command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status v2ray
 </code></pre></div><p>You should see a status of <code>active (running)</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">v2ray.service - V2Ray Service
@@ -600,14 +608,11 @@ Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<sp
 </code></pre></div><p>You can then <code>exit</code> your SSH session with the server:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">exit</span>
 </code></pre></div><h2 id="step-9--testing-with-client">Step 9 — Testing with Client</h2>
-<p>Now work on your client computer. Before you go any further, test your camouflage web server:</p>
-<ul>
-<li>In an ordinary browser, visit your fully qualified domain name on HTTP (<code>http://your_domain</code>). You should see the <code>Welcome to nginx!</code> page.</li>
-<li>Again in an ordinary browser, visit your fully qualified domain name on HTTPS (<code>https://your_domain</code>). You should see the <code>Welcome to nginx!</code> page.</li>
-</ul>
+<p>Now work on your client computer.</p>
+<p>Before you go any further, test your camouflage web server. In an ordinary browser, visit your fully qualified domain name (<code>https://your_domain</code>). You should see the <code>Welcome to nginx!</code> page.</p>
 <p>Now you know your camouflage web server is working, you can carry on.</p>
 <p>The Qv2ray client is available for Linux, Windows, or macOS. For the rest of this section, we will give instructions for Ubuntu Linux.</p>
-<p>Download the most recent V2Ray core from <a href="https://github.com/v2fly/v2ray-core/releases">https://github.com/v2fly/v2ray-core/releases</a>. The V2Fly project is the successor to V2Ray. Your download will have a name that looks like <code>Xray-linux-64.zip</code>. In your terminal, unzip the download:</p>
+<p>Download the most recent V2Ray core from <a href="https://github.com/v2fly/v2ray-core/releases">https://github.com/v2fly/v2ray-core/releases</a>. The V2Fly project is the successor to V2Ray. Your download will have such as <code>Xray-linux-64.zip</code>. In your terminal, unzip the download:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">unzip ~/Downloads/v2ray-linux-64.zip -d ~/Downloads/v2ray-core
 </code></pre></div><p>The contents of the extracted directory <code>~/Downloads/v2ray-core</code> are displayed as the extraction proceeds:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Archive:  /home/amy/Downloads/v2ray-linux-64.zip
@@ -629,6 +634,7 @@ Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<sp
 </code></pre></div><p>Also download the most recent version of the Qv2ray client from <a href="https://github.com/Qv2ray/Qv2ray/releases">https://github.com/Qv2ray/Qv2ray/releases</a>. The Qv2ray client for Linux is provided as an <code>AppImage</code> file. An <code>AppImage</code> contains the program, its dependencies, and all files necessary for the program to work, in one self-contained file. Your download will have a name that looks like <code>Qv2ray.v2.7.0-pre2.linux-x64.AppImage</code>.</p>
 <p>Make Qv2ray executable and start the program. From <strong>Files</strong>:</p>
 <ol>
+<li>Navigate to your <strong>Downloads</strong> directory</li>
 <li>Right-click on the <code>AppImage</code> file</li>
 <li>Select <strong>Properties</strong></li>
 <li>Select the <strong>Permissions</strong> tab</li>
@@ -639,9 +645,10 @@ Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<sp
 <p><img src="/images/qv2ray-linux-new.png" alt="Qv2Ray on Ubuntu Linux"></p>
 <p>Press the <strong>Preferences</strong> button, and on the <strong>Kernel Settings</strong> tab, specify your core folder and executable.</p>
 <p><img src="/images/qv2ray-linux-kernel-settings.png" alt="Qv2Ray on Ubuntu Linux Kernel Settings"></p>
+<p>When you have entered the correct details, click <strong>OK</strong>.</p>
 <p>Now that the kernel settings are configured, you can add your server configuration to the Qv2ray client.</p>
 <ol>
-<li>Select the <strong>Default Group</strong> and click the <strong>New</strong> button.</li>
+<li>Select the <strong>Default Group</strong>, then click the <strong>New</strong> button.</li>
 <li>For <strong>Host</strong>, type <em>your_domain</em> (i.e., your server&rsquo;s fully qualified domain name).</li>
 <li>For <strong>Port</strong>, type <code>443</code>.</li>
 <li>For <strong>Type</strong>, select <strong>VMess</strong>.</li>
@@ -656,7 +663,7 @@ Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<sp
 <li>Click <strong>OK</strong>.</li>
 </ol>
 <p><img src="/images/qv2ray-linux-connection-settings.png" alt="Qv2Ray on Ubuntu Linux Connection Settings"></p>
-<p>Now select your server under the <strong>Default Group</strong>.</p>
+<p>Double-click the <strong>Default Group</strong>, and select your server underneath it.</p>
 <p>Click the Connect icon for your server. Notifications appear in Ubuntu to say you are connected.</p>
 <p>In your browser, visit <a href="https://check.torproject.org">https://check.torproject.org</a> to confirm that your web browsing is now passing through the Tor network.</p>
 <p><img src="/images/qv2ray-linux-check-tor.png" alt="Check Tor connection on Ubuntu Linux"></p>
@@ -673,6 +680,8 @@ Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<sp
               <a href="https://v2how.github.io/tags/tor/">tor</a>&nbsp;
             
               <a href="https://v2how.github.io/tags/v2ray/">v2ray</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/server/">server</a>&nbsp;
             
               <a href="https://v2how.github.io/tags/ubuntu/">ubuntu</a>&nbsp;
             

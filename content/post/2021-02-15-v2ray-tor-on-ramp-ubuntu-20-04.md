@@ -1,7 +1,7 @@
 ---
 title: How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04
 date: 2021-02-15
-tags: ["tor", "v2ray", "ubuntu"]
+tags: ["tor", "v2ray", "server", "ubuntu"]
 ---
 
 ### Introduction
@@ -20,7 +20,7 @@ Before you begin this tutorial, you will need:
 
 - A virtual private server (VPS) running Ubuntu 20.04. You can rent servers from providers such as [Google Cloud](https://cloud.google.com) or [Vultr](https://www.vultr.com). This server needs to be located in a country that does not block Tor.
 - Your own domain name, which may be [free](https://www.freenom.com) or [paid](https://www.namesilo.com).
-- A DNS type `A` record pointing from the fully qualified domain name of your server to the server's IP address. Usually you set up the DNS record at your domain name registrar. 
+- A DNS type `A` record pointing from the fully qualified domain name of your server to the server's IP address. Usually you set up the DNS record at your domain name registrar. However, WebSocket will also work with a server proxied via a Content Distribution Network such as [Cloudflare](https://www.cloudflare.com/).
 
 ## Step 1 — Logging In as Root
 
@@ -148,6 +148,7 @@ Open ports `80` (the HTTP port) and `443` (the HTTPS port). These will be used f
 
 ```bash
 ufw allow http
+
 ufw allow https
 ```
 
@@ -254,7 +255,7 @@ Now use snap to install the `certbot` client for Let's Encrypt:
 snap install --classic certbot
 ```
 
-The `--classic` option means that `certbot` will not be confined to a restricted environment in the same way as normal snaps are.
+The `--classic` option means that `certbot` will <em>not</em> be confined to a restricted environment in the same way as normal snaps are.
 
 The installation ends with a message:
 
@@ -328,7 +329,17 @@ blank to select all options shown (Enter 'c' to cancel):
 
 Type the number of your server's fully qualified domain name, which would be `1` in our example, and press `ENTER`.
 
-The utility performs "challenges" to confirm that your domain name choice is legitimate. If all is well, you should see some closing messages:
+The utility performs "challenges" to confirm that your domain name choice is legitimate. If all is well, you should see some closing messages. Certbot amends your site definition to supplement the existing HTTP server with an HTTPS server:
+
+```bash
+Redirecting all traffic on port 80 to ssl in /etc/nginx/sites-enabled/default
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Congratulations! You have successfully enabled https://your_domain
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+```
+
+You will then see some notes on the certificate and key locations:
 
 ```bash
  - Congratulations! Your certificate and chain have been saved at:
@@ -552,14 +563,19 @@ Write the file out to disk, and exit the editor.
 
 ## Step 8 — Starting V2Ray and Restarting Nginx
 
-Now that your configuration file is correct, start the V2Ray service:
+Now that your configuration file is correct, enable the V2Ray service so that it starts after every reboot:
 
 ```bash
 systemctl enable v2ray
+```
+
+Also start the V2Ray service now:
+
+```bash
 systemctl start v2ray
 ```
 
-Confirm that Xray is running with the new configuration with the command:
+Confirm that V2Ray is running with the new configuration with the command:
 
 ```bash
 systemctl status v2ray
@@ -641,16 +657,15 @@ exit
 
 ## Step 9 — Testing with Client
 
-Now work on your client computer. Before you go any further, test your camouflage web server:
+Now work on your client computer. 
 
-- In an ordinary browser, visit your fully qualified domain name on HTTP (`http://your_domain`). You should see the `Welcome to nginx!` page.
-- Again in an ordinary browser, visit your fully qualified domain name on HTTPS (`https://your_domain`). You should see the `Welcome to nginx!` page.
+Before you go any further, test your camouflage web server. In an ordinary browser, visit your fully qualified domain name (`https://your_domain`). You should see the `Welcome to nginx!` page.
 
 Now you know your camouflage web server is working, you can carry on.
 
 The Qv2ray client is available for Linux, Windows, or macOS. For the rest of this section, we will give instructions for Ubuntu Linux. 
 
-Download the most recent V2Ray core from https://github.com/v2fly/v2ray-core/releases. The V2Fly project is the successor to V2Ray. Your download will have a name that looks like `Xray-linux-64.zip`. In your terminal, unzip the download:
+Download the most recent V2Ray core from https://github.com/v2fly/v2ray-core/releases. The V2Fly project is the successor to V2Ray. Your download will have such as `Xray-linux-64.zip`. In your terminal, unzip the download:
 
 ```bash
 unzip ~/Downloads/v2ray-linux-64.zip -d ~/Downloads/v2ray-core
@@ -689,12 +704,13 @@ Also download the most recent version of the Qv2ray client from https://github.c
 
 Make Qv2ray executable and start the program. From **Files**:
 
-1. Right-click on the `AppImage` file
-2. Select **Properties**
-3. Select the **Permissions** tab
-4. Check the box **Allow executing file as program**
-5. Close the **Properties** dialog box
-6. Double-click on the `AppImage` file to launch the program
+1. Navigate to your **Downloads** directory
+2. Right-click on the `AppImage` file
+3. Select **Properties**
+4. Select the **Permissions** tab
+5. Check the box **Allow executing file as program**
+6. Close the **Properties** dialog box
+7. Double-click on the `AppImage` file to launch the program
 
 ![Qv2Ray on Ubuntu Linux](/images/qv2ray-linux-new.png)
 
@@ -702,9 +718,11 @@ Press the **Preferences** button, and on the **Kernel Settings** tab, specify yo
 
 ![Qv2Ray on Ubuntu Linux Kernel Settings](/images/qv2ray-linux-kernel-settings.png)
 
+When you have entered the correct details, click **OK**.
+
 Now that the kernel settings are configured, you can add your server configuration to the Qv2ray client.
 
-1. Select the **Default Group** and click the **New** button.
+1. Select the **Default Group**, then click the **New** button.
 2. For **Host**, type *your_domain* (i.e., your server's fully qualified domain name).
 3. For **Port**, type `443`.
 4. For **Type**, select **VMess**.
@@ -720,7 +738,7 @@ Now that the kernel settings are configured, you can add your server configurati
 
 ![Qv2Ray on Ubuntu Linux Connection Settings](/images/qv2ray-linux-connection-settings.png)
 
-Now select your server under the **Default Group**. 
+Double-click the **Default Group**, and select your server underneath it.
 
 Click the Connect icon for your server. Notifications appear in Ubuntu to say you are connected.
 

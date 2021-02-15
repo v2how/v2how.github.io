@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>https://v2how.github.io/tags/server/</loc>
+    <lastmod>2021-02-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://v2how.github.io/tags/</loc>
     <lastmod>2021-02-15T00:00:00+00:00</lastmod>
   </url>
@@ -39,11 +44,6 @@
   
   <url>
     <loc>https://v2how.github.io/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/</loc>
-    <lastmod>2021-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://v2how.github.io/tags/server/</loc>
     <lastmod>2021-02-12T00:00:00+00:00</lastmod>
   </url>
   
