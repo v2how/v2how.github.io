@@ -665,7 +665,7 @@ Now you know your camouflage web server is working, you can carry on.
 
 The Qv2ray client is available for Linux, Windows, or macOS. For the rest of this section, we will give instructions for Ubuntu Linux. 
 
-Download the most recent V2Ray core from https://github.com/v2fly/v2ray-core/releases. The V2Fly project is the successor to V2Ray. Your download will have such as `Xray-linux-64.zip`. In your terminal, unzip the download:
+Download the most recent V2Ray core from https://github.com/v2fly/v2ray-core/releases. The V2Fly project is the successor to V2Ray. Your download will have a name such as `Xray-linux-64.zip`. In your terminal, unzip the download:
 
 ```bash
 unzip ~/Downloads/v2ray-linux-64.zip -d ~/Downloads/v2ray-core

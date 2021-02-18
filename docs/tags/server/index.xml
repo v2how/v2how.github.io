@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
     <webMaster>amyw32@protonmail.com (Amy)</webMaster>
-    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/server/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/server/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04</title>
+      <link>https://v2how.github.io/post/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04/</link>
+      <pubDate>Thu, 18 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/post/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04/</guid>
+      <description>Introduction Telegram Messenger supports two kinds of proxies: a standard SOCKS5 proxy server and an MTProto proxy server.
+In this post you&amp;rsquo;ll learn how to build a camouflaged MTProto proxy server. This style of proxy can help you bypass censorship in certain countries.
+By following along, you&amp;rsquo;ll see how to create an Nginx camouflage web server and a hidden MTProto proxy server that implements the fake TLS protocol on the same host as the web server.</description>
+    </item>
+    
     <item>
       <title>How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04</title>
       <link>https://v2how.github.io/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/</link>

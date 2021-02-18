@@ -7,9 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04 - v2how</title>
-  <meta name="description" content="Introduction Are you in a country where the Tor Project website is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?
-If so, this post offers a last resort for situations when all other methods of reaching Tor have failed. You&rsquo;ll learn how to create a Tor on-ramp on an Ubuntu 20.04 server located outside your country. With this method you can bypass censorship and connect to the Tor network from your existing browser.">
+  <title>How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04 - v2how</title>
+  <meta name="description" content="Introduction Telegram Messenger supports two kinds of proxies: a standard SOCKS5 proxy server and an MTProto proxy server.
+In this post you&rsquo;ll learn how to build a camouflaged MTProto proxy server. This style of proxy can help you bypass censorship in certain countries.
+By following along, you&rsquo;ll see how to create an Nginx camouflage web server and a hidden MTProto proxy server that implements the fake TLS protocol on the same host as the web server.">
   <meta name="author" content="Amy"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -45,8 +46,8 @@ If so, this post offers a last resort for situations when all other methods of r
         "@type": "ListItem",
         "position": 3,
         "item": {
-          "@id": "https:\/\/v2how.github.io\/post\/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04\/",
-          "name": "How to build a v2 ray tor on ramp on ubuntu 20.04"
+          "@id": "https:\/\/v2how.github.io\/post\/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04\/",
+          "name": "How to build a camouflaged telegram m t proto proxy server on ubuntu 20.04"
         }
     }]
 }
@@ -57,15 +58,15 @@ If so, this post offers a last resort for situations when all other methods of r
   "author": {
     "name" : "Amy"
   },
-  "headline": "How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04",
-  "description" : "Introduction Are you in a country where the Tor Project website is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?\nIf so, this post offers a last resort for situations when all other methods of reaching Tor have failed. You\u0026rsquo;ll learn how to create a Tor on-ramp on an Ubuntu 20.04 server located outside your country. With this method you can bypass censorship and connect to the Tor network from your existing browser.",
+  "headline": "How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04",
+  "description" : "Introduction Telegram Messenger supports two kinds of proxies: a standard SOCKS5 proxy server and an MTProto proxy server.\nIn this post you\u0026rsquo;ll learn how to build a camouflaged MTProto proxy server. This style of proxy can help you bypass censorship in certain countries.\nBy following along, you\u0026rsquo;ll see how to create an Nginx camouflage web server and a hidden MTProto proxy server that implements the fake TLS protocol on the same host as the web server.",
   "inLanguage" : "en",
-  "wordCount":  3685 ,
-  "datePublished" : "2021-02-15T00:00:00",
-  "dateModified" : "2021-02-15T00:00:00",
+  "wordCount":  3070 ,
+  "datePublished" : "2021-02-18T00:00:00",
+  "dateModified" : "2021-02-18T00:00:00",
   "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
-  "keywords" : [ "tor, v2ray, server, ubuntu" ],
-  "mainEntityOfPage" : "https:\/\/v2how.github.io\/post\/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04\/",
+  "keywords" : [ "telegram, mtproto, server, ubuntu" ],
+  "mainEntityOfPage" : "https:\/\/v2how.github.io\/post\/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04\/",
   "publisher" : {
     "@type": "Organization",
     "name" : "https:\/\/v2how.github.io",
@@ -79,17 +80,18 @@ If so, this post offers a last resort for situations when all other methods of r
 }
 </script>
 
-<meta property="og:title" content="How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04" />
-<meta property="og:description" content="Introduction Are you in a country where the Tor Project website is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?
-If so, this post offers a last resort for situations when all other methods of reaching Tor have failed. You&rsquo;ll learn how to create a Tor on-ramp on an Ubuntu 20.04 server located outside your country. With this method you can bypass censorship and connect to the Tor network from your existing browser.">
+<meta property="og:title" content="How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04" />
+<meta property="og:description" content="Introduction Telegram Messenger supports two kinds of proxies: a standard SOCKS5 proxy server and an MTProto proxy server.
+In this post you&rsquo;ll learn how to build a camouflaged MTProto proxy server. This style of proxy can help you bypass censorship in certain countries.
+By following along, you&rsquo;ll see how to create an Nginx camouflage web server and a hidden MTProto proxy server that implements the fake TLS protocol on the same host as the web server.">
 <meta property="og:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
-<meta property="og:url" content="https://v2how.github.io/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/" />
+<meta property="og:url" content="https://v2how.github.io/post/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="v2how" />
 
-  <meta name="twitter:title" content="How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04" />
-  <meta name="twitter:description" content="Introduction Are you in a country where the Tor Project website is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?
-If so, this post offers a last resort for situations when all …">
+  <meta name="twitter:title" content="How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu …" />
+  <meta name="twitter:description" content="Introduction Telegram Messenger supports two kinds of proxies: a standard SOCKS5 proxy server and an MTProto proxy server.
+In this post you&rsquo;ll learn how to build a camouflaged MTProto proxy …">
   <meta name="twitter:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https://v2how.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -232,7 +234,7 @@ If so, this post offers a last resort for situations when all …">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
               
-                <h1>How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04</h1>
+                <h1>How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04</h1>
               
               
               
@@ -240,13 +242,13 @@ If so, this post offers a last resort for situations when all …">
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on February 15, 2021
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 18, 2021
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;18&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;15&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3685&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3070&nbsp;words
   
   
     
@@ -272,16 +274,16 @@ If so, this post offers a last resort for situations when all …">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
         <h3 id="introduction">Introduction</h3>
-<p>Are you in a country where the <a href="https://www.torproject.org">Tor Project website</a> is blocked, the Tor protocol is blocked, and Tor bridges are also blocked?</p>
-<p>If so, this post offers a last resort for situations when all other methods of reaching Tor have failed. You&rsquo;ll learn how to create a Tor on-ramp on an Ubuntu 20.04 server located outside your country. With this method you can bypass censorship and connect to the Tor network from your existing browser.</p>
-<p>By following along, you&rsquo;ll see how to create an Nginx camouflage web server and a hidden V2Ray server. The V2Ray server will relay your traffic to and from the Tor network. As a final step, you&rsquo;ll see how to test your Tor on-ramp using the Qv2ray graphical user interface.</p>
-<p>At the end of this tutorial, you&rsquo;ll have a working and tested Tor on-ramp.</p>
+<p>Telegram Messenger supports two kinds of proxies: a standard SOCKS5 proxy server and an MTProto proxy server.</p>
+<p>In this post you&rsquo;ll learn how to build a camouflaged MTProto proxy server. This style of proxy can help you bypass censorship in certain countries.</p>
+<p>By following along, you&rsquo;ll see how to create an Nginx camouflage web server and a hidden MTProto proxy server that implements the fake TLS protocol on the same host as the web server. Casual visitors to the server will see only a website.</p>
+<p>At the end of this tutorial, you&rsquo;ll have a working and tested MTProto proxy server and a secret you can share with your friends.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Before you begin this tutorial, you will need:</p>
 <ul>
-<li>A virtual private server (VPS) running Ubuntu 20.04. You can rent servers from providers such as <a href="https://cloud.google.com">Google Cloud</a> or <a href="https://www.vultr.com">Vultr</a>. This server needs to be located in a country that does not block Tor.</li>
+<li>A virtual private server (VPS) running Ubuntu 20.04. You can rent servers from providers such as <a href="https://cloud.google.com">Google Cloud</a> or <a href="https://www.vultr.com">Vultr</a>. This server needs to be located in a country that does not block Telegram Messenger.</li>
 <li>Your own domain name, which may be <a href="https://www.freenom.com">free</a> or <a href="https://www.namesilo.com">paid</a>.</li>
-<li>A DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address. Usually you set up the DNS record at your domain name registrar. However, WebSocket will also work with a server proxied via a Content Distribution Network such as <a href="https://www.cloudflare.com/">Cloudflare</a>.</li>
+<li>A DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address. Usually you set up the DNS record at your domain name registrar.</li>
 </ul>
 <h2 id="step-1--logging-in-as-root">Step 1 — Logging In as Root</h2>
 <p>SSH into your server. On Linux and macOS, you can use the terminal command <code>ssh</code> to reach your server. On Windows, you can either use <a href="https://docs.microsoft.com/en-us/powershell">PowerShell</a> or a graphical user interface (GUI) such as <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty">PuTTY</a> or <a href="https://www.netsarang.com">XSHELL</a>.</p>
@@ -332,6 +334,8 @@ If so, this post offers a last resort for situations when all …">
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow http
 
 ufw allow https
+</code></pre></div><p>Also open port <code>993</code> for cloaking:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow to any port <span class="m">993</span> proto tcp
 </code></pre></div><p>Enable UFW:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw <span class="nb">enable</span>
 </code></pre></div><p>You will see a warning message:</p>
@@ -348,11 +352,12 @@ To                         Action      From
 22/tcp                     ALLOW       12.12.12.0/24
 80/tcp                     ALLOW       Anywhere
 443/tcp                    ALLOW       Anywhere
+993/tcp                    ALLOW       Anywhere
 80/tcp <span class="o">(</span>v6<span class="o">)</span>                ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
 443/tcp <span class="o">(</span>v6<span class="o">)</span>               ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
-</code></pre></div><p>If your VPS provider implements the concept of security groups, you will also need to open your security group assignments for ports <code>22</code>, <code>80</code>, and <code>443</code> in their control panel.</p>
+</code></pre></div><p>If your VPS provider implements the concept of security groups, you will also need to open your security group assignments for ports <code>22</code>, <code>80</code>, <code>443</code>, and <code>993</code> in their control panel.</p>
 <h2 id="step-3--creating-a-camouflage-website">Step 3 — Creating a Camouflage Website</h2>
-<p>Now you&rsquo;ll install Nginx and obtain an SSL certificate. The purpose of Nginx is to camouflage your V2Ray server.</p>
+<p>Now you&rsquo;ll install Nginx and obtain an SSL certificate. The purpose of Nginx is to camouflage your MTProto proxy server.</p>
 <p>Install the Nginx web server package:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install nginx -y
 </code></pre></div><p>If Nginx was not already installed, you will see the package installation messages.</p>
@@ -361,7 +366,7 @@ To                         Action      From
 </code></pre></div><p>Find the line containing <code>server_name _;</code>. Change it so that it refers to the fully qualified domain name of your server:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">        server_name your_domain<span class="p">;</span>
 </code></pre></div><p>Write the file out to disk, and exit the editor.</p>
-<p>Restart Nginx with your revised change configuration:</p>
+<p>Restart Nginx with your revised configuration:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl restart nginx
 </code></pre></div><p>You will use <code>snap</code> to install <code>certbot</code>, the Let&rsquo;s Encrypt client. First install the <code>core</code> snap:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">snap install core
@@ -423,7 +428,7 @@ Congratulations! You have successfully enabled https://your_domain
    /etc/letsencrypt/live/your_domain/fullchain.pem
    Your key file has been saved at:
    /etc/letsencrypt/live/your_domain/privkey.pem
-   Your certificate will expire on 2021-05-15. To obtain a new or
+   Your certificate will expire on 2021-05-18. To obtain a new or
    tweaked version of this certificate in the future, simply run
    certbot again. To non-interactively renew *all* of your
    certificates, run <span class="s2">&#34;certbot renew&#34;</span>
@@ -440,246 +445,115 @@ Congratulations! You have successfully enabled https://your_domain
 Congratulations, all simulated renewals succeeded:
   /etc/letsencrypt/live/your_domain/fullchain.pem <span class="o">(</span>success<span class="o">)</span>
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-</code></pre></div><h2 id="step-4--installing-tor">Step 4 — Installing Tor</h2>
-<p>Install the Tor package:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install tor -y
-</code></pre></div><p>Tor begins running right away. It listens for SOCKS connections on port <code>9050</code>.</p>
-<h2 id="step-5--generating-universally-unique-id-and-path">Step 5 — Generating Universally Unique Id and Path</h2>
-<p>In this step, you&rsquo;ll generate a universally unique id (UUID) that will act as a password for your V2Ray server. You&rsquo;ll also generate a random path to which requests are sent in order to access V2Ray instead of Nginx.</p>
-<p>Install the UUID package:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install uuid -y
-</code></pre></div><p>You will see the package installation messages.</p>
-<p>Once the install is done, generate a UUID:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">uuid -v <span class="m">4</span>
-</code></pre></div><p>The option <code>-v 4</code> causes the package to create a version 4 UUID. Version 4 UUIDs are completely random and not related to the system time. Since a UUID is composed of 128 random bits, the chances are no one else will ever generate the same UUID.</p>
-<p>You will see the sample result below used in the rest of this tutorial:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">e2a48137-a578-4ffa-beed-ca6c99350e0a
-</code></pre></div><p>Also generate a random 8-character path name:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">openssl rand -hex <span class="m">4</span>
-</code></pre></div><p>The <code>openssl rand</code> function generates a pseudo-random number. It will have <code>4</code> bytes, which when expressed with the <code>-hex</code> option gives 8 hexadecimal characters.</p>
-<p>You will see the sample result below used in the rest of this tutorial:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">144c0889
-</code></pre></div><h2 id="step-6--installing-v2ray">Step 6 — Installing V2Ray</h2>
-<p>Now you are ready for the install of V2Ray.</p>
-<p>Download the V2Ray installation script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget --no-check-certificate https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh
-</code></pre></div><p>You will see a message saying the script has been saved:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">2021-02-15 13:27:04 <span class="o">(</span>38.3 MB/s<span class="o">)</span> - ‘install-release.sh’ saved <span class="o">[</span>21613/21613<span class="o">]</span>
-</code></pre></div><p>Run the V2Ray installation script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bash install-release.sh
-</code></pre></div><p>The script can take a minute or so to run. The install ends with a message:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Please execute the command: systemctl <span class="nb">enable</span> v2ray<span class="p">;</span> systemctl start v2ray
-</code></pre></div><p>You will do these steps in a moment, after you have configured V2Ray.</p>
-<h2 id="step-7--configuring-v2ray-and-nginx">Step 7 — Configuring V2Ray and Nginx</h2>
-<p>In this step, you&rsquo;ll configure V2Ray so that it accepts WebSocket traffic on port <code>10000</code>.</p>
-<p>Edit the V2Ray configuration file, <code>/usr/local/etc/v2ray/config.json</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /usr/local/etc/v2ray/config.json
-</code></pre></div><p>At first, the file contains only opening and closing curly braces:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">{}</span>
-</code></pre></div><p>Delete the initial content.</p>
-<p>Copy and paste in the template below:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">{
-  &#34;log&#34;: {
-    &#34;loglevel&#34;: &#34;warning&#34;,
-    &#34;access&#34;: &#34;/var/log/v2ray/access.log&#34;, 
-    &#34;error&#34;: &#34;/var/log/v2ray/error.log&#34;
-  },
-  &#34;inbounds&#34;: [{
-    &#34;port&#34;: 10000,
-    &#34;protocol&#34;: &#34;vmess&#34;,
-    &#34;settings&#34;: {
-      &#34;clients&#34;: [
-        {
-          &#34;id&#34;: &#34;e2a48137-a578-4ffa-beed-ca6c99350e0a&#34;,
-          &#34;level&#34;: 1,
-          &#34;alterId&#34;: 4
-        }
-      ]
-    },
-    &#34;streamSettings&#34;: {
-      &#34;network&#34;: &#34;ws&#34;,
-      &#34;wsSettings&#34;: {
-        &#34;path&#34;: &#34;/144c0889&#34;
-      }
-    }
-  }],
-  &#34;outbounds&#34;: [{
-    &#34;protocol&#34;: &#34;socks&#34;,
-    &#34;settings&#34;: {
-      &#34;servers&#34;: [{
-        &#34;address&#34;: &#34;127.0.0.1&#34;,
-        &#34;port&#34;: 9050,
-        &#34;auth&#34;: &#34;noauth&#34;
-      }]
-    }
-  },{
-    &#34;protocol&#34;: &#34;blackhole&#34;,
-    &#34;settings&#34;: {},
-    &#34;tag&#34;: &#34;blocked&#34;
-  }],
-  &#34;routing&#34;: {
-    &#34;rules&#34;: [
-      {
-        &#34;type&#34;: &#34;field&#34;,
-        &#34;ip&#34;: [&#34;geoip:private&#34;],
-        &#34;outboundTag&#34;: &#34;blocked&#34;
-      }
-    ]
-  }
-}
-
-</code></pre></div><p>There is one inbound, which handles Vmess input on port <code>10000</code>. The traffic arrives as WebSocket packets requesting path <code>/144c0889</code>. The outbound is in SOCKS format to port <code>9050</code>. That is where Tor is listening.</p>
-<p>When you&rsquo;ve pasted in the template, customize it for your situation by making these changes:</p>
-<ul>
-<li>Replace the UUID <code>e2a48137-a578-4ffa-beed-ca6c99350e0a</code> by your own UUID</li>
-<li>Replace the path <code>/144c0889</code> by your own random path name</li>
-</ul>
-<p>Once you&rsquo;ve made the required changes, write the file out to disk, and exit the editor.</p>
-<p>Now edit your Nginx configuration file, <code>/etc/nginx/sites-available/default</code>.</p>
+</code></pre></div><p>Test your web server. In a browser, visit your fully qualified domain name (<code>https://your_domain</code>). You should see the <code>Welcome to nginx!</code> page.</p>
+<p>Optionally, you can now add some content (HTML, CSS, etc.) to your camouflage website at <code>/var/www/html</code> to increase its realism.</p>
+<h2 id="step-4--installing-go-language">Step 4 — Installing Go Language</h2>
+<p>Go is a statically typed, compiled programming language designed at Google by Ken Thompson, Robert Griesemer, and Rob Pike. Ken Thompson designed and implemented the original Unix operating system.</p>
+<p>In this step, you&rsquo;ll install the Go compiler on your server. You can determine the latest version from <a href="https://golang.org">https://golang.org</a>.</p>
+<p>Start by downloading the latest version of Go. From the Go language website linked above, this is currently version 1.16. It may be higher when you read this tutorial.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget https://golang.org/dl/go1.16.linux-amd64.tar.gz
+</code></pre></div><p>Extract the contents of the tarball into <code>/usr/local</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tar -C /usr/local -xzf go1.16.linux-amd64.tar.gz
+</code></pre></div><p>Include the Go binary in your current execution path:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/go/bin
+</code></pre></div><p>This will be effective for the duration of your current SSH session. If you need to have Go in your execution path permanently, then add it to <code>/etc/profile</code>.</p>
+<h2 id="step-5--downloading-mtg">Step 5 — Downloading Mtg</h2>
+<p>Mtg is an MTProto implementation in the Go language that is intended to be lightweight, consuming as few resources as possible.</p>
+<p>Before downloading Mtg, you will need to install <code>git</code> if it is not already on your system:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install git -y
+</code></pre></div><p>Then use <code>git</code> to clone the Mtg source code from GitHub:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/9seconds/mtg.git
+</code></pre></div><p>This creates a directory <code>mtg</code> with the Mtg source code in it.</p>
+<h2 id="step-6--building-mtg">Step 6 — Building Mtg</h2>
+<p>Now you will use the Go language compiler to build Mtg. Change into the directory containing the Mtg source:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> mtg
+</code></pre></div><p>Build the binary from source:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go build
+</code></pre></div><p>You will see the dependencies being downloaded. The <code>mtg</code> executable is created within your current <code>mtg</code> directory.</p>
+<p>Copy the <code>mtg</code> binary into your execution path:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cp mtg /usr/local/bin
+</code></pre></div><h2 id="step-7--generating-secret">Step 7 — Generating Secret</h2>
+<p>MTProto proxy servers require the user to know a &ldquo;secret&rdquo; to access them. Generate a secret with the command below. Replace <code>host.example.com</code> by your server&rsquo;s actual hostname (i.e., the fully qualified domain name, for which you create a DNS <code>A</code> record as one of the prerequisites).</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mtg generate-secret -c host.example.com tls
+</code></pre></div><p>This returns a secret, which will begin with the prefix <code>ee</code>, indicating a fake TLS secret:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">ee0123456789abcdef...
+</code></pre></div><p>Save the secret in a text editor on your PC, as you will need it later.</p>
+<h2 id="step-8--reconfiguring-nginx">Step 8 — Reconfiguring Nginx</h2>
+<p>You want Mtg to listen on port <code>443</code>. Therefore you will now edit the Nginx default host configuration file, <code>/etc/nginx/sites-available/default</code>, so that Nginx listens on port <code>993</code> instead of <code>443</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /etc/nginx/sites-available/default
-</code></pre></div><p>Make Nginx pass requests for the secret path to V2Ray, which is listening on localhost port <code>10000</code>. Inside the <code>server</code> block that is listening for <code>443 ssl</code>, insert a new <code>location</code> block based on the following template:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">location /144c0889 <span class="o">{</span>
-	proxy_redirect off<span class="p">;</span>
-	proxy_pass http://127.0.0.1:10000<span class="p">;</span>
-	proxy_http_version 1.1<span class="p">;</span>
-	proxy_set_header Upgrade <span class="nv">$http_upgrade</span><span class="p">;</span>
-	proxy_set_header Connection <span class="s2">&#34;upgrade&#34;</span><span class="p">;</span>
-	proxy_set_header Host <span class="nv">$http_host</span><span class="p">;</span>
-	<span class="c1"># Show real IP if you enable V2Ray access log</span>
-	proxy_set_header X-Real-IP <span class="nv">$remote_addr</span><span class="p">;</span>
-	proxy_set_header X-Forwarded-For <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="o">}</span>
-</code></pre></div><p>Replace the path <code>/144c0889</code> in the template above by your own secret path.</p>
-<p>Write the file out to disk, and exit the editor.</p>
-<h2 id="step-8--starting-v2ray-and-restarting-nginx">Step 8 — Starting V2Ray and Restarting Nginx</h2>
-<p>Now that your configuration file is correct, enable the V2Ray service so that it starts after every reboot:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl <span class="nb">enable</span> v2ray
-</code></pre></div><p>Also start the V2Ray service now:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl start v2ray
-</code></pre></div><p>Confirm that V2Ray is running with the new configuration with the command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status v2ray
-</code></pre></div><p>You should see a status of <code>active (running)</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">v2ray.service - V2Ray Service
-     Loaded: loaded <span class="o">(</span>/etc/systemd/system/v2ray.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
-    Drop-In: /etc/systemd/system/v2ray.service.d
-             └─10-donot_touch_single_conf.conf
-     Active: active <span class="o">(</span>running<span class="o">)</span> since Mon 2021-02-15 13:36:35 UTC<span class="p">;</span> 36s ago
-       Docs: https://www.v2fly.org/
-   Main PID: <span class="m">3260</span> <span class="o">(</span>v2ray<span class="o">)</span>
-      Tasks: <span class="m">7</span> <span class="o">(</span>limit: 1136<span class="o">)</span>
-     Memory: 54.6M
-     CGroup: /system.slice/v2ray.service
-             └─3260 /usr/local/bin/v2ray -config /usr/local/etc/v2ray/config.json
-
-Feb <span class="m">15</span> 13:36:35 v2ray systemd<span class="o">[</span>1<span class="o">]</span>: Started V2Ray Service.
-Feb <span class="m">15</span> 13:36:35 v2ray v2ray<span class="o">[</span>3260<span class="o">]</span>: V2Ray 4.34.0 <span class="o">(</span>V2Fly, a community-driven edition of V2Ray.<span class="o">)</span> Custom <span class="o">(</span>go1.15.6 linux/amd64<span class="o">)</span>
-Feb <span class="m">15</span> 13:36:35 v2ray v2ray<span class="o">[</span>3260<span class="o">]</span>: A unified platform <span class="k">for</span> anti-censorship.
-Feb <span class="m">15</span> 13:36:35 v2ray v2ray<span class="o">[</span>3260<span class="o">]</span>: 2021/02/15 13:36:35 <span class="o">[</span>Info<span class="o">]</span> v2ray.com/core/main/jsonem: Reading config: /usr/local/etc/v2ray/config.json
-</code></pre></div><p>Restart the Nginx service:</p>
+</code></pre></div><p>Amend the listening port in the <code>ssl</code> server block. Change the Nginx port from <code>443</code> to <code>993</code> for both IPv4 and IPv6:</p>
+<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx">        <span class="k">listen</span> <span class="s">[::]:993</span> <span class="s">ssl</span> <span class="s">ipv6only=on</span><span class="p">;</span> <span class="c1"># managed by Certbot
+</span><span class="c1"></span>        <span class="k">listen</span> <span class="mi">993</span> <span class="s">ssl</span><span class="p">;</span> <span class="c1"># managed by Certbot
+</span></code></pre></div><p>Write the file out to disk, and exit the editor.</p>
+<p>Restart Nginx with this new configuration:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl restart nginx
-</code></pre></div><p>Confirm that Nginx is running with the new configuration with the command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status nginx
-</code></pre></div><p>Again, you should see a status of <code>active (running)</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">● nginx.service - A high performance web server and a reverse proxy server
-     Loaded: loaded <span class="o">(</span>/lib/systemd/system/nginx.service<span class="p">;</span> enabled<span class="p">;</span> vendor preset: enabled<span class="o">)</span>
-     Active: active <span class="o">(</span>running<span class="o">)</span> since Mon 2021-02-15 13:37:57 UTC<span class="p">;</span> 21s ago
-       Docs: man:nginx<span class="o">(</span>8<span class="o">)</span>
-    Process: <span class="m">3284</span> <span class="nv">ExecStartPre</span><span class="o">=</span>/usr/sbin/nginx -t -q -g daemon on<span class="p">;</span> master_process on<span class="p">;</span> <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
-    Process: <span class="m">3296</span> <span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/nginx -g daemon on<span class="p">;</span> master_process on<span class="p">;</span> <span class="o">(</span><span class="nv">code</span><span class="o">=</span>exited, <span class="nv">status</span><span class="o">=</span>0/SUCCESS<span class="o">)</span>
-   Main PID: <span class="m">3298</span> <span class="o">(</span>nginx<span class="o">)</span>
-      Tasks: <span class="m">3</span> <span class="o">(</span>limit: 1136<span class="o">)</span>
-     Memory: 3.5M
-     CGroup: /system.slice/nginx.service
-             ├─3298 nginx: master process /usr/sbin/nginx -g daemon on<span class="p">;</span> master_process on<span class="p">;</span>
-             ├─3299 nginx: worker process
-             └─3300 nginx: worker process
+</code></pre></div><h2 id="step-9--configuring-mtg">Step 9 — Configuring Mtg</h2>
+<p>Create a systemd service file for Mtg named <code>/usr/lib/systemd/system/mtg.service</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nano /usr/lib/systemd/system/mtg.service
+</code></pre></div><p>Insert the template below, but substitute your actual secret instead of the placeholder <code>&lt;SECRET&gt;</code>. The angle brackets are just to indicate a substitutable variable and are not included in the final file. For<code>&lt;SERVER.IP&gt;</code> put the public IPv4 address of your server. Other possible parameters are documented in the <a href="https://github.com/9seconds/mtg/blob/master/README.md">https://github.com/9seconds/mtg/blob/master/README.md</a>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">[Unit]
+Description=Telegram MTProto Proxy Server
+Documentation=https://github.com/9seconds/mtg
+Wants=network-online.target
+After=network-online.target
 
-Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<span class="o">]</span>: Starting A high performance web server and a reverse proxy server...
-Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<span class="o">]</span>: Started A high performance web server and a reverse proxy server.
-</code></pre></div><p>At this point:</p>
-<ul>
-<li>Nginx is listening on ports <code>80</code> and <code>443</code></li>
-<li>V2Ray is listening on port <code>10000</code></li>
-<li>Tor is listening on port <code>9050</code></li>
-</ul>
-<p>In the case of a request for the secret path, Nginx will pass the request to V2Ray on port <code>10000</code>. If the UUID is correct, V2Ray will pass the request to Tor on port <code>9050</code>.</p>
-<p>If you logged in as a non-root user and switched to root, you will have to <code>exit</code> your switched user session before you can exit the SSH session.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">exit</span>
-</code></pre></div><p>You can then <code>exit</code> your SSH session with the server:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">exit</span>
-</code></pre></div><h2 id="step-9--testing-with-client">Step 9 — Testing with Client</h2>
-<p>Now work on your client computer.</p>
-<p>Before you go any further, test your camouflage web server. In an ordinary browser, visit your fully qualified domain name (<code>https://your_domain</code>). You should see the <code>Welcome to nginx!</code> page.</p>
+[Service]
+Restart=always
+User=root
+Group=root
+ExecStart=/usr/local/bin/mtg run --cloak-port 993 -4 &lt;SERVER.IP&gt;:443 -b 0.0.0.0:443 &lt;SECRET&gt;
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div><p>When you&rsquo;ve put in yout actual values, write the file out to disk, and exit the editor.</p>
+<h2 id="step-10--starting-and-checking-mtg">Step 10 — Starting and Checking Mtg</h2>
+<p>Run the Mtg service, <code>mtg</code>, after every reboot:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl <span class="nb">enable</span> mtg
+</code></pre></div><p>Start the Mtg service now:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl start mtg
+</code></pre></div><p>Check that <code>mtg</code> is active and running:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl status mtg
+</code></pre></div><p>You should see a result such as:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">mtg.service - Telegram MTProto Proxy Server
+     Loaded: loaded (/lib/systemd/system/mtg.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2021-02-18 12:18:05 UTC; 39s ago
+       Docs: https://github.com/9seconds/mtg
+   Main PID: 34363 (mtg)
+      Tasks: 8 (limit: 1137)
+     Memory: 6.9M
+     CGroup: /system.slice/mtg.service
+             └─34363 /usr/local/bin/mtg run --cloak-port 993 -4 &lt;SERVER.IP&gt;:443 -b 0.0.0.0:443 &lt;SECRET&gt;
+</code></pre></div><p>If you want to review any messages for the systemd unit <code>mtg</code>, then issue the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">journalctl -u mtg
+</code></pre></div><h2 id="step-11--testing">Step 11 — Testing</h2>
+<p>Now work on your client device. We will use the example of an Android phone.</p>
+<p>Before you go any further, test your camouflage web server. In an ordinary browser, visit your fully qualified domain name (<code>https://your_domain</code>). You should see the <code>Welcome to nginx!</code> page (or the realistic content, if you added some).</p>
 <p>Now you know your camouflage web server is working, you can carry on.</p>
-<p>The Qv2ray client is available for Linux, Windows, or macOS. For the rest of this section, we will give instructions for Ubuntu Linux.</p>
-<p>Download the most recent V2Ray core from <a href="https://github.com/v2fly/v2ray-core/releases">https://github.com/v2fly/v2ray-core/releases</a>. The V2Fly project is the successor to V2Ray. Your download will have a name such as <code>Xray-linux-64.zip</code>. In your terminal, unzip the download:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">unzip ~/Downloads/v2ray-linux-64.zip -d ~/Downloads/v2ray-core
-</code></pre></div><p>The contents of the extracted directory <code>~/Downloads/v2ray-core</code> are displayed as the extraction proceeds:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Archive:  /home/amy/Downloads/v2ray-linux-64.zip
-   creating: systemd/
-   creating: systemd/system/
-  inflating: systemd/system/v2ray@.service  
-  inflating: systemd/system/v2ray.service  
-  inflating: config.json             
-  inflating: geoip.dat               
-  inflating: geosite.dat             
-  inflating: v2ray                   
-  inflating: v2ctl                   
-  inflating: vpoint_socks_vmess.json  
-  inflating: vpoint_vmess_freedom.json
-</code></pre></div><p>Make a directory to hold the core:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir -p ~/.config/qv2ray/vcore/
-</code></pre></div><p>Copy the contents of the extracted V2Ray core into the new directory:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cp -rf ~/Downloads/v2ray-core/* ~/.config/qv2ray/vcore/
-</code></pre></div><p>Also download the most recent version of the Qv2ray client from <a href="https://github.com/Qv2ray/Qv2ray/releases">https://github.com/Qv2ray/Qv2ray/releases</a>. The Qv2ray client for Linux is provided as an <code>AppImage</code> file. An <code>AppImage</code> contains the program, its dependencies, and all files necessary for the program to work, in one self-contained file. Your download will have a name that looks like <code>Qv2ray.v2.7.0-pre2.linux-x64.AppImage</code>.</p>
-<p>Make Qv2ray executable and start the program. From <strong>Files</strong>:</p>
-<ol>
-<li>Navigate to your <strong>Downloads</strong> directory</li>
-<li>Right-click on the <code>AppImage</code> file</li>
-<li>Select <strong>Properties</strong></li>
-<li>Select the <strong>Permissions</strong> tab</li>
-<li>Check the box <strong>Allow executing file as program</strong></li>
-<li>Close the <strong>Properties</strong> dialog box</li>
-<li>Double-click on the <code>AppImage</code> file to launch the program</li>
-</ol>
-<p><img src="/images/qv2ray-linux-new.png" alt="Qv2Ray on Ubuntu Linux"></p>
-<p>Press the <strong>Preferences</strong> button, and on the <strong>Kernel Settings</strong> tab, specify your core folder and executable.</p>
-<p><img src="/images/qv2ray-linux-kernel-settings.png" alt="Qv2Ray on Ubuntu Linux Kernel Settings"></p>
-<p>When you have entered the correct details, click <strong>OK</strong>.</p>
-<p>Now that the kernel settings are configured, you can add your server configuration to the Qv2ray client.</p>
-<ol>
-<li>Select the <strong>Default Group</strong>, then click the <strong>New</strong> button.</li>
-<li>For <strong>Host</strong>, type <em>your_domain</em> (i.e., your server&rsquo;s fully qualified domain name).</li>
-<li>For <strong>Port</strong>, type <code>443</code>.</li>
-<li>For <strong>Type</strong>, select <strong>VMess</strong>.</li>
-<li>Under <strong>Outbound Settings</strong>, for <strong>UUID</strong> put your universally unique id (<code>e2a48137-a578-4ffa-beed-ca6c99350e0a</code> in the examples in this tutorial).</li>
-<li>Set <strong>Alter ID</strong> to <code>4</code> to match the server settings.</li>
-<li>Under <strong>Stream Settings</strong>, select the <strong>Protocol Settings</strong> tab.</li>
-<li>Set <strong>Transport Protocol</strong> to <strong>ws</strong>.</li>
-<li>For <strong>Path</strong>, type <code>/144c0889</code> or whatever your path is.</li>
-<li>Still under <strong>Stream Settings</strong>, select the <strong>TLS Settings</strong> tab.</li>
-<li>Set <strong>Security Type</strong> to <strong>TLS</strong>.</li>
-<li>Set <strong>Server Address (SNI)</strong> to <em>your_domain</em> (i.e., your server&rsquo;s fully qualified domain name).</li>
-<li>Click <strong>OK</strong>.</li>
-</ol>
-<p><img src="/images/qv2ray-linux-connection-settings.png" alt="Qv2Ray on Ubuntu Linux Connection Settings"></p>
-<p>Double-click the <strong>Default Group</strong>, and select your server underneath it.</p>
-<p>Click the Connect icon for your server. Notifications appear in Ubuntu to say you are connected.</p>
-<p>In your browser, visit <a href="https://check.torproject.org">https://check.torproject.org</a> to confirm that your web browsing is now passing through the Tor network.</p>
-<p><img src="/images/qv2ray-linux-check-tor.png" alt="Check Tor connection on Ubuntu Linux"></p>
-<p>When you have finished browsing, go back to the Qv2ray client.</p>
-<p>Select your server and click the Disconnect icon.</p>
+<p>We will illustrate the example of MTProxy on Android. Go to <strong>Settings</strong>. Tap <strong>Data and Storage</strong>. Scroll down and tap <strong>Proxy Settings</strong>.</p>
+<p>Toggle <strong>Use Proxy</strong> to the ON position. Select the radio button for <strong>MTProto Proxy</strong>.</p>
+<p>Enter the proxy details for your MTProto proxy. The information you need is:</p>
+<ul>
+<li>Server (<code>your_domain</code>)</li>
+<li>Port (put <code>443</code>)</li>
+<li>Secret (put the secret as generated, which begins with <code>ee</code> for a fake TLS proxy)</li>
+</ul>
+<p><img src="/images/telegram-proxy-setup.png" alt="Telegram proxy setup"></p>
+<p>Press the check mark to save your settings.</p>
+<p>Go back to the Proxy Settings screen. It will take a few seconds to connect to the proxy.</p>
+<p>Test your connection with your friends and/or a group.</p>
+<h2 id="step-12--sharing-the-secret">Step 12 — Sharing the Secret</h2>
+<p>Now that everything is running, you can share the proxy with your friends. The information they need is the server (<code>your_domain</code>), the port (<code>443</code>), and the secret.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>You now have a working V2Ray Tor on-ramp that you&rsquo;ve tested with the Qv2ray client.</p>
-<p>You can read more about V2Ray&rsquo;s capabilities at <a href="https://www.v2fly.org/en_US/">https://www.v2fly.org/en_US/</a>. You can read the Qv2ray documentation at <a href="https://qv2ray.net/en/">https://qv2ray.net/en/</a>.</p>
+<p>You now have a camouflaged MTProto proxy server that you&rsquo;ve tested with Telegram Messenger.</p>
+<p>You can read more about MTProto at <a href="https://core.telegram.org/mtproto">https://core.telegram.org/mtproto</a>. You can read the Mtg documentation at <a href="https://github.com/9seconds/mtg">https://github.com/9seconds/mtg</a>.</p>
 
 
         
           <div class="blog-tags">
             
-              <a href="https://v2how.github.io/tags/tor/">tor</a>&nbsp;
+              <a href="https://v2how.github.io/tags/telegram/">telegram</a>&nbsp;
             
-              <a href="https://v2how.github.io/tags/v2ray/">v2ray</a>&nbsp;
+              <a href="https://v2how.github.io/tags/mtproto/">mtproto</a>&nbsp;
             
               <a href="https://v2how.github.io/tags/server/">server</a>&nbsp;
             
@@ -698,42 +572,42 @@ Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<sp
     <ul class="share">
       
       <li>
-        <a href="//twitter.com/share?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f&amp;text=How%20to%20Build%20a%20V2Ray%20Tor%20On-Ramp%20on%20Ubuntu%2020.04&amp;via=" target="_blank" title="Share on Twitter">
+        <a href="//twitter.com/share?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04%2f&amp;text=How%20to%20Build%20a%20Camouflaged%20Telegram%20MTProto%20Proxy%20Server%20on%20Ubuntu%2020.04&amp;via=" target="_blank" title="Share on Twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f" target="_blank" title="Share on Facebook">
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04%2f" target="_blank" title="Share on Facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//reddit.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f&amp;title=How%20to%20Build%20a%20V2Ray%20Tor%20On-Ramp%20on%20Ubuntu%2020.04" target="_blank" title="Share on Reddit">
+        <a href="//reddit.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04%2f&amp;title=How%20to%20Build%20a%20Camouflaged%20Telegram%20MTProto%20Proxy%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on Reddit">
           <i class="fab fa-reddit"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f&amp;title=How%20to%20Build%20a%20V2Ray%20Tor%20On-Ramp%20on%20Ubuntu%2020.04" target="_blank" title="Share on LinkedIn">
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04%2f&amp;title=How%20to%20Build%20a%20Camouflaged%20Telegram%20MTProto%20Proxy%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f&amp;title=How%20to%20Build%20a%20V2Ray%20Tor%20On-Ramp%20on%20Ubuntu%2020.04" target="_blank" title="Share on StumbleUpon">
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04%2f&amp;title=How%20to%20Build%20a%20Camouflaged%20Telegram%20MTProto%20Proxy%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on StumbleUpon">
           <i class="fab fa-stumbleupon"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04%2f&amp;description=How%20to%20Build%20a%20V2Ray%20Tor%20On-Ramp%20on%20Ubuntu%2020.04" target="_blank" title="Share on Pinterest">
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04%2f&amp;description=How%20to%20Build%20a%20Camouflaged%20Telegram%20MTProto%20Proxy%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on Pinterest">
           <i class="fab fa-pinterest"></i>
         </a>
       </li>
@@ -755,7 +629,7 @@ Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<sp
                   <ul>
                 
                 
-                    <li><a href="/post/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04/">How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04</a></li>
+                    <li><a href="/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/">How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04</a></li>
                 
                     <li><a href="/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/">How to Create an Xray VLESS XTLS Server on Ubuntu 20.04</a></li>
                 
@@ -769,13 +643,9 @@ Feb <span class="m">15</span> 13:37:57 v2ray systemd<span class="o">[</span>1<sp
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://v2how.github.io/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/" data-toggle="tooltip" data-placement="top" title="How to Create an Xray VLESS XTLS Server on Ubuntu 20.04">&larr; Previous Post</a>
+              <a href="https://v2how.github.io/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/" data-toggle="tooltip" data-placement="top" title="How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04">&larr; Previous Post</a>
             </li>
           
-          
-            <li class="next">
-              <a href="https://v2how.github.io/post/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04/" data-toggle="tooltip" data-placement="top" title="How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04">Next Post &rarr;</a>
-            </li>
           
         </ul>
       
