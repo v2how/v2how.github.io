@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
     <webMaster>amyw32@protonmail.com (Amy)</webMaster>
-    <lastBuildDate>Thu, 18 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Install Tor Browser or Standalone Tor on Ubuntu 20.04</title>
+      <link>https://v2how.github.io/post/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04/</link>
+      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/post/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04/</guid>
+      <description>Introduction Tor Browser allows users in the non-free world to access the Internet. The standalone Tor program allows volunteers to support this access with relays, bridges, and onion services.
+In this post you&amp;rsquo;ll learn four methods for installing on Ubuntu 20.04:
+ installing Tor Browser installing standalone Tor from the Ubuntu repositories installing standalone Tor from the Tor Project repositories installing standalone Tor by compiling from source  You do not need to implement all four of these methods.</description>
+    </item>
+    
     <item>
       <title>How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04</title>
       <link>https://v2how.github.io/post/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04/</link>

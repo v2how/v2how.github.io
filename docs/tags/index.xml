@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
     <webMaster>amyw32@protonmail.com (Amy)</webMaster>
-    <lastBuildDate>Thu, 18 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>tor</title>
+      <link>https://v2how.github.io/tags/tor/</link>
+      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/tor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://v2how.github.io/tags/ubuntu/</link>
+      <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>mtproto</title>
       <link>https://v2how.github.io/tags/mtproto/</link>
@@ -32,24 +50,6 @@
       <pubDate>Thu, 18 Feb 2021 00:00:00 +0000</pubDate>
       <author>amyw32@protonmail.com (Amy)</author>
       <guid>https://v2how.github.io/tags/telegram/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ubuntu</title>
-      <link>https://v2how.github.io/tags/ubuntu/</link>
-      <pubDate>Thu, 18 Feb 2021 00:00:00 +0000</pubDate>
-      <author>amyw32@protonmail.com (Amy)</author>
-      <guid>https://v2how.github.io/tags/ubuntu/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tor</title>
-      <link>https://v2how.github.io/tags/tor/</link>
-      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
-      <author>amyw32@protonmail.com (Amy)</author>
-      <guid>https://v2how.github.io/tags/tor/</guid>
       <description></description>
     </item>
     
