@@ -61,7 +61,7 @@ In this post you&rsquo;ll learn four methods for installing Tor on Ubuntu 20.04:
   "headline": "How to Install Tor Browser or Standalone Tor on Ubuntu 20.04",
   "description" : "Introduction Tor Browser allows users in the non-free world to access the Internet. The standalone Tor program allows volunteers to support this access with relays, bridges, and onion services.\nIn this post you\u0026rsquo;ll learn four methods for installing Tor on Ubuntu 20.04:\n installing Tor Browser installing standalone Tor from the Ubuntu repositories installing standalone Tor from the Tor Project repositories installing standalone Tor by compiling from source  You do not need to implement all four of these methods.",
   "inLanguage" : "en",
-  "wordCount":  1340 ,
+  "wordCount":  1257 ,
   "datePublished" : "2021-02-19T00:00:00",
   "dateModified" : "2021-02-19T00:00:00",
   "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
@@ -245,10 +245,10 @@ In …">
   <i class="fas fa-calendar"></i>&nbsp;Posted on February 19, 2021
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;7&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;6&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1340&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1257&nbsp;words
   
   
     
@@ -452,42 +452,7 @@ Encountered 2 warning(s). See messages above for more info.
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo make install
 </code></pre></div><p>The Tor binary is in <code>/usr/local/bin/</code>. The GeoIP and GeoIP6 databases are in <code>/usr/local/share/tor</code>. The sample <code>torrc.sample</code> is in <code>/usr/local/etc/tor</code>.</p>
 <p>Note that, in contrast to installing Tor from a package in the repositories, there is no Tor service running, and there are no Tor systemd service files. You will need to create these yourself.</p>
-<p>Here is an example of a systemd service file that the Ubuntu 20.04 repository package places in <code>/lib/systemd/system/tor@default.service</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">[Unit]
-Description=Anonymizing overlay network for TCP
-After=network.target nss-lookup.target
-PartOf=tor.service
-ReloadPropagatedFrom=tor.service
-
-[Service]
-Type=notify
-NotifyAccess=all
-PIDFile=/run/tor/tor.pid
-PermissionsStartOnly=yes
-ExecStartPre=/usr/bin/install -Z -m 02755 -o debian-tor -g debian-tor -d /run/tor
-ExecStartPre=/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0 --verify-config
-ExecStart=/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0
-ExecReload=/bin/kill -HUP ${MAINPID}
-KillSignal=SIGINT
-TimeoutStartSec=300
-TimeoutStopSec=60
-Restart=on-failure
-LimitNOFILE=65536
-
-# Hardening
-AppArmorProfile=-system_tor
-NoNewPrivileges=yes
-PrivateTmp=yes
-PrivateDevices=yes
-ProtectHome=yes
-ProtectSystem=full
-ReadOnlyDirectories=/
-ReadWriteDirectories=-/proc
-ReadWriteDirectories=-/var/lib/tor
-ReadWriteDirectories=-/var/log/tor
-ReadWriteDirectories=-/run
-CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH
-</code></pre></div><h2 id="conclusion">Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>You now have Tor Browser or standalone Tor installed on your Ubuntu Linux computer.</p>
 <p>You can read the Tor documentation, including configuration instructions, on the <a href="https://www.torproject.org">Tor Project website</a>.</p>
 
