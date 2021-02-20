@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>How to Install Tor Browser or Standalone Tor on Ubuntu 20.04 - v2how</title>
+  <meta name="description" content="Introduction Tor Browser allows users in the non-free world to access the Internet. The standalone Tor program allows volunteers to support this access with relays, bridges, and onion services.
+In this post you&rsquo;ll learn four methods for installing Tor on Ubuntu 20.04:
+ installing Tor Browser installing standalone Tor from the Ubuntu repositories installing standalone Tor from the Tor Project repositories installing standalone Tor by compiling from source  You do not need to implement all four of these methods.">
+  <meta name="author" content="Amy"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "v2how",
+    
+    "url": "https:\/\/v2how.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/v2how.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/v2how.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/v2how.github.io\/post\/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy\/",
+          "name": "How to install tor browser or standalone tor on ubuntu 20.04"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Amy"
+  },
+  "headline": "How to Install Tor Browser or Standalone Tor on Ubuntu 20.04",
+  "description" : "Introduction Tor Browser allows users in the non-free world to access the Internet. The standalone Tor program allows volunteers to support this access with relays, bridges, and onion services.\nIn this post you\u0026rsquo;ll learn four methods for installing Tor on Ubuntu 20.04:\n installing Tor Browser installing standalone Tor from the Ubuntu repositories installing standalone Tor from the Tor Project repositories installing standalone Tor by compiling from source  You do not need to implement all four of these methods.",
+  "inLanguage" : "en",
+  "wordCount":  1498 ,
+  "datePublished" : "2021-02-19T00:00:00",
+  "dateModified" : "2021-02-19T00:00:00",
+  "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
+  "keywords" : [ "tor, ubuntu" ],
+  "mainEntityOfPage" : "https:\/\/v2how.github.io\/post\/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/v2how.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="How to Install Tor Browser or Standalone Tor on Ubuntu 20.04" />
+<meta property="og:description" content="Introduction Tor Browser allows users in the non-free world to access the Internet. The standalone Tor program allows volunteers to support this access with relays, bridges, and onion services.
+In this post you&rsquo;ll learn four methods for installing Tor on Ubuntu 20.04:
+ installing Tor Browser installing standalone Tor from the Ubuntu repositories installing standalone Tor from the Tor Project repositories installing standalone Tor by compiling from source  You do not need to implement all four of these methods.">
+<meta property="og:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
+<meta property="og:url" content="https://v2how.github.io/post/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="v2how" />
+
+  <meta name="twitter:title" content="How to Install Tor Browser or Standalone Tor on Ubuntu 20.04" />
+  <meta name="twitter:description" content="Introduction Tor Browser allows users in the non-free world to access the Internet. The standalone Tor program allows volunteers to support this access with relays, bridges, and onion services.
+In …">
+  <meta name="twitter:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://v2how.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="alternate" href="https://v2how.github.io/index.xml" type="application/rss+xml" title="v2how"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://v2how.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://v2how.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://v2how.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SW1P8SGNST"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SW1P8SGNST');
+</script>
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://v2how.github.io">v2how</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="v2how" href="https://v2how.github.io">
+            <img class="avatar-img" src="https://v2how.github.io/images/amy-avatar-icon.png" alt="v2how" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>How to Install Tor Browser or Standalone Tor on Ubuntu 20.04</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 19, 2021
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;8&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1498&nbsp;words
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Amy
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <h3 id="introduction">Introduction</h3>
+<p>Tor Browser allows users in the non-free world to access the Internet. The standalone Tor program allows volunteers to support this access with relays, bridges, and onion services.</p>
+<p>In this post you&rsquo;ll learn four methods for installing Tor on Ubuntu 20.04:</p>
+<ul>
+<li>installing Tor Browser</li>
+<li>installing standalone Tor from the Ubuntu repositories</li>
+<li>installing standalone Tor from the Tor Project repositories</li>
+<li>installing standalone Tor by compiling from source</li>
+</ul>
+<p>You do not need to implement all four of these methods. You can simply choose the one that corresponds to your needs.</p>
+<p>At the end of the tutorial, you&rsquo;ll have Tor Browser or standalone Tor installed on your Ubuntu Linux computer.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>There are no special requirements for Tor Browser other than an up-to-date Ubuntu Linux desktop.</p>
+<p>For standalone Tor, you will need to open your computer&rsquo;s firewall:</p>
+<ul>
+<li>for relays or onion services, open the <code>ORPort</code> defined in your <code>torrc</code> file</li>
+<li>for bridges, open the <code>ORPort</code> defined in your <code>torrc</code> file, unless you want to keep your bridge hidden and you set <code>AssumeReachable</code> in your <code>torrc</code></li>
+<li>for bridges, open the <code>ServerTransportListenAddr</code> port</li>
+<li>if you want your server to mirror the directory, open the <code>DirPort</code> defined in your <code>torrc</code> file</li>
+</ul>
+<h2 id="method-1--installing-tor-browser">Method 1 — Installing Tor Browser</h2>
+<p>How you get the Tor Browser installer depends on where you are:</p>
+<ul>
+<li>If you are in the free world, download Tor Browser for 64-bit or 32-bit Linux from <a href="https://www.torproject.org/download/languages">https://www.torproject.org/download/languages</a>. The page offers installers for 16 languages.</li>
+<li>If you are not in the free world, send an email to <a href="mailto:gettor@torproject.org">gettor@torproject.org</a> specifying your operating system and your locale in the body of the message. For example, you would put <code>windows es</code> for a Windows computer in the Spanish language.</li>
+</ul>
+<p>The downloaded file will by default be in your Ubuntu <code>Downloads</code> directory. Open a terminal, and change into that directory:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/Downloads
+</code></pre></div><p>Determine the name of your downloaded file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">ls -l
+</code></pre></div><p>The <code>-l</code> switch gives a long-format listing with details of each file on a separate line. We will use the example name of <code>tor-browser-linux64-10.0.10_en-US.tar.xz</code>.</p>
+<p>Extract the files and directories from your compressed <code>tar</code> archive:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tar -xf tor-browser-linux64-10.0.10_en-US.tar.xz
+</code></pre></div><p>It will take a few seconds to extract, as the archive is quite large (more than 80 MB).</p>
+<p>Determine the name of the extracted directory:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">ls -l
+</code></pre></div><p>We will use the example of <code>tor-browser_en-US</code>.</p>
+<p>Change into the extracted directory. For example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> tor-browser_en-US
+</code></pre></div><p>Run the script to register the application:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./start-tor-browser.desktop --register-app
+</code></pre></div><p>You will see messages:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Launching &#39;./Browser/start-tor-browser --detach --register-app&#39;...
+Tor Browser has been registered as a desktop app for this user in ~/.local/share/applications/
+</code></pre></div><p>Close the terminal.</p>
+<p>Press the apps button at the bottom left of your GNOME desktop to show your applications. Search for <code>tor</code>. You will see the Tor Browser application.</p>
+<p><img src="/images/tor-browser-search.png" alt="Search for Tor Browser in GNOME desktop"></p>
+<p>Double-click on the icon to launch Tor Browser.</p>
+<p>Right-click on the icon in the favorites bar on the left of the GNOME desktop.</p>
+<p><img src="/images/tor-browser-favorites.png" alt="GNOME desktop favorites bar"></p>
+<p>Select <strong>Add to Favorites</strong> to permanently add the Tor Browser to your favorites bar.</p>
+<p>Now select the option that corresponds to your situation:</p>
+<ul>
+<li>Click <strong>Connect</strong> to connect to Tor directly.</li>
+<li>Click <strong>Configure</strong> to adjust network settings if you are in a country that censors Tor or if you are connecting from a private network that requires a proxy server.</li>
+</ul>
+<p><img src="/images/tor-browser-connect-configure.png" alt="Tor Browser initial connect or configure options"></p>
+<p>It can take a few minutes to make the connection to the Tor network. You will then see the initial screen.</p>
+<p><img src="/images/tor-browser-connected.png" alt="Tor Browser initial screen when connected"></p>
+<p>Links on the initial page show you where you can get more information on operating Tor Browser.</p>
+<h2 id="method-2--installing-standalone-tor-from-the-ubuntu-repositories">Method 2 — Installing Standalone Tor from the Ubuntu Repositories</h2>
+<p>SSH into your server. Get your server software up to date:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt update <span class="o">&amp;&amp;</span> sudo apt -y upgrade
+</code></pre></div><p>Install standalone Tor from the Ubuntu repositories:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt -y install tor
+</code></pre></div><p>This installs Tor version 0.4.2.7. The service <code>tor@default</code> is running, and listening on port <code>9050</code>. The default <code>torrc</code> file is located at <code>/etc/tor/torrc</code>.</p>
+<h2 id="method-3--installing-standalone-tor-from-the-tor-project-repositories">Method 3 — Installing Standalone Tor from the Tor Project Repositories</h2>
+<p>SSH into your server. Get your server software up to date:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt update <span class="o">&amp;&amp;</span> sudo apt -y upgrade
+</code></pre></div><p>Add the <code>apt-transport-https</code> package to allow fetching packages over HTTPS:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt -y install apt-transport-https
+</code></pre></div><p>Edit your APT sources list, <code>/etc/apt/sources.list</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo nano /etc/apt/sources.list
+</code></pre></div><p>At the bottom of the file, dd the Tor Project repositories:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">deb https://deb.torproject.org/torproject.org focal main
+deb-src https://deb.torproject.org/torproject.org focal main
+</code></pre></div><p>Write the file out to disk, and exit the editor.</p>
+<p>Download and import the Tor Project signing key:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc <span class="p">|</span> sudo gpg --import
+</code></pre></div><p>It is normal to see a message <code>no ultimately trusted keys found</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">gpg: key EE8CBC9E886DDD89: 83 signatures not checked due to missing keys
+gpg: /root/.gnupg/trustdb.gpg: trustdb created
+gpg: key EE8CBC9E886DDD89: public key &#34;deb.torproject.org archive signing key&#34; imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+gpg: no ultimately trusted keys found
+</code></pre></div><p>Add the Tor Project GPG key to your APT sources keyring:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 <span class="p">|</span> sudo apt-key add -
+</code></pre></div><p>You should see a response:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">OK
+</code></pre></div><p>Update your package lists and install Tor:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt update
+sudo apt -y install tor deb.torproject.org-keyring
+</code></pre></div><p>At the time of writing, this installs Tor version 0.4.5.6. The service <code>tor@default</code> is running, and listening on port <code>9050</code>. The default <code>torrc</code> file is located at <code>/etc/tor/torrc</code>.</p>
+<h2 id="method-4--installing-standalone-tor-by-compiling-from-source">Method 4 — Installing Standalone Tor by Compiling from Source</h2>
+<p>Compiling Tor from source will give you an up-to-date binary, but you will have to do more work than you would with a package.</p>
+<p>Start by SSH-ing into your server. Get your server software up to date:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt update <span class="o">&amp;&amp;</span> sudo apt -y upgrade
+</code></pre></div><p>Open a browser and visit <a href="https://www.torproject.org/download/tor">https://www.torproject.org/download/tor</a>.</p>
+<p>From that page, determine the latest release of Tor. We will use the example <code>0.4.5.6</code>.</p>
+<p>Back in your SSH session with your server, download the source for that version. For example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget https://dist.torproject.org/tor-0.4.5.6.tar.gz
+</code></pre></div><p>Extract the files and directories from the archive:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tar -xzf tor-0.4.5.6.tar.gz
+</code></pre></div><p>Change into the extracted directory:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> tor-0.4.5.6
+</code></pre></div><p>Install the prerequisites for the compile:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt -y install build-essential libevent-dev libssl-dev zlib1g-dev
+</code></pre></div><p>Then configure:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./configure
+</code></pre></div><p>Various precompile checks are carried out, ending with messages:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">Tor Version: Tor 0.4.5.6
+
+Build Features
+  Compiler:                                                      gcc
+  Host OS:                                                       linux-gnu
+
+  Warnings are fatal (--enable-fatal-warnings):                  no
+  Rust support (--enable-rust):                                  no
+  Cargo Online Fetch (--enable-cargo-online-mode):               no
+  Android support (--enable-android):                            no
+
+Static Build
+  tor (--enable-static-tor):                                     no
+  libevent (--enable-static-libevent):                           no
+  libssl (--enable-static-openssl):                              no
+  zlib1g (--enable-static-zlib):                                 no
+
+Optional Libraries
+  libnss (--enable-nss):                                         no
+  libseccomp (--disable-seccomp):                                yes
+  libscrypt (--disable-libscrypt):                               yes
+  Systemd support (--enable-systemd):                            no
+  liblzma (--enable-lzma):                                       no
+  libzstd (--enable-zstd):                                       no
+
+Hardening
+  Compiler Hardening (--disable-gcc-hardening):                  yes
+  Linker Hardening (--disable-linker-hardening):                 yes
+  Fragile Hardening (--enable-fragile-hardening, dev only):      no
+
+Modules
+  relay (--disable-module-relay):                                yes
+  dirauth (--disable-module-dirauth):                            yes
+  dircache:                                                      yes
+
+Documentation
+  AsciiDoc (--disable-asciidoc):                                 yes
+  Man Pages (--disable-manpage):                                 yes
+  HTML Manual (--disable-html-manual):                           yes
+
+Tests
+  Unit tests (--disable-unittests):                              yes
+  assert()s enabled (--enable-asserts-in-tests, dev only):       no
+  Code Coverage (--enable-coverage):                             no
+  libFuzzer support (--enable-libfuzzer):                        no
+  OSS-Fuzz support (--enable-oss-fuzz):                          no
+
+Tracing (--enable-tracing-instrumentation-&lt;type&gt;)
+  Tracepoints to log_debug() (log-debug):                        no
+  USDT Instrumentation (usdt):                                   no
+  LTTng Instrumentation (lttng):                                 no
+
+Install Directories
+  Binaries:                                                      /usr/local/bin
+  Configuration:                                                 /usr/local/etc/                                                                                             tor
+  Man Pages:                                                     /usr/local/shar                                                                                             e/man
+
+Configure Line: ./configure
+
+  WARNING:
+Encountered 2 warning(s). See messages above for more info.
+</code></pre></div><p>Compile Tor from source:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">make
+</code></pre></div><p>The compile takes many minutes.</p>
+<p>Once the compile has completed, install Tor into <code>/usr/local/</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo make install
+</code></pre></div><p>The Tor binary is in <code>/usr/local/bin/</code>. The GeoIP and GeoIP6 databases are in <code>/usr/local/share/tor</code>. The sample <code>torrc.sample</code> is in <code>/usr/local/etc/tor</code>.</p>
+<p>Note that, in contrast to installing Tor from a package in the repositories, there is no Tor service running, and there are no Tor systemd service files. You can run <code>tor</code> from the command line, or you can create the systemd service files yourself.</p>
+<p>If you want systemd service files, you can use as your model the multi-instance master <code>/usr/lib/systemd/system/tor.service</code> included with Ubuntu 20.04:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"># This service is actually a systemd target,
+# but we are using a service since targets cannot be reloaded.
+
+[Unit]
+Description=Anonymizing overlay network for TCP (multi-instance-master)
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/true
+ExecReload=/bin/true
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div><p>And the <code>/usr/lib/systemd/system/tor@.service</code> instantiable service unit included with Ubuntu 20.04:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">[Unit]
+Description=Anonymizing overlay network for TCP (instance %i)
+After=network.target nss-lookup.target
+PartOf=tor.service
+ReloadPropagatedFrom=tor.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+PIDFile=/run/tor-instances/%i/tor.pid
+PermissionsStartOnly=yes
+ExecStartPre=/usr/bin/install -Z -m 02755 -o _tor-%i -g _tor-%i -d /run/tor-instances/%i
+ExecStartPre=/bin/sed -e &#39;s/@@NAME@@/%i/g; w /run/tor-instances/%i.defaults&#39; /usr/share/tor/tor-service-defaults-torrc-instances
+ExecStartPre=/usr/bin/tor --defaults-torrc /run/tor-instances/%i.defaults -f /etc/tor/instances/%i/torrc --verify-config
+ExecStart=/usr/bin/tor --defaults-torrc /run/tor-instances/%i.defaults -f /etc/tor/instances/%i/torrc
+ExecReload=/bin/kill -HUP ${MAINPID}
+KillSignal=SIGINT
+TimeoutStartSec=300
+TimeoutStopSec=60
+Restart=on-failure
+LimitNOFILE=65536
+
+# Hardening
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectHome=yes
+ProtectSystem=full
+ReadOnlyDirectories=/
+# We would really like to restrict the next item to [..]/%i but we can&#39;t,
+# as systemd does not support that yet.  See also #781730.
+ReadWriteDirectories=-/var/lib/tor-instances
+ReadWriteDirectories=-/run
+CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div><p>And the <code>/usr/lib/systemd/system/tor@default.service</code> instance included with Ubuntu 20.04:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">[Unit]
+Description=Anonymizing overlay network for TCP
+After=network.target nss-lookup.target
+PartOf=tor.service
+ReloadPropagatedFrom=tor.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+PIDFile=/run/tor/tor.pid
+PermissionsStartOnly=yes
+ExecStartPre=/usr/bin/install -Z -m 02755 -o debian-tor -g debian-tor -d /run/tor
+ExecStartPre=/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0 --verify-config
+ExecStart=/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0
+ExecReload=/bin/kill -HUP ${MAINPID}
+KillSignal=SIGINT
+TimeoutStartSec=300
+TimeoutStopSec=60
+Restart=on-failure
+LimitNOFILE=65536
+
+# Hardening
+AppArmorProfile=-system_tor
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectHome=yes
+ProtectSystem=full
+ReadOnlyDirectories=/
+ReadWriteDirectories=-/proc
+ReadWriteDirectories=-/var/lib/tor
+ReadWriteDirectories=-/var/log/tor
+ReadWriteDirectories=-/run
+CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH
+
+</code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>You now have Tor Browser or standalone Tor installed on your Ubuntu Linux computer.</p>
+<p>You can read the Tor documentation, including configuration instructions, on the <a href="https://www.torproject.org">Tor Project website</a>.</p>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://v2how.github.io/tags/tor/">tor</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/ubuntu/">ubuntu</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy%2f&amp;text=How%20to%20Install%20Tor%20Browser%20or%20Standalone%20Tor%20on%20Ubuntu%2020.04&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy%2f&amp;title=How%20to%20Install%20Tor%20Browser%20or%20Standalone%20Tor%20on%20Ubuntu%2020.04" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy%2f&amp;title=How%20to%20Install%20Tor%20Browser%20or%20Standalone%20Tor%20on%20Ubuntu%2020.04" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy%2f&amp;title=How%20to%20Install%20Tor%20Browser%20or%20Standalone%20Tor%20on%20Ubuntu%2020.04" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy%2f&amp;description=How%20to%20Install%20Tor%20Browser%20or%20Standalone%20Tor%20on%20Ubuntu%2020.04" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/post/2021-02-20-man-tor/">Man Tor</a></li>
+                
+                    <li><a href="/post/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04/">How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04</a></li>
+                
+                    <li><a href="/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/">How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04</a></li>
+                
+                    <li><a href="/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/">How to Create an Xray VLESS XTLS Server on Ubuntu 20.04</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://v2how.github.io/post/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04/" data-toggle="tooltip" data-placement="top" title="How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://v2how.github.io/post/2021-02-20-man-tor/" data-toggle="tooltip" data-placement="top" title="Man Tor">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:amyw32@protonmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Amy
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2021
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://v2how.github.io">v2how</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.80.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://v2how.github.io/js/main.js"></script>
+<script src="https://v2how.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://v2how.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

@@ -7,13 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
     <webMaster>amyw32@protonmail.com (Amy)</webMaster>
-    <lastBuildDate>Fri, 19 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Man Tor</title>
+      <link>https://v2how.github.io/post/2021-02-20-man-tor/</link>
+      <pubDate>Sat, 20 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/post/2021-02-20-man-tor/</guid>
+      <description>NAME tor - The second-generation onion router
+SYNOPSIS tor [OPTION value]&amp;hellip;
+DESCRIPTION Tor is a connection-oriented anonymizing communication service. Users choose a source-routed path through a set of nodes, and negotiate a &amp;ldquo;virtual circuit&amp;rdquo; through the network, in which each node knows its predecessor and successor, but no others. Traffic flowing down the circuit is unwrapped by a symmetric key at each node, which reveals the downstream node.
+Basically, Tor provides a distributed network of servers or relays (&amp;ldquo;onion routers&amp;rdquo;).</description>
+    </item>
+    
     <item>
       <title>How to Install Tor Browser or Standalone Tor on Ubuntu 20.04</title>
-      <link>https://v2how.github.io/post/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04/</link>
+      <link>https://v2how.github.io/post/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy/</link>
       <pubDate>Fri, 19 Feb 2021 00:00:00 +0000</pubDate>
       <author>amyw32@protonmail.com (Amy)</author>
-      <guid>https://v2how.github.io/post/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04/</guid>
+      <guid>https://v2how.github.io/post/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy/</guid>
       <description>Introduction Tor Browser allows users in the non-free world to access the Internet. The standalone Tor program allows volunteers to support this access with relays, bridges, and onion services.
 In this post you&amp;rsquo;ll learn four methods for installing Tor on Ubuntu 20.04:
  installing Tor Browser installing standalone Tor from the Ubuntu repositories installing standalone Tor from the Tor Project repositories installing standalone Tor by compiling from source  You do not need to implement all four of these methods.</description>
