@@ -8,7 +8,7 @@ tags: ["tor", "ubuntu"]
 
 Tor Browser allows users in the non-free world to access the Internet. The standalone Tor program allows volunteers to support this access with relays, bridges, and onion services.
 
-In this post you'll learn four methods for installing on Ubuntu 20.04:
+In this post you'll learn four methods for installing Tor on Ubuntu 20.04:
 
 - installing Tor Browser
 - installing standalone Tor from the Ubuntu repositories
@@ -322,6 +322,45 @@ sudo make install
 The Tor binary is in `/usr/local/bin/`. The GeoIP and GeoIP6 databases are in `/usr/local/share/tor`. The sample `torrc.sample` is in `/usr/local/etc/tor`.
 
 Note that, in contrast to installing Tor from a package in the repositories, there is no Tor service running, and there are no Tor systemd service files. You will need to create these yourself.
+
+Here is an example of a systemd service file that the Ubuntu 20.04 repository package places in `/lib/systemd/system/tor@default.service`:
+
+```
+[Unit]
+Description=Anonymizing overlay network for TCP
+After=network.target nss-lookup.target
+PartOf=tor.service
+ReloadPropagatedFrom=tor.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+PIDFile=/run/tor/tor.pid
+PermissionsStartOnly=yes
+ExecStartPre=/usr/bin/install -Z -m 02755 -o debian-tor -g debian-tor -d /run/tor
+ExecStartPre=/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0 --verify-config
+ExecStart=/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0
+ExecReload=/bin/kill -HUP ${MAINPID}
+KillSignal=SIGINT
+TimeoutStartSec=300
+TimeoutStopSec=60
+Restart=on-failure
+LimitNOFILE=65536
+
+# Hardening
+AppArmorProfile=-system_tor
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectHome=yes
+ProtectSystem=full
+ReadOnlyDirectories=/
+ReadWriteDirectories=-/proc
+ReadWriteDirectories=-/var/lib/tor
+ReadWriteDirectories=-/var/log/tor
+ReadWriteDirectories=-/run
+CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH
+```
 
 ## Conclusion
 
