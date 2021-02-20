@@ -321,7 +321,108 @@ sudo make install
 
 The Tor binary is in `/usr/local/bin/`. The GeoIP and GeoIP6 databases are in `/usr/local/share/tor`. The sample `torrc.sample` is in `/usr/local/etc/tor`.
 
-Note that, in contrast to installing Tor from a package in the repositories, there is no Tor service running, and there are no Tor systemd service files. You will need to create these yourself.
+Note that, in contrast to installing Tor from a package in the repositories, there is no Tor service running, and there are no Tor systemd service files. You can run `tor` from the command line, or you can create the systemd service files yourself.
+
+If you want systemd service files, you can use as your model the multi-instance master `/usr/lib/systemd/system/tor.service` included with Ubuntu 20.04:
+
+```
+# This service is actually a systemd target,
+# but we are using a service since targets cannot be reloaded.
+
+[Unit]
+Description=Anonymizing overlay network for TCP (multi-instance-master)
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/true
+ExecReload=/bin/true
+
+[Install]
+WantedBy=multi-user.target
+```
+
+And the `/usr/lib/systemd/system/tor@.service` instantiable service unit included with Ubuntu 20.04:
+
+```
+[Unit]
+Description=Anonymizing overlay network for TCP (instance %i)
+After=network.target nss-lookup.target
+PartOf=tor.service
+ReloadPropagatedFrom=tor.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+PIDFile=/run/tor-instances/%i/tor.pid
+PermissionsStartOnly=yes
+ExecStartPre=/usr/bin/install -Z -m 02755 -o _tor-%i -g _tor-%i -d /run/tor-instances/%i
+ExecStartPre=/bin/sed -e 's/@@NAME@@/%i/g; w /run/tor-instances/%i.defaults' /usr/share/tor/tor-service-defaults-torrc-instances
+ExecStartPre=/usr/bin/tor --defaults-torrc /run/tor-instances/%i.defaults -f /etc/tor/instances/%i/torrc --verify-config
+ExecStart=/usr/bin/tor --defaults-torrc /run/tor-instances/%i.defaults -f /etc/tor/instances/%i/torrc
+ExecReload=/bin/kill -HUP ${MAINPID}
+KillSignal=SIGINT
+TimeoutStartSec=300
+TimeoutStopSec=60
+Restart=on-failure
+LimitNOFILE=65536
+
+# Hardening
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectHome=yes
+ProtectSystem=full
+ReadOnlyDirectories=/
+# We would really like to restrict the next item to [..]/%i but we can't,
+# as systemd does not support that yet.  See also #781730.
+ReadWriteDirectories=-/var/lib/tor-instances
+ReadWriteDirectories=-/run
+CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH
+
+[Install]
+WantedBy=multi-user.target
+```
+
+And the `/usr/lib/systemd/system/tor@default.service` instance included with Ubuntu 20.04:
+
+```
+[Unit]
+Description=Anonymizing overlay network for TCP
+After=network.target nss-lookup.target
+PartOf=tor.service
+ReloadPropagatedFrom=tor.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+PIDFile=/run/tor/tor.pid
+PermissionsStartOnly=yes
+ExecStartPre=/usr/bin/install -Z -m 02755 -o debian-tor -g debian-tor -d /run/tor
+ExecStartPre=/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0 --verify-config
+ExecStart=/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0
+ExecReload=/bin/kill -HUP ${MAINPID}
+KillSignal=SIGINT
+TimeoutStartSec=300
+TimeoutStopSec=60
+Restart=on-failure
+LimitNOFILE=65536
+
+# Hardening
+AppArmorProfile=-system_tor
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectHome=yes
+ProtectSystem=full
+ReadOnlyDirectories=/
+ReadWriteDirectories=-/proc
+ReadWriteDirectories=-/var/lib/tor
+ReadWriteDirectories=-/var/log/tor
+ReadWriteDirectories=-/run
+CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH
+
+```
 
 ## Conclusion
 
