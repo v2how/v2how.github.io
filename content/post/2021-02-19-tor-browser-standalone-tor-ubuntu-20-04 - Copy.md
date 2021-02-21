@@ -323,7 +323,9 @@ The Tor binary is in `/usr/local/bin/`. The GeoIP and GeoIP6 databases are in `/
 
 Note that, in contrast to installing Tor from a package in the repositories, there is no Tor service running, and there are no Tor systemd service files. You can run `tor` from the command line, or you can create the systemd service files yourself.
 
-If you want systemd service files, you can use as your model the multi-instance master `/usr/lib/systemd/system/tor.service` included with Ubuntu 20.04:
+For Tor command-line and configuration-file options, consult the [Tor manual pages](https://v2how.github.io/post/2021-02-20-man-tor/).
+
+If you want to build systemd service files, you can use as your model the multi-instance master `/usr/lib/systemd/system/tor.service` included with Ubuntu 20.04:
 
 ```
 # This service is actually a systemd target,

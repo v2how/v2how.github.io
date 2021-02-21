@@ -61,7 +61,7 @@ In this post you&rsquo;ll learn four methods for installing Tor on Ubuntu 20.04:
   "headline": "How to Install Tor Browser or Standalone Tor on Ubuntu 20.04",
   "description" : "Introduction Tor Browser allows users in the non-free world to access the Internet. The standalone Tor program allows volunteers to support this access with relays, bridges, and onion services.\nIn this post you\u0026rsquo;ll learn four methods for installing Tor on Ubuntu 20.04:\n installing Tor Browser installing standalone Tor from the Ubuntu repositories installing standalone Tor from the Tor Project repositories installing standalone Tor by compiling from source  You do not need to implement all four of these methods.",
   "inLanguage" : "en",
-  "wordCount":  1498 ,
+  "wordCount":  1511 ,
   "datePublished" : "2021-02-19T00:00:00",
   "dateModified" : "2021-02-19T00:00:00",
   "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
@@ -248,7 +248,7 @@ In …">
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;8&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1498&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;1511&nbsp;words
   
   
     
@@ -452,7 +452,8 @@ Encountered 2 warning(s). See messages above for more info.
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo make install
 </code></pre></div><p>The Tor binary is in <code>/usr/local/bin/</code>. The GeoIP and GeoIP6 databases are in <code>/usr/local/share/tor</code>. The sample <code>torrc.sample</code> is in <code>/usr/local/etc/tor</code>.</p>
 <p>Note that, in contrast to installing Tor from a package in the repositories, there is no Tor service running, and there are no Tor systemd service files. You can run <code>tor</code> from the command line, or you can create the systemd service files yourself.</p>
-<p>If you want systemd service files, you can use as your model the multi-instance master <code>/usr/lib/systemd/system/tor.service</code> included with Ubuntu 20.04:</p>
+<p>For Tor command-line and configuration-file options, consult the <a href="https://v2how.github.io/post/2021-02-20-man-tor/">Tor manual pages</a>.</p>
+<p>If you want to build systemd service files, you can use as your model the multi-instance master <code>/usr/lib/systemd/system/tor.service</code> included with Ubuntu 20.04:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"># This service is actually a systemd target,
 # but we are using a service since targets cannot be reloaded.
 
