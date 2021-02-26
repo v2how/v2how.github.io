@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>How to Create a Brook Server and Client on Ubuntu 20.04 - v2how</title>
+  <meta name="description" content="Introduction Brook is a cross-platform proxy server and client that provides strong encryption and resistance to detection.
+The design philosopy of Brook is to keep it simple. There are no complicated configuration files, and you can run Brook as a daemon without systemd.
+In this tutorial you&rsquo;ll see how to run a Brook server on Ubuntu 20.04 and how to test your server with a Brook client, also running on Ubuntu 20.">
+  <meta name="author" content="Amy"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "v2how",
+    
+    "url": "https:\/\/v2how.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/v2how.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/v2how.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/v2how.github.io\/post\/2021-02-26-brook-server-client-ubuntu-20-04\/",
+          "name": "How to create a brook server and client on ubuntu 20.04"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Amy"
+  },
+  "headline": "How to Create a Brook Server and Client on Ubuntu 20.04",
+  "description" : "Introduction Brook is a cross-platform proxy server and client that provides strong encryption and resistance to detection.\nThe design philosopy of Brook is to keep it simple. There are no complicated configuration files, and you can run Brook as a daemon without systemd.\nIn this tutorial you\u0026rsquo;ll see how to run a Brook server on Ubuntu 20.04 and how to test your server with a Brook client, also running on Ubuntu 20.",
+  "inLanguage" : "en",
+  "wordCount":  2503 ,
+  "datePublished" : "2021-02-26T00:00:00",
+  "dateModified" : "2021-02-26T00:00:00",
+  "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
+  "keywords" : [ "brook, server, client, ubuntu" ],
+  "mainEntityOfPage" : "https:\/\/v2how.github.io\/post\/2021-02-26-brook-server-client-ubuntu-20-04\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/v2how.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="How to Create a Brook Server and Client on Ubuntu 20.04" />
+<meta property="og:description" content="Introduction Brook is a cross-platform proxy server and client that provides strong encryption and resistance to detection.
+The design philosopy of Brook is to keep it simple. There are no complicated configuration files, and you can run Brook as a daemon without systemd.
+In this tutorial you&rsquo;ll see how to run a Brook server on Ubuntu 20.04 and how to test your server with a Brook client, also running on Ubuntu 20.">
+<meta property="og:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
+<meta property="og:url" content="https://v2how.github.io/post/2021-02-26-brook-server-client-ubuntu-20-04/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="v2how" />
+
+  <meta name="twitter:title" content="How to Create a Brook Server and Client on Ubuntu 20.04" />
+  <meta name="twitter:description" content="Introduction Brook is a cross-platform proxy server and client that provides strong encryption and resistance to detection.
+The design philosopy of Brook is to keep it simple. There are no complicated …">
+  <meta name="twitter:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://v2how.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="alternate" href="https://v2how.github.io/index.xml" type="application/rss+xml" title="v2how"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://v2how.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://v2how.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://v2how.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SW1P8SGNST"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SW1P8SGNST');
+</script>
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://v2how.github.io">v2how</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="v2how" href="https://v2how.github.io">
+            <img class="avatar-img" src="https://v2how.github.io/images/amy-avatar-icon.png" alt="v2how" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>How to Create a Brook Server and Client on Ubuntu 20.04</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on February 26, 2021
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;12&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2503&nbsp;words
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Amy
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <h3 id="introduction">Introduction</h3>
+<p>Brook is a cross-platform proxy server and client that provides strong encryption and resistance to detection.</p>
+<p>The design philosopy of Brook is to keep it simple. There are no complicated configuration files, and you can run Brook as a daemon without systemd.</p>
+<p>In this tutorial you&rsquo;ll see how to run a Brook server on Ubuntu 20.04 and how to test your server with a Brook client, also running on Ubuntu 20.04.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before you begin this tutorial, you will need:</p>
+<ul>
+<li>A virtual private server (VPS) running Ubuntu 20.04. You can rent servers from providers such as <a href="https://cloud.google.com">Google Cloud</a> or <a href="https://www.vultr.com">Vultr</a>.</li>
+<li>Your own domain name, which may be <a href="https://www.freenom.com">free</a> or <a href="https://www.namesilo.com">paid</a>. In the rest of this tutorial, we use <code>domain.com</code> as the sample domain name and <code>fq.domain.com</code> as the fully qualified domain name allocated to your server.</li>
+<li>A DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address. Usually you set up the DNS record at your domain name registrar. You can also set up DNS records elsewhere, such as at <a href="https://www.cloudflare.com">Cloudflare</a>. If you are using Cloudflare, note that some Xray configurations require DNS services only and will not work with proxying.</li>
+</ul>
+<h2 id="step-1--logging-in-as-root">Step 1 — Logging In as Root</h2>
+<p>SSH into your server. On Linux and macOS, you can use the terminal command <code>ssh</code> to reach your server. If you run Windows on your workstation, you can either use <a href="https://docs.microsoft.com/en-us/powershell">PowerShell</a> or a graphical user interface (GUI) such as <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty">PuTTY</a> or <a href="https://www.netsarang.com">XSHELL</a>.</p>
+<p>If you&rsquo;re not logged in as <code>root</code>, then become <code>root</code> as follows. If you don&rsquo;t already know the root password, then set the root password by issuing the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo passwd root
+</code></pre></div><p>The <code>sudo</code> command allows non-root users to issue root commands. The <code>passwd</code> command allows you to set the password for yourself or another user, which in this case is the user named <code>root</code>.</p>
+<p>You are prompted to enter your own password:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> amy:
+</code></pre></div><p>Enter your own (non-root) password.</p>
+<p>You are then prompted to enter a new password for the user <code>root</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">New password:
+</code></pre></div><p>Choose and enter the new password for <code>root</code>.</p>
+<p>You are prompted to confirm the new password by retyping it:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Retype new password:
+</code></pre></div><p>Enter the same new password for <code>root</code>.</p>
+<p>If all is well, you will receive a feedback message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">passwd: password updated successfully
+</code></pre></div><p>Now you know the root password, become <code>root</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">su -
+</code></pre></div><p>The <code>su</code> command (short for switch user) allows you to switch to another user id, so that you can run commands with that user&rsquo;s privileges. Since no specific user is named, you will by default switch to the user <code>root</code>.  The hyphen (<code>-</code>) means create a new login environment for the new user, which will be completely separate from your existing login environment.</p>
+<p>You are prompted to enter the password for <code>root</code> that you set a few moments ago:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Password:
+</code></pre></div><p>Enter the root password.</p>
+<p>You will notice that your command prompt changes from a dollar sign to a hash sign:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#</span>
+</code></pre></div><p>This is a reminder that your are logged in as <code>root</code>. Now that you are <code>root</code>, you do not need to prefix privileged commands with <code>sudo</code>.</p>
+<p>Update your package lists, and upgrade all your packages to the latest version:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt update <span class="o">&amp;&amp;</span> apt upgrade -y
+</code></pre></div><p>You will see package upgrade messages in your terminal.</p>
+<h2 id="step-2--enabling-the-firewall-optional">Step 2 — Enabling the Firewall (Optional)</h2>
+<p>We recommend that you protect your server and especially port <code>22</code> (the SSH port) by installing a firewall. In this tutorial, you&rsquo;ll install and configure the uncomplicated firewall (<code>ufw</code>).</p>
+<p>On many Ubuntu systems, <code>ufw</code> is already installed. Check that <code>ufw</code> is installed on your system:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt list ufw
+</code></pre></div><p>You should see a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw/focal,now 0.36-6 all <span class="o">[</span>installed<span class="o">]</span>
+</code></pre></div><p>If you do not see the message stating that <code>ufw</code> is already installed, then install the software package now:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install ufw
+</code></pre></div><p>Now you&rsquo;ll set up the firewall. If you can guarantee that you will always SSH into your server from a single IP address, then limit SSH access to just that single address. For example, if your IP address is <code>12.12.12.12</code>, then issue the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow from 12.12.12.12/32 to any port <span class="m">22</span> proto tcp
+</code></pre></div><p>When you execute that command, you will see a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Rule added
+</code></pre></div><p>If limiting access to a single IP address is not possible, but you can guarantee you will always connect from a known IP address range, then limit SSH access to just that range. For example, if you are in an office which always uses the IP address range <code>12.12.12.0/24</code>, then issue the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow from 12.12.12.0/24 to any port <span class="m">22</span> proto tcp
+</code></pre></div><p>If limiting access to an IP address range is not possible, then you will have to open the SSH port for access from the entire world:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow ssh
+</code></pre></div><p>In any case, we recommend that you further protect port <code>22</code> by using SSH key authentication in preference to password authentication. SSH key pair generation and upload to your server are out of scope for this tutorial. You can find tutorials on this subject on the web.</p>
+<p>Open ports <code>80</code> (the HTTP port) and <code>443</code> (the HTTPS port). These will be used for Xray and for the Nginx camouflage website:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow http
+ufw allow https
+</code></pre></div><p>Enable UFW:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw <span class="nb">enable</span>
+</code></pre></div><p>You will see a warning message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Command may disrupt existing ssh connections. Proceed with operation <span class="o">(</span>y<span class="p">|</span>n<span class="o">)</span>?
+</code></pre></div><p>Type <code>Y</code> and press <code>ENTER</code> to confirm that you wish to enable <code>ufw</code>. You will see a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Firewall is active and enabled on system startup
+</code></pre></div><p>Check the status of your firewall:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw status
+</code></pre></div><p>You will see a firewall status display that looks like the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Status: active
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW       12.12.12.0/24
+80/tcp                     ALLOW       Anywhere
+443/tcp                    ALLOW       Anywhere
+80/tcp <span class="o">(</span>v6<span class="o">)</span>                ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
+443/tcp <span class="o">(</span>v6<span class="o">)</span>               ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
+</code></pre></div><p>If your VPS provider implements the concept of security groups, you will also need to open your security group assignments for ports 22, 80, and 443 in their control panel.</p>
+<h2 id="step-3--generating-a-strong-password">Step 3 — Generating a Strong Password</h2>
+<p>You need to generate a strong password to protect your server. Copy and paste the following command into your terminal session with your server:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">&lt; /dev/urandom tr -dc A-Za-z0-9 <span class="p">|</span> head -c 16<span class="p">;</span> echo<span class="p">;</span>
+</code></pre></div><p>The special file <code>/dev/urandom</code> on Linux systems provides an interface to the kernel&rsquo;s pseudorandom number generator.</p>
+<p>The contents of <code>/dev/urandom</code> become input to <code>tr</code>. The <code>tr</code> command is a command-line utility for translating or deleting characters. <code>-d</code> means delete and <code>-c</code> means complement, so <code>-dc</code> means delete any characters that are <em>not</em> in the set <code>A</code> through <code>Z</code>, <code>a</code> through <code>z</code>, and <code>0</code> through <code>9</code>.</p>
+<p>The output, now alphanumeric only, is piped into <code>head</code>. The <code>head</code> command is a command-line utility for outputting the first part of a file given to it via standard input. The <code>-c</code> switch limits the number of characters. The operand <code>16</code> is the number of characters you want.</p>
+<p>Finally, the <code>echo</code> command echoes back input to the terminal, which in this case just gives you a new line after the display of your password.</p>
+<p>Here is the sample output. You will see this example used in the rest of this tutorial:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">RRO7JteDFPYa8e5v
+</code></pre></div><p>In your terminal emulator, copy your generated password. Open a text editor such as <code>gedit</code> on your PC . Paste the password into your text editor.</p>
+<p>You will need this password on both your server and your client when you run Brook on them.</p>
+<h2 id="step-4--downloading-brook-to-your-server">Step 4 — Downloading Brook to Your Server</h2>
+<p>Still on your PC, open a browser. Visit the page <a href="https://github.com/txthinking/brook/releases">https://github.com/txthinking/brook/releases</a>. Determine the location of the latest release of Brook for 64-bit Linux. We will use as an example <code>https://github.com/txthinking/brook/releases/download/v20210214/brook_linux_amd64</code>.</p>
+<p>In your terminal session with your server, download the binary for latest release of Brook. Using our file location example, your command would be:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">curl -L https://github.com/txthinking/brook/releases/download/v20210214/brook_linux_amd64 -o /usr/bin/brook
+</code></pre></div><p><code>curl</code> gets the file. <code>-L</code> allows for location switching. The <code>-o</code> switch directs the output of <code>curl</code> to the <code>/usr/bin</code> directory, which should be in your execution path.</p>
+<p>You will see feeback on the download size and speed. For example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   623    0   623    0     0   3331      0 --:--:-- --:--:-- --:--:--  3331
+100 10.8M  100 10.8M    0     0  20.3M      0 --:--:-- --:--:-- --:--:-- 20.3M
+</code></pre></div><p>Make the binary executable:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod +x /usr/bin/brook
+</code></pre></div><h2 id="step-5--running-brook-on-your-server">Step 5 — Running Brook on Your Server</h2>
+<p>In the examples in this tutorial, we are using Brook in WebSocket Secure (WSS) mode. WebSocket works over HTTP ports <code>443</code> and <code>80</code> and supports HTTP proxies and intermediaries, so it is fully compatible with the HTTP protocol. To achieve compatibility, the WebSocket protocol uses the HTTP <code>Upgrade</code> header to change from the HTTP protocol to the WebSocket protocol.</p>
+<p>Before you go any further, ensure your prerequisites are complete. Make sure your fully qualified domain name can be successfully resolved, and ports <code>80</code> and <code>443</code> on your server are open.</p>
+<p>Then issue the following command, replacing <code>fq.domain.com</code> by the fully qualified domain name of your server, and replacing <code>RRO7JteDFPYa8e5v</code> by your generated strong password:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brook wssserver --domain fq.domain.com -p RRO7JteDFPYa8e5v
+</code></pre></div><p>Wait for Brook to start. Brook will automatically request an SSL certificate for you. It listens on port <code>443</code>.</p>
+<p>There is no message on the terminal.</p>
+<p>Leave the terminal open, with Brook running on the command line.</p>
+<p><img src="/images/brook-wssserver.png" alt="Brook wssserver running in an Ubuntu Linux terminal emulator"></p>
+<h2 id="step-6--downloading-brook-on-your-client">Step 6 — Downloading Brook on Your Client</h2>
+<p>Now go back to working on your PC. The first step, downloading the client, is similar to the equivalent step on the server.</p>
+<p>Open a browser. Visit the page <a href="https://github.com/txthinking/brook/releases">https://github.com/txthinking/brook/releases</a>. Determine the latest release of Brook for 64-bit Linux.</p>
+<p>Download the executable. By default your browser will put it into your <code>~/Downloads</code> directory. It will have a name like <code>brook_linux_amd64</code>.</p>
+<p>Open a second terminal session on your client (i.e, leave Brook running on the server in the first terminal session).</p>
+<p>Copy the download into your <code>/usr/bin</code> directory, which should be in your execution path:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo cp ~/Downloads/brook_linux_amd64 /usr/bin/brook
+</code></pre></div><p>We prefix the <code>cp</code> (copy) command by <code>sudo</code> because we assume you are running as a non-root user on your client PC.</p>
+<p>Make the binary executable:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo chmod +x /usr/bin/brook
+</code></pre></div><h2 id="step-7--running-brook-on-your-client">Step 7 — Running Brook on Your Client</h2>
+<p>Still in a teminal on your client, issue the following command. Replace <code>fq.domain.com</code> by the fully qualified domain name of your server, and replace <code>RRO7JteDFPYa8e5v</code> by your choice of strong password:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brook wssclient -s wss://fq.domain.com:443 -p RRO7JteDFPYa8e5v --socks5 127.0.0.1:1080
+</code></pre></div><p>Also leave the second terminal window open, with the Brook client running in it.</p>
+<p><img src="/images/brook-wssclient.png" alt="Brook wssclient running in an Ubuntu Linux terminal emulator"></p>
+<p>The Brook WSS client is now listening on <code>127.0.0.1</code> port <code>1080</code>.</p>
+<h2 id="step-8--configuring-firefox-to-use-brook">Step 8 — Configuring Firefox to Use Brook</h2>
+<p>Open Firefox. From the hamburger menu, select <strong>Preferences</strong>. In the <strong>Network Settings</strong> section, click <strong>Settings</strong>. Set the network settings as follows:</p>
+<ul>
+<li>Select the radio button for <strong>Manual proxy configuration</strong></li>
+<li>Fill in <code>127.0.0.1</code> in SOCKS Host</li>
+<li>Fill in <code>1080</code> in the Port</li>
+<li>Select the radio button for <strong>SOCKS v5</strong></li>
+<li>Check the box <strong>Proxy DNS when using SOCKS v5</strong></li>
+<li>Click <strong>OK</strong></li>
+</ul>
+<p><img src="/images/firefox-manual-proxy.png" alt="Firefox Network Settings for Manual proxy configuration"></p>
+<p>Firefox now sends requests to the Brook client, which in turn transmits them to the Brook server.</p>
+<p>Do an end-to end test by visiting a site such as <a href="https://ipchicken.com">https://ipchicken.com</a>. If everything is working properly, you will see the IP address of your server, not your client PC.</p>
+<p><img src="/images/ipchicken1.png" alt="IP Chicken"></p>
+<h2 id="step-9--optional-running-brook-on-your-server-as-a-daemon">Step 9 — (Optional) Running Brook on Your Server as a Daemon</h2>
+<p>This tutorial follows the recommened setup order of running the Brook command directly first, to make sure there are no errors, before running it with <code>joker</code>. As a final step, you can optionally run Brook under <code>joker</code>.</p>
+<p>Go back to your first terminal session, the one where you are SSH-ing into your server.</p>
+<p>On the server, stop Brook running by pressing <strong>CTRL</strong>+<strong>C</strong> on your computer keyboard.</p>
+<p>You will see a message such as:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">^C2021/02/26 16:21:49 http: Server closed
+</code></pre></div><p>Now download and install <code>nami</code>. <code>nami</code> is a decentralized binary package manager.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl -L https://git.io/getnami <span class="p">|</span> bash <span class="o">&amp;&amp;</span> sleep <span class="m">6</span> <span class="o">&amp;&amp;</span> <span class="nb">exec</span> -l <span class="nv">$SHELL</span>
+</code></pre></div><p>As before, <code>curl</code> is the command-line utility for transferring data to or from a server. In this case, the script location is <code>https://git.io/getnami</code>. The <code>-L</code> switch allows for possible changes of location.</p>
+<p>The downloaded script is piped into <code>bash</code>, the Bourne Again SHell. We then allow a 6-second pause for the script to run. The <code>exec</code> command executes the script, with <code>-1</code> meaning positional parameter number 1. <code>$SHELL</code> means the user&rsquo;s shell, as specified by the password database.</p>
+<p>You will see feedback messages that look like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100  1478  100  1478    0     0   4752      0 --:--:-- --:--:-- --:--:--  4752
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   624  100   624    0     0   3851      0 --:--:-- --:--:-- --:--:--  3875
+100 11.5M  100 11.5M    0     0  12.9M      0 --:--:-- --:--:-- --:--:-- 44.0M
++-------------------+----------------------------+
+| Package           | github.com/txthinking/nami |
+|                   |                            |
+| Installed Version | v20201101                  |
+| Installed Files   | nami                       |
++-------------------+----------------------------+
+</code></pre></div><p><code>nami</code> is installed into your user&rsquo;s <code>.nami/bin</code> directory, and <code>.nami/bin</code> is added to your execution path.</p>
+<p>Use <code>nami</code> to download and run <code>joker</code>. <code>joker</code> is a simple, small, clean, zero-configuration tool for turning processes into daemons. Joker does not depend on systemd.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">nami install github.com/txthinking/joker
+</code></pre></div><p>You will see feedback messages that look like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">+-------------------+-----------------------------+
+| Package           | github.com/txthinking/joker |
+|                   |                             |
+| Installed Version | v20200902                   |
+| Installed Files   | joker                       |
++-------------------+-----------------------------+
+</code></pre></div><p>Now on you server you can run Brook under <code>joker</code>. Issue the following command, replacing <code>fq.domain.com</code> by the fully qualified domain name of your server, and replacing <code>RRO7JteDFPYa8e5v</code> by your choice of strong password:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brook wssserver --domain fq.domain.com -p RRO7JteDFPYa8e5v
+</code></pre></div><p>You are returned to the root prompt (<code>#</code>).</p>
+<p>At this stage you can exit your SSH session with the server.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">exit</span>
+</code></pre></div><p>If you switched user, you will need to issue the <code>exit</code> command again.</p>
+<p>Brook will still be runnning on your client. Do <strong>CTRL</strong>+<strong>C</strong> on your computer keyboard to stop the old Brook run on your client.  Then start it again, replacing <code>fq.domain.com</code> in the command below by the fully qualified domain name of your server, and replacing <code>RRO7JteDFPYa8e5v</code> by your choice of strong password:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brook wssclient -s wss://fq.domain.com:443 -p RRO7JteDFPYa8e5v --socks5 127.0.0.1:1080
+</code></pre></div><p>Firefox should still be configured to use Brook as its proxy server. Retest your entire setup by visiting a site such as <a href="https://ipchicken.com">https://ipchicken.com</a>.</p>
+<p><img src="/images/ipchicken1.png" alt="IP Chicken"></p>
+<p>If everything is still working properly, you will see the IP address of your server.</p>
+<p>When you have finished:</p>
+<ol>
+<li>Do <strong>CTRL</strong>+<strong>C</strong> in your client terminal to stop the Brook WSS client</li>
+<li>Set Firefox Network Settings back to using system proxy settings (i.e., none)</li>
+<li>Note that Brook continues to run under <code>joker</code> on your server for next time</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>You now have a working Brook server that you&rsquo;ve tested with the Brook client.</p>
+<p>You can read the documentation for Brook at <a href="https://txthinking.github.io/brook">https://txthinking.github.io/brook</a>.</p>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://v2how.github.io/tags/brook/">brook</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/server/">server</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/client/">client</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/ubuntu/">ubuntu</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-26-brook-server-client-ubuntu-20-04%2f&amp;text=How%20to%20Create%20a%20Brook%20Server%20and%20Client%20on%20Ubuntu%2020.04&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-26-brook-server-client-ubuntu-20-04%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-26-brook-server-client-ubuntu-20-04%2f&amp;title=How%20to%20Create%20a%20Brook%20Server%20and%20Client%20on%20Ubuntu%2020.04" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-26-brook-server-client-ubuntu-20-04%2f&amp;title=How%20to%20Create%20a%20Brook%20Server%20and%20Client%20on%20Ubuntu%2020.04" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-26-brook-server-client-ubuntu-20-04%2f&amp;title=How%20to%20Create%20a%20Brook%20Server%20and%20Client%20on%20Ubuntu%2020.04" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-02-26-brook-server-client-ubuntu-20-04%2f&amp;description=How%20to%20Create%20a%20Brook%20Server%20and%20Client%20on%20Ubuntu%2020.04" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/post/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy/">How to Install Tor Browser or Standalone Tor on Ubuntu 20.04</a></li>
+                
+                    <li><a href="/post/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04/">How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04</a></li>
+                
+                    <li><a href="/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/">How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04</a></li>
+                
+                    <li><a href="/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/">How to Create an Xray VLESS XTLS Server on Ubuntu 20.04</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://v2how.github.io/post/2021-02-20-man-tor/" data-toggle="tooltip" data-placement="top" title="Man Tor">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:amyw32@protonmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Amy
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2021
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://v2how.github.io">v2how</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.80.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://v2how.github.io/js/main.js"></script>
+<script src="https://v2how.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://v2how.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

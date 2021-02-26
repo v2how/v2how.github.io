@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>client on v2how</title>
+    <link>https://v2how.github.io/tags/client/</link>
+    <description>Recent content in client on v2how</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
+    <webMaster>amyw32@protonmail.com (Amy)</webMaster>
+    <lastBuildDate>Fri, 26 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/client/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Create a Brook Server and Client on Ubuntu 20.04</title>
+      <link>https://v2how.github.io/post/2021-02-26-brook-server-client-ubuntu-20-04/</link>
+      <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/post/2021-02-26-brook-server-client-ubuntu-20-04/</guid>
+      <description>Introduction Brook is a cross-platform proxy server and client that provides strong encryption and resistance to detection.
+The design philosopy of Brook is to keep it simple. There are no complicated configuration files, and you can run Brook as a daemon without systemd.
+In this tutorial you&amp;rsquo;ll see how to run a Brook server on Ubuntu 20.04 and how to test your server with a Brook client, also running on Ubuntu 20.</description>
+    </item>
+    
+  </channel>
+</rss>
