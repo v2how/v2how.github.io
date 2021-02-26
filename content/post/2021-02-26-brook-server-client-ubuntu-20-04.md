@@ -384,7 +384,7 @@ You will see feedback messages that look like this:
 Now on you server you can run Brook under `joker`. Issue the following command, replacing `fq.domain.com` by the fully qualified domain name of your server, and replacing `RRO7JteDFPYa8e5v` by your choice of strong password:
 
 ```bash
-brook wssserver --domain fq.domain.com -p RRO7JteDFPYa8e5v
+joker brook wssserver --domain fq.domain.com -p RRO7JteDFPYa8e5v
 ```
 
 You are returned to the root prompt (`#`).
