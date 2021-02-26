@@ -321,7 +321,7 @@ Do an end-to end test by visiting a site such as https://ipchicken.com. If every
 
 ## Step 9 — (Optional) Running Brook on Your Server as a Daemon
 
-This tutorial follows the recommened setup order of running the Brook command directly first, to make sure there are no errors, before running it with `joker`. As a final step, you can optionally run Brook under `joker`.
+This tutorial follows the recommended setup order of running the Brook command directly first, to make sure there are no errors, before running it with `joker`. As a final step, you can optionally run Brook under `joker`.
 
 Go back to your first terminal session, the one where you are SSH-ing into your server. 
 
@@ -341,7 +341,7 @@ curl -L https://git.io/getnami | bash && sleep 6 && exec -l $SHELL
 
 As before, `curl` is the command-line utility for transferring data to or from a server. In this case, the script location is `https://git.io/getnami`. The `-L` switch allows for possible changes of location. 
 
-The downloaded script is piped into `bash`, the Bourne Again SHell. We then allow a 6-second pause for the script to run. The `exec` command executes the script, with `-1` meaning positional parameter number 1. `$SHELL` means the user's shell, as specified by the password database.
+The downloaded script is piped into `bash`, the Bourne Again SHell. We then allow a 6-second pause for the script to run. The `exec` command executes the script, with `-l` used to pass dash as the zeroth argument of the command. `$SHELL` means the user's shell, as specified by the password database.
 
 You will see feedback messages that look like this:
 

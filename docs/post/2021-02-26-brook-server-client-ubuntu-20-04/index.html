@@ -61,7 +61,7 @@ In this tutorial you&rsquo;ll see how to run a Brook server on Ubuntu 20.04 and 
   "headline": "How to Create a Brook Server and Client on Ubuntu 20.04",
   "description" : "Introduction Brook is a cross-platform proxy server and client that provides strong encryption and resistance to detection.\nThe design philosopy of Brook is to keep it simple. There are no complicated configuration files, and you can run Brook as a daemon without systemd.\nIn this tutorial you\u0026rsquo;ll see how to run a Brook server on Ubuntu 20.04 and how to test your server with a Brook client, also running on Ubuntu 20.",
   "inLanguage" : "en",
-  "wordCount":  2503 ,
+  "wordCount":  2509 ,
   "datePublished" : "2021-02-26T00:00:00",
   "dateModified" : "2021-02-26T00:00:00",
   "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
@@ -248,7 +248,7 @@ The design philosopy of Brook is to keep it simple. There are no complicated …
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;12&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2503&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2509&nbsp;words
   
   
     
@@ -414,7 +414,7 @@ To                         Action      From
 <p>Do an end-to end test by visiting a site such as <a href="https://ipchicken.com">https://ipchicken.com</a>. If everything is working properly, you will see the IP address of your server, not your client PC.</p>
 <p><img src="/images/ipchicken1.png" alt="IP Chicken"></p>
 <h2 id="step-9--optional-running-brook-on-your-server-as-a-daemon">Step 9 — (Optional) Running Brook on Your Server as a Daemon</h2>
-<p>This tutorial follows the recommened setup order of running the Brook command directly first, to make sure there are no errors, before running it with <code>joker</code>. As a final step, you can optionally run Brook under <code>joker</code>.</p>
+<p>This tutorial follows the recommended setup order of running the Brook command directly first, to make sure there are no errors, before running it with <code>joker</code>. As a final step, you can optionally run Brook under <code>joker</code>.</p>
 <p>Go back to your first terminal session, the one where you are SSH-ing into your server.</p>
 <p>On the server, stop Brook running by pressing <strong>CTRL</strong>+<strong>C</strong> on your computer keyboard.</p>
 <p>You will see a message such as:</p>
@@ -422,7 +422,7 @@ To                         Action      From
 </code></pre></div><p>Now download and install <code>nami</code>. <code>nami</code> is a decentralized binary package manager.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl -L https://git.io/getnami <span class="p">|</span> bash <span class="o">&amp;&amp;</span> sleep <span class="m">6</span> <span class="o">&amp;&amp;</span> <span class="nb">exec</span> -l <span class="nv">$SHELL</span>
 </code></pre></div><p>As before, <code>curl</code> is the command-line utility for transferring data to or from a server. In this case, the script location is <code>https://git.io/getnami</code>. The <code>-L</code> switch allows for possible changes of location.</p>
-<p>The downloaded script is piped into <code>bash</code>, the Bourne Again SHell. We then allow a 6-second pause for the script to run. The <code>exec</code> command executes the script, with <code>-1</code> meaning positional parameter number 1. <code>$SHELL</code> means the user&rsquo;s shell, as specified by the password database.</p>
+<p>The downloaded script is piped into <code>bash</code>, the Bourne Again SHell. We then allow a 6-second pause for the script to run. The <code>exec</code> command executes the script, with <code>-l</code> used to pass dash as the zeroth argument of the command. <code>$SHELL</code> means the user&rsquo;s shell, as specified by the password database.</p>
 <p>You will see feedback messages that look like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
