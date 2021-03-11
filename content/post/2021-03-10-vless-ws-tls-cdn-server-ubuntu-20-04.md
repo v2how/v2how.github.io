@@ -1,6 +1,6 @@
 ---
 title: How to Create a VLESS WebSocket TLS CDN Server on Ubuntu 20.04
-date: 2021-03-11
+date: 2021-03-10
 tags: ["vless", "websocket", "tls", "cdn", "server", "ubuntu"]
 ---
 

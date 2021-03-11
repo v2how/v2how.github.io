@@ -62,7 +62,7 @@ Prerequisites Before you begin this tutorial, you will need:">
   "headline": "How to Create a VLESS WebSocket TLS CDN Server on Ubuntu 20.04",
   "description" : "Introduction In this tutorial you\u0026rsquo;ll learn how to create your own V2Ray server on an Ubuntu 20.04 platform using the Mack-A script.\nThe server you build will implement the VLESS \u002b WebSocket (WS) \u002b TLS \u002b Content Delivery Network (CDN) architecture. You\u0026rsquo;ll test your server with the Qv2ray graphical user interface (GUI) client.\nAt the end of this tutorial, you\u0026rsquo;ll have a working and tested V2Ray server.\nPrerequisites Before you begin this tutorial, you will need:",
   "inLanguage" : "en",
-  "wordCount":  2463 ,
+  "wordCount":  2594 ,
   "datePublished" : "2021-03-10T00:00:00",
   "dateModified" : "2021-03-10T00:00:00",
   "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
@@ -247,10 +247,10 @@ The server you build will implement the VLESS &#43; WebSocket (WS) …">
   <i class="fas fa-calendar"></i>&nbsp;Posted on March 10, 2021
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;12&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;13&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2463&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2594&nbsp;words
   
   
     
@@ -534,7 +534,50 @@ Created symlink /etc/systemd/system/multi-user.target.wants/trojan-go.service �
  ---&gt; 服务启动成功 Service started successfully 
 
 进度 Progress 17/17 : 账号 Account number
-</code></pre></div><p>The account configuration details are now displayed.</p>
+</code></pre></div><p>The account configuration details are now displayed for various architectures:</p>
+<ul>
+<li><code>VLESS TCP TLS/XTLS-direct/XTLS-splice</code>
+<ul>
+<li><code>通用格式(VLESS+TCP+TLS)</code></li>
+<li><code>格式化明文(VLESS+TCP+TLS/xtls-rprx-splice)</code></li>
+<li><code>二维码 VLESS(VLESS+TCP+TLS)</code></li>
+</ul>
+</li>
+<li><code>VLESS WS TLS CDN</code>
+<ul>
+<li><code>通用格式(VLESS+WS+TLS)</code></li>
+<li><code>格式化明文(VLESS+WS+TLS)</code></li>
+<li><code>二维码 VLESS(VLESS+TCP+TLS/XTLS)</code></li>
+</ul>
+</li>
+<li><code>VMess TCP TLS</code>
+<ul>
+<li><code>通用json(VMess+TCP+TLS)</code></li>
+<li><code>通用vmess(VMess+TCP+TLS)链接</code></li>
+<li><code>二维码 vmess(VMess+TCP+TLS)</code></li>
+</ul>
+</li>
+<li><code>VMess WS TLS CDN</code>
+<ul>
+<li><code>通用json(VMess+WS+TLS)</code></li>
+<li><code>通用vmess(VMess+WS+TLS)链接</code></li>
+<li><code>二维码 vmess(VMess+WS+TLS)</code></li>
+</ul>
+</li>
+<li><code>Trojan TLS</code>
+<ul>
+<li><code>Trojan(TLS)</code></li>
+<li><code>二维码 Trojan(TLS)</code></li>
+</ul>
+</li>
+<li><code>Trojan WS TLS</code>
+<ul>
+<li><code>Trojan-Go(WS+TLS) Shadowrocket</code></li>
+<li><code>二维码 Trojan-Go(WS+TLS) Shadowrocket</code></li>
+<li><code>Trojan-Go(WS+TLS) QV2ray</code></li>
+</ul>
+</li>
+</ul>
 <h2 id="step-6--copying-configuration-details">Step 6 — Copying Configuration Details</h2>
 <p>The account configuration details you want are in a section headed <code>VLESS WS TLS CDN</code>.</p>
 <p>Look for the configuration preceded by:</p>
@@ -548,26 +591,44 @@ Created symlink /etc/systemd/system/multi-user.target.wants/trojan-go.service �
 <p><img src="/images/cloudflare-proxied.png" alt="Cloudflare proxied"></p>
 <p><strong>Save</strong> this change.</p>
 <h2 id="step-8--testing-with-client">Step 8 — Testing with Client</h2>
-<p>Before you go any further, test your camouflage. In an ordinary browser, visit your fully qualified domain name on HTTPS (for example, <code>https://v2ray.your_domain.com</code>). You should see the camouflage site.</p>
+<p>Before you go any further, test your camouflage site. In an ordinary browser, visit your fully qualified domain name on HTTPS (for example, <code>https://v2ray.your_domain.com</code>). You should see the camouflage site.</p>
 <p><img src="/images/amaze-admin.png" alt="Camouflage website"></p>
-<p>Now you know your camouflage is working, you can carry on.</p>
+<p>Now you know your camouflage site is working, you can carry on.</p>
 <p>Download and install the most recent version of the Qv2ray client for Linux, Windows, or macOS from <a href="https://github.com/Qv2ray/Qv2ray/releases">https://github.com/Qv2ray/Qv2ray/releases</a>. For the rest of this section, we will give instructions for Windows.</p>
-<p>Download and unzip the corresponding V2Ray core from <a href="https://github.com/v2fly/v2ray-core/releases">https://github.com/v2fly/v2ray-core/releases</a> (note that the GitHub account is now <strong>v2fly</strong>).</p>
+<p><img src="/images/qv2ray-github.png" alt="Qv2ray release assets on GitHub"></p>
+<p>Download the corresponding V2Ray core from <a href="https://github.com/v2fly/v2ray-core/releases">https://github.com/v2fly/v2ray-core/releases</a> (note that the GitHub account is now <strong>v2fly</strong>).</p>
+<p><img src="/images/v2ray-core-github.png" alt="V2Ray core release assets on GitHub"></p>
+<p>Unzip the downloaded <code>zip</code> file.</p>
 <p>Create a folder to hold the core. On Windows it should be named <code>C:\Users\your_user\AppData\Local\qv2ray\vcore</code>.</p>
 <p>Copy the files from the unzipped folder into place in the <code>vcore</code> folder.</p>
+<p><img src="/images/qv2ray-vcore-folder.png" alt="Qv2ray vcore folder"></p>
 <p>Run the Qv2ray installer by double-clicking on the executable, e.g. <code>qv2ray-2.7.0-pre2-win64.exe</code>. If Microsoft Defender SmartScreen appears, click <strong>More info</strong> then <strong>Run anyway</strong>. Run the installer, following the prompts.</p>
-<p>When the installation is complete, you will see the Qv2ray icon on your desktop. Launch Qv2ray.</p>
+<p>When the installation is complete, you will see the Qv2ray shortcut icon on your desktop.</p>
+<p><img src="/images/qv2ray-icon.png" alt="Qv2ray icon"></p>
+<p>Double-click the icon to launch Qv2ray.</p>
 <p><img src="/images/qv2ray-new.png" alt="Qv2ray new install"></p>
-<p>Press the <strong>Preferences</strong> button, and on the <strong>Kernel Settings</strong> tab, specify your core executable path and assets directory.</p>
+<p>Press the <strong>Preferences</strong> button. On the <strong>Kernel Settings</strong> tab, specify your core executable path and assets directory. This is the folder you created named <code>C:\Users\your_user\AppData\Local\qv2ray\vcore</code> and the executable <code>v2ray.exe</code>.</p>
 <p><img src="/images/qv2ray-kernel-v2ray.png" alt="Qv2ray Kernel V2Ray"></p>
+<p>Click <strong>OK</strong>.</p>
 <p>Now that the kernel settings are configured, you can add your server configuration to the Qv2ray client.</p>
 <p>Copy the account configuration details (generated by the script and saved in your text editor) to your Windows clipboard.</p>
-<p>Press the <strong>Import</strong> button in Qv2ray to add the configuration.</p>
-<p>Now select your server under the <strong>Default Group</strong>.</p>
-<p>There is one setting you must add manually, which is the <strong>Server Address (SNI)</strong> on the <strong>TLS Settings</strong> tab.</p>
+<p>Press the <strong>Import</strong> button in Qv2ray to import the new configuration.</p>
+<p><img src="/images/qv2ray-import.png" alt="Qv2ray Import button"></p>
+<p>In the <strong>Share Link</strong> box, paste in the account configuration details from your Windows clipboard.</p>
+<p><img src="/images/qv2ray-import-link.png" alt="Qv2ray Import link"></p>
+<p>Click <strong>Import</strong>. The configuration details are imported from the link.</p>
+<p>Double-click the <strong>Default Group</strong> to expand it, then select the server you have just added.</p>
+<p><img src="/images/qv2ray-connect-edit.png" alt="Qv2ray Connect and Edit buttons"></p>
+<p>Press the Edit button for this server.</p>
+<p>There is one setting you must add manually, which is the <strong>Server Address (SNI)</strong> on the <strong>TLS Settings</strong> tab. Type the fully qualified domain name of your server.</p>
 <p><img src="/images/qv2ray-tls-settings.png" alt="Qv2ray Kernel V2Ray"></p>
-<p>Click the Connect icon for your server. Notifications appear in Windows to say you are connected.</p>
+<p>Click <strong>OK</strong>.</p>
+<p>Click the Connect icon for this server. Notifications appear in Windows to say you are connected.</p>
+<p><img src="/images/qv2ray-connected.png" alt="Qv2ray connected"></p>
+<p>The system-wide proxy settings are automatically configured for you.</p>
+<p><img src="/images/qv2ray-system-proxy.png" alt="Qv2ray system proxy"></p>
 <p>On Windows, by default your Qv2ray proxy server will listen on <code>127.0.0.1</code> port <code>8889</code>. You can optionally check this in <strong>Settings</strong> &gt; <strong>Network &amp; Internet</strong> &gt; <strong>Proxy</strong> &gt; <strong>Manual proxy setup</strong>.</p>
+<p><img src="/images/windows-system-proxy.png" alt="Windows system proxy"></p>
 <p>In your browser, visit <a href="https://www.iplocation.net">https://www.iplocation.net</a> to confirm that your web browsing is now coming from your server location.</p>
 <p>When you have finished browsing, go back to your server in Qv2ray. (If you have closed the Qv2ray panel, you can open it again by clicking the Qv2ray icon in the system tray, which is at the bottom right of the Windows desktop.)</p>
 <p>Select your server and click the Disconnect icon.</p>
@@ -661,6 +722,8 @@ Created symlink /etc/systemd/system/multi-user.target.wants/trojan-go.service �
                   <ul>
                 
                 
+                    <li><a href="/post/2021-03-11-shadowsocks-rust-docker-ubuntu-20-04/">How to Build a Shadowsocks-Rust Server with Docker on Ubuntu 20.04</a></li>
+                
                     <li><a href="/post/2021-02-26-brook-server-client-ubuntu-20-04/">How to Create a Brook Server and Client on Ubuntu 20.04</a></li>
                 
                     <li><a href="/post/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy/">How to Install Tor Browser or Standalone Tor on Ubuntu 20.04</a></li>
@@ -668,8 +731,6 @@ Created symlink /etc/systemd/system/multi-user.target.wants/trojan-go.service �
                     <li><a href="/post/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04/">How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04</a></li>
                 
                     <li><a href="/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/">How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04</a></li>
-                
-                    <li><a href="/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/">How to Create an Xray VLESS XTLS Server on Ubuntu 20.04</a></li>
                 
               </ul>
 
@@ -684,6 +745,10 @@ Created symlink /etc/systemd/system/multi-user.target.wants/trojan-go.service �
               <a href="https://v2how.github.io/post/2021-02-26-brook-server-client-ubuntu-20-04/" data-toggle="tooltip" data-placement="top" title="How to Create a Brook Server and Client on Ubuntu 20.04">&larr; Previous Post</a>
             </li>
           
+          
+            <li class="next">
+              <a href="https://v2how.github.io/post/2021-03-11-shadowsocks-rust-docker-ubuntu-20-04/" data-toggle="tooltip" data-placement="top" title="How to Build a Shadowsocks-Rust Server with Docker on Ubuntu 20.04">Next Post &rarr;</a>
+            </li>
           
         </ul>
       
