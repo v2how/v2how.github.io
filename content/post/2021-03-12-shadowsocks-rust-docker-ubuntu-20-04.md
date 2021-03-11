@@ -1,7 +1,7 @@
 ---
 title: How to Build a Shadowsocks-Rust Server with Docker on Ubuntu 20.04
-date: 2021-03-11
-tags: ["shadowsocks", "rust", "server", "socker", "ubuntu"]
+date: 2021-03-12
+tags: ["shadowsocks", "rust", "server", "docker", "ubuntu"]
 ---
 
 ### Introduction
