@@ -7,7 +7,61 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
     <webMaster>amyw32@protonmail.com (Amy)</webMaster>
-    <lastBuildDate>Fri, 26 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cdn</title>
+      <link>https://v2how.github.io/tags/cdn/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/cdn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>server</title>
+      <link>https://v2how.github.io/tags/server/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tls</title>
+      <link>https://v2how.github.io/tags/tls/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/tls/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://v2how.github.io/tags/ubuntu/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vless</title>
+      <link>https://v2how.github.io/tags/vless/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/vless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>websocket</title>
+      <link>https://v2how.github.io/tags/websocket/</link>
+      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/tags/websocket/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>brook</title>
       <link>https://v2how.github.io/tags/brook/</link>
@@ -23,24 +77,6 @@
       <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>
       <author>amyw32@protonmail.com (Amy)</author>
       <guid>https://v2how.github.io/tags/client/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>server</title>
-      <link>https://v2how.github.io/tags/server/</link>
-      <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>
-      <author>amyw32@protonmail.com (Amy)</author>
-      <guid>https://v2how.github.io/tags/server/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ubuntu</title>
-      <link>https://v2how.github.io/tags/ubuntu/</link>
-      <pubDate>Fri, 26 Feb 2021 00:00:00 +0000</pubDate>
-      <author>amyw32@protonmail.com (Amy)</author>
-      <guid>https://v2how.github.io/tags/ubuntu/</guid>
       <description></description>
     </item>
     
@@ -77,15 +113,6 @@
       <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
       <author>amyw32@protonmail.com (Amy)</author>
       <guid>https://v2how.github.io/tags/v2ray/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>vless</title>
-      <link>https://v2how.github.io/tags/vless/</link>
-      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
-      <author>amyw32@protonmail.com (Amy)</author>
-      <guid>https://v2how.github.io/tags/vless/</guid>
       <description></description>
     </item>
     
