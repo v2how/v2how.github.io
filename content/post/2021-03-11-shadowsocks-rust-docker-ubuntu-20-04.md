@@ -381,11 +381,11 @@ Enter client parameters that match the configuration you specified on your serve
 - Enter your choice of **Password**, which is `25u4kC4XbIWZJ75Q` in our example
 - Select your choice of **Encryption** cipher, which is `chacha20-ietf-poly1305` in our example
 
-Click **Apply**. Clich **OK**.
+Click **Apply**.
 
 ![Shadowsocks Edit Servers](/images/shadowsocks-edit-servers.png)
 
-A notification appears to say that Shadowsocks is connected.
+Click **OK**. A notification appears to say that Shadowsocks is connected.
 
 ![Shadowsocks is connected](/images/shadowsocks-is-here.png)
 
