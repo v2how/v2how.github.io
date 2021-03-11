@@ -9,6 +9,18 @@
     <webMaster>amyw32@protonmail.com (Amy)</webMaster>
     <lastBuildDate>Thu, 11 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>How to Build a Shadowsocks-Rust Server with Docker on Ubuntu 20.04</title>
+      <link>https://v2how.github.io/post/2021-03-11-shadowsocks-rust-docker-ubuntu-20-04/</link>
+      <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/post/2021-03-11-shadowsocks-rust-docker-ubuntu-20-04/</guid>
+      <description>Introduction In this tutorial you&amp;rsquo;ll learn how to create your own Shadowsocks server on an Ubuntu 20.04 platform using Docker.
+The server you&amp;rsquo;ll build will implement the authenticated encryption with associated data (AEAD) cipher chacha20-ietf-poly1305. You&amp;rsquo;ll test your server with the Shadowsocks for Windows graphical user interface (GUI) client.
+At the end of this tutorial, you&amp;rsquo;ll have a working and tested Shadowsocks server.
+Prerequisites Before you begin this tutorial, you will need a virtual private server (VPS) running Ubuntu 20.</description>
+    </item>
+    
+    <item>
       <title>How to Create a VLESS WebSocket TLS CDN Server on Ubuntu 20.04</title>
       <link>https://v2how.github.io/post/2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04/</link>
       <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
