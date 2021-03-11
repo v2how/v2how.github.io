@@ -7,13 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
     <webMaster>amyw32@protonmail.com (Amy)</webMaster>
-    <lastBuildDate>Wed, 10 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/vless/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/vless/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Create a VLESS WebSocket TLS CDN Server on Ubuntu 20.04</title>
-      <link>https://v2how.github.io/post/2021-03-10-vless-ws-tls-cdn-server-ubuntu-20-04/</link>
-      <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+      <link>https://v2how.github.io/post/2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04/</link>
+      <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
       <author>amyw32@protonmail.com (Amy)</author>
-      <guid>https://v2how.github.io/post/2021-03-10-vless-ws-tls-cdn-server-ubuntu-20-04/</guid>
+      <guid>https://v2how.github.io/post/2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04/</guid>
       <description>Introduction In this tutorial you&amp;rsquo;ll learn how to create your own V2Ray server on an Ubuntu 20.04 platform using the Mack-A script.
 The server you build will implement the VLESS + WebSocket (WS) + TLS + Content Delivery Network (CDN) architecture. You&amp;rsquo;ll test your server with the Qv2ray graphical user interface (GUI) client.
 At the end of this tutorial, you&amp;rsquo;ll have a working and tested V2Ray server.

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>How to Create a VLESS WebSocket TLS CDN Server on Ubuntu 20.04 - v2how</title>
+  <meta name="description" content="Introduction In this tutorial you&rsquo;ll learn how to create your own V2Ray server on an Ubuntu 20.04 platform using the Mack-A script.
+The server you build will implement the VLESS &#43; WebSocket (WS) &#43; TLS &#43; Content Delivery Network (CDN) architecture. You&rsquo;ll test your server with the Qv2ray graphical user interface (GUI) client.
+At the end of this tutorial, you&rsquo;ll have a working and tested V2Ray server.
+Prerequisites Before you begin this tutorial, you will need:">
+  <meta name="author" content="Amy"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "v2how",
+    
+    "url": "https:\/\/v2how.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/v2how.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/v2how.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/v2how.github.io\/post\/2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04\/",
+          "name": "How to create a v l e s s web socket t l s c d n server on ubuntu 20.04"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Amy"
+  },
+  "headline": "How to Create a VLESS WebSocket TLS CDN Server on Ubuntu 20.04",
+  "description" : "Introduction In this tutorial you\u0026rsquo;ll learn how to create your own V2Ray server on an Ubuntu 20.04 platform using the Mack-A script.\nThe server you build will implement the VLESS \u002b WebSocket (WS) \u002b TLS \u002b Content Delivery Network (CDN) architecture. You\u0026rsquo;ll test your server with the Qv2ray graphical user interface (GUI) client.\nAt the end of this tutorial, you\u0026rsquo;ll have a working and tested V2Ray server.\nPrerequisites Before you begin this tutorial, you will need:",
+  "inLanguage" : "en",
+  "wordCount":  2594 ,
+  "datePublished" : "2021-03-11T00:00:00",
+  "dateModified" : "2021-03-11T00:00:00",
+  "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
+  "keywords" : [ "vless, websocket, tls, cdn, server, ubuntu" ],
+  "mainEntityOfPage" : "https:\/\/v2how.github.io\/post\/2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/v2how.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="How to Create a VLESS WebSocket TLS CDN Server on Ubuntu 20.04" />
+<meta property="og:description" content="Introduction In this tutorial you&rsquo;ll learn how to create your own V2Ray server on an Ubuntu 20.04 platform using the Mack-A script.
+The server you build will implement the VLESS &#43; WebSocket (WS) &#43; TLS &#43; Content Delivery Network (CDN) architecture. You&rsquo;ll test your server with the Qv2ray graphical user interface (GUI) client.
+At the end of this tutorial, you&rsquo;ll have a working and tested V2Ray server.
+Prerequisites Before you begin this tutorial, you will need:">
+<meta property="og:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
+<meta property="og:url" content="https://v2how.github.io/post/2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="v2how" />
+
+  <meta name="twitter:title" content="How to Create a VLESS WebSocket TLS CDN Server on Ubuntu 20.04" />
+  <meta name="twitter:description" content="Introduction In this tutorial you&rsquo;ll learn how to create your own V2Ray server on an Ubuntu 20.04 platform using the Mack-A script.
+The server you build will implement the VLESS &#43; WebSocket (WS) …">
+  <meta name="twitter:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://v2how.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="alternate" href="https://v2how.github.io/index.xml" type="application/rss+xml" title="v2how"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://v2how.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://v2how.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://v2how.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SW1P8SGNST"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SW1P8SGNST');
+</script>
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://v2how.github.io">v2how</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="v2how" href="https://v2how.github.io">
+            <img class="avatar-img" src="https://v2how.github.io/images/amy-avatar-icon.png" alt="v2how" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>How to Create a VLESS WebSocket TLS CDN Server on Ubuntu 20.04</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on March 11, 2021
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;13&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2594&nbsp;words
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Amy
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <h3 id="introduction">Introduction</h3>
+<p>In this tutorial you&rsquo;ll learn how to create your own V2Ray server on an Ubuntu 20.04 platform using the Mack-A script.</p>
+<p>The server you build will implement the VLESS + WebSocket (WS) + TLS + Content Delivery Network (CDN) architecture. You&rsquo;ll test your server with the Qv2ray graphical user interface (GUI) client.</p>
+<p>At the end of this tutorial, you&rsquo;ll have a working and tested V2Ray server.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before you begin this tutorial, you will need:</p>
+<ul>
+<li>Your own domain name, which may be <a href="https://www.freenom.com">free</a> or <a href="https://www.namesilo.com">paid</a>.</li>
+<li>A virtual private server (VPS) running Ubuntu 20.04. You can rent servers from companies such as <a href="https://www.vultr.com">Vultr</a> or <a href="https://bandwagonhost.com">Bandwagon Host</a>. The documentation for the Mack-A script recommends that you start with a server that has a clean install of the operating system. If you have already used the server for other purposes, it is reommended that you reimage the server.</li>
+</ul>
+<h2 id="step-1--adding-domain-to-cloudflare">Step 1 — Adding Domain to Cloudflare</h2>
+<p>In the first step, you&rsquo;ll add your domain to Cloudflare and create a DNS type <code>A</code> record pointing from the fully qualified domain name of your server to the server&rsquo;s IP address.</p>
+<p>Go to the <a href="https://www.cloudflare.com">Cloudflare</a> site and follow the instructions to add your domain using a FREE plan:</p>
+<ol>
+<li>Sign up for an account, entering an email address and password.</li>
+<li>Enter the domain name you want to add to Cloudflare.</li>
+<li>Select the FREE plan.</li>
+<li>If an existing DNS <code>A</code> record was not automatically retrieved, then manually add a DNS <code>A</code> record pointing from the fully qualified domain name of your server to your server&rsquo;s IP address.</li>
+<li>In the <strong>Proxy status</strong> field, turn off proxying for now (in other words, just use Cloudflare&rsquo;s <strong>DNS only</strong> services for now). The cloud icon beside your DNS <code>A</code> record should be gray.</li>
+</ol>
+<p><img src="/images/cloudflare-dns-only.png" alt="Cloudflare DNS only"></p>
+<ol start="6">
+<li>Copy the details of the two Cloudflare nameservers assigned to you.</li>
+<li>Back at your domain name registrar, switch over your domain to use your two assigned Cloudflare nameservers.</li>
+<li>On the Cloudflare site, recheck your domain&rsquo;s nameservers. Wait for the nameserver change to propagate. This can take anywhere from 1 hour to 24 hours.</li>
+<li>You should get an email when your site is active on Cloudflare.</li>
+</ol>
+<h2 id="step-2--logging-in-as-root">Step 2 — Logging In as Root</h2>
+<p>SSH into your server. On Linux and macOS, you can use the terminal command <code>ssh</code> to reach your server. On Windows, you can either use <a href="https://docs.microsoft.com/en-us/powershell">PowerShell</a> or a graphical user interface (GUI) such as <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty">PuTTY</a> or <a href="https://www.netsarang.com">XSHELL</a>.</p>
+<p>The documentation for the Mack-A script indicates that the script only supports running as <code>root</code>.</p>
+<p>If you&rsquo;re not logged in as <code>root</code>, then become <code>root</code> as follows. If you don&rsquo;t already know the root password, then set it by issuing the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo passwd root
+</code></pre></div><p>The <code>sudo</code> command allows non-root users to issue root commands. The <code>passwd</code> command allows you to set the password for yourself or another user, which in this case is the user named <code>root</code>.</p>
+<p>You are prompted to enter your own password:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> amy:
+</code></pre></div><p>Enter your own (non-root) password.</p>
+<p>You are then prompted to enter a new password for the user <code>root</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">New password:
+</code></pre></div><p>Choose and enter the new password for <code>root</code>.</p>
+<p>You are prompted to confirm the new password by retyping it:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Retype new password:
+</code></pre></div><p>Enter the same new password for <code>root</code>.</p>
+<p>If all is well, you will receive a feedback message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">passwd: password updated successfully
+</code></pre></div><p>Now you know the root password, become <code>root</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">su -
+</code></pre></div><p>The <code>su</code> command (short for switch user) allows you to switch to another user id, so that you can run commands with that user&rsquo;s privileges. Since no specific user is named, you will by default switch to the user <code>root</code>.  The hyphen (<code>-</code>) means create a new login environment for the new user, which will be completely separate from your existing login environment.</p>
+<p>You are prompted to enter the password for <code>root</code> that you set a few moments ago:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Password:
+</code></pre></div><p>Enter the root password.</p>
+<p>You will notice that your command prompt changes from a dollar sign to a hash sign:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#</span>
+</code></pre></div><p>This is a reminder that your are logged in as <code>root</code>. Now that you are <code>root</code>, you do not need to prefix privileged commands with <code>sudo</code>.</p>
+<p>Update your package lists, and upgrade all your packages to the latest version:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt update <span class="o">&amp;&amp;</span> apt upgrade -y
+</code></pre></div><p>You will see package upgrade messages in your terminal.</p>
+<h2 id="step-3--enabling-the-firewall-optional">Step 3 — Enabling the Firewall (Optional)</h2>
+<p>We recommend that you protect your server and especially port <code>22</code> (the SSH port) by installing a firewall. In this tutorial, you&rsquo;ll install and configure the uncomplicated firewall (<code>ufw</code>).</p>
+<p>On many Ubuntu systems, <code>ufw</code> is already installed. Check that <code>ufw</code> is installed on your system:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt list ufw
+</code></pre></div><p>You should see a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw/focal,now 0.36-6 all <span class="o">[</span>installed<span class="o">]</span>
+</code></pre></div><p>If you do not see the message stating that <code>ufw</code> is already installed, then install the software package now:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">apt install ufw
+</code></pre></div><p>Now you&rsquo;ll set up the firewall. If you can guarantee that you will always SSH into your server from a single IP address, then limit SSH access to just that single address. For example, if your IP address is <code>51.51.51.51</code>, then issue the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow from 51.51.51.51/32 to any port <span class="m">22</span> proto tcp
+</code></pre></div><p>When you execute that command, you will see a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Rule added
+</code></pre></div><p>If limiting access to a single IP address is not possible, but you can guarantee you will always connect from a known IP address range, then limit SSH access to just that range. For example, if you are in an office which always uses the IP address range <code>51.51.51.0/24</code>, then issue the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow from 51.51.51.0/24 to any port <span class="m">22</span> proto tcp
+</code></pre></div><p>If limiting access to an IP address range is not possible, then you will have to open the SSH port for access from the entire world:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow ssh
+</code></pre></div><p>In any case, we recommend that you further protect port <code>22</code> by using SSH key authentication in preference to password authentication. SSH key pair generation and upload to your server are out of scope for this tutorial. You can find tutorials on this subject on the web.</p>
+<p>Open ports <code>80</code> (the HTTP port) and <code>443</code> (the HTTPS port). These will be used for V2Ray and for the Nginx camouflage website:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw allow http
+ufw allow https
+</code></pre></div><p>Enable UFW:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw <span class="nb">enable</span>
+</code></pre></div><p>You will see a warning message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Command may disrupt existing ssh connections. Proceed with operation <span class="o">(</span>y<span class="p">|</span>n<span class="o">)</span>?
+</code></pre></div><p>Type <code>Y</code> and press <code>ENTER</code> to confirm that you wish to enable <code>ufw</code>. You will see a message:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Firewall is active and enabled on system startup
+</code></pre></div><p>Check the status of your firewall:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ufw status
+</code></pre></div><p>You will see a firewall status display that looks like the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Status: active
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW       51.51.51.0/24
+80/tcp                     ALLOW       Anywhere
+443/tcp                    ALLOW       Anywhere
+80/tcp <span class="o">(</span>v6<span class="o">)</span>                ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
+443/tcp <span class="o">(</span>v6<span class="o">)</span>               ALLOW       Anywhere <span class="o">(</span>v6<span class="o">)</span>
+</code></pre></div><p>If your VPS provider implements the concept of security groups, you will also need to open your security group assignments for ports 22, 80, and 443 in their control panel.</p>
+<h2 id="step-4--downloading-the-script">Step 4 — Downloading the Script</h2>
+<p>Change into the <code>/root</code> home directory:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~
+</code></pre></div><p>Download the script by running the following command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget --no-check-certificate <span class="s2">&#34;https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh&#34;</span> 
+</code></pre></div><p>You will see feedback messages as the download proceeds:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">--2021-03-10 11:04:46--  https://raw.githubusercontent.com/mack-a/v2ray-agent/master/install.sh
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 109433 (107K) [text/plain]
+Saving to: ‘install.sh’
+
+install.sh          100%[===================&gt;] 106.87K  --.-KB/s    in 0.02s
+
+2021-03-10 11:04:47 (5.69 MB/s) - ‘install.sh’ saved [109433/109433]
+</code></pre></div><p>After the download is complete, set the execution bit on the file <code>install.sh</code> to make the script executable:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod +x install.sh 
+</code></pre></div><h2 id="step-5--running-the-script">Step 5 — Running the Script</h2>
+<p>Run the Mack-A install script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./install.sh
+</code></pre></div><p>You will see the main menu:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">==============================================================
+作者 Author：mack-a
+当前版本 Current version：v2.3.30
+Github：https://github.com/mack-a/v2ray-agent
+描述 Description：七合一共存脚本 Seven-in-one combination script
+==============================================================
+1.安装 Installation
+2.任意组合安装 Any combination of installation
+-------------------------工具管理-----------------------------
+3.账号管理 Account management
+4.更换伪装站 Replace the camouflage site
+5.更新证书 Update the certificate
+6.更换CDN节点 Replace the CDN node
+7.ipv6人机验证 IPv6 human-machine verification
+8.流媒体工具 Streaming tools
+-------------------------版本管理-----------------------------
+9.core版本管理 Core version management
+10.更新Trojan-Go Update
+11.更新脚本 Update script
+12.安装BBR、DD脚本 Install BBR, DD script
+-------------------------脚本管理-----------------------------
+13.查看日志 View log
+14.卸载脚本 Uninstall script
+==============================================================
+快捷方式创建成功，可执行[vasma]重新打开脚本 
+The shortcut is created successfully, and the script can be 
+reopened by executing &#34;vasma&#34;
+请选择 Please choose:
+</code></pre></div><p>(As noted, if you ever want to run the script again in the future, just enter the command <code>vasma</code>.)</p>
+<p>Type the option <code>1</code> for installation, and press <strong>ENTER</strong>.</p>
+<p>You will see the options for core installation:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">功能 Function 1/1 : 选择核心安装 Select core installation
+
+==============================================================
+1.Xray-core
+2.v2ray-core
+3.v2ray-core[XTLS]
+==============================================================
+</code></pre></div><p>Type the option <code>2</code> for V2Ray core, and press <strong>ENTER</strong>.</p>
+<p>You will see the dependent tools being installed:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">进度 Progress 2/17 : 安装工具 Install tools
+ ---&gt; 检查、安装更新【新机器会很慢，耐心等待】
+ ---&gt; 安装 Install unzip 
+ ---&gt; 安装 Install socat
+ ---&gt; 安装 Install jq
+ ---&gt; 安装 Install binutils
+ ---&gt; 安装 Install qrencode
+ ---&gt; 安装 Install nginx
+ ---&gt; 安装 Install semanage
+ ---&gt; 安装 Install acme.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  204k  100  204k    0     0  1003k      0 --:--:-- --:--:-- --:--:-- 1003k
+no crontab for root
+no crontab for root
+</code></pre></div><p>Then you are asked to enter your fully qualified domain name:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">进度 Progress 3/17 : 初始化 Initialize Nginx 申请证书配置 app certificate config
+
+请输入要配置的域名 例：www.v2ray-agent.com ---&gt;
+域名:
+Please enter the domain name to be configured 
+Example: www.v2ray-agent.com ---&gt;
+Domain name:
+</code></pre></div><p>Type the fully qualified domain name of your server, and press <strong>ENTER</strong>.</p>
+<p>The script attempts to resolve the domain name to your server&rsquo;s IP address. It asks you if it has correctly resolved the domain name:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"> ---&gt; 配置 Configure Nginx
+
+检查IP是否设置为当前VPS
+Checking if the IP is set to the current VPS
+ ---&gt; 检查ipv4中 Check IPv4
+
+当前域名的IP为 [12.12.12.12]，是否正确[y/n]？
+The IP of the current domain name is [12.12.12.12], 
+is it correct [y/n]?
+</code></pre></div><p>Assuming the IP address is correct, type <code>y</code> and press <strong>ENTER</strong>.</p>
+<p>The script attempts to obtain a TLS certificate for this domain:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"> ---&gt; IP确认完成 confirmation completed
+
+检查 Check Nginx是否正常访问 is normally accessed 
+
+ ---&gt; Nginx配置成功 configuration is successfull
+
+进度 Progress 4/17 : 申请TLS证书 Apply for TLS certificate
+
+ ---&gt; 安装 Install TLS 证书 certificate
+ ---&gt; TLS 生成成功 generated successfully
+
+进度 Progress 5/17 : 配置 Configure Nginx
+</code></pre></div><p>You are asked to choose a secret path name for V2Ray access:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">进度 Progress 6/17 : 生成随机路径 Generate random path
+请输入自定义路径[例: alone]，不需要斜杠，[回车]随机路径
+Please enter a custom path [example: alone], no slash is required, 
+[Enter] random path
+</code></pre></div><p>Type a secret path name and press <strong>ENTER</strong>. We will use as our example here:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">abcd1234
+</code></pre></div><p>The script confirms this path and displays more progress messages:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">path：abcd1234
+
+----------------------------
+
+进度 Progress 7/17 : 安装 Install V2Ray
+ ---&gt; v2ray-core 版本 version:v4.35.1
+v2ray-linux-64.zip                         100%[========================================================================================&gt;]  11.26M  10.3MB/s    in 1.1s
+
+进度 Progress 8/17 : 配置 Configure V2Ray 开机自启 to start automatically after booting
+Created symlink /etc/systemd/system/multi-user.target.wants/v2ray.service → /etc/systemd/system/v2ray.service.
+ ---&gt; 配置V2Ray开机自启成功 successfull
+
+进度 Progress 9/17 : 安装 Install Trojan-Go
+ ---&gt; Trojan-Go版本:v0.8.2
+trojan-go-linux-amd64.zip                  100%[========================================================================================&gt;]   6.41M  5.72MB/s    in 1.1s
+
+进度 Progress 10/17 : 配置 Configure Trojan 开机自启 to start automatically after booting
+Created symlink /etc/systemd/system/multi-user.target.wants/trojan-go.service → /etc/systemd/system/trojan-go.service.
+ ---&gt; 配置Trojan开机自启成功 successfull
+</code></pre></div><p>You are asked if you want smart DNS resolution:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">进度 Progress 11/17 : 添加 Add DNS 智能解析 intelligent resolution
+
+ 移动 Mobile: 104.19.45.117
+ 联通 Unicom: www.cloudflare.com
+ 电信 Telecom: www.digitalocean.com
+----------------------------
+是否使用 Use or not？[y/n]:
+</code></pre></div><p>Type the option <code>y</code> for yes, and press <strong>ENTER</strong>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">进度 Progress 12/17 : 初始化V2Ray配置 Initialize V2Ray config
+
+进度 Progress 13/17 : 初始化Trojan配置 Initialize Trojan config
+
+进度 Progress 14/17 : 添加定时维护证书 Add timed maintenance certificate
+ ---&gt; 添加定时维护证书成功 succeeded
+
+进度 Progress 15/17 : 添加伪装站点 Add camouflage site
+ ---&gt; 添加伪装站点成功 Add camouflage site successfull
+ ---&gt; V2Ray关闭成功 V2Ray stop successfull
+ ---&gt; V2Ray启动成功 V2Ray start successfull
+ ---&gt; Trojan-Go关闭成功 Trojan-Go stop successfull
+ ---&gt; Trojan-Go启动成功 Trojan-Go start successfull
+
+进度 Progress 16/17 : 验证服务启动状态 Verify service startup status 
+ ---&gt; 服务启动成功 Service started successfully 
+
+进度 Progress 17/17 : 账号 Account number
+</code></pre></div><p>The account configuration details are now displayed for various architectures:</p>
+<ul>
+<li><code>VLESS TCP TLS/XTLS-direct/XTLS-splice</code>
+<ul>
+<li><code>通用格式(VLESS+TCP+TLS)</code></li>
+<li><code>格式化明文(VLESS+TCP+TLS/xtls-rprx-splice)</code></li>
+<li><code>二维码 VLESS(VLESS+TCP+TLS)</code></li>
+</ul>
+</li>
+<li><code>VLESS WS TLS CDN</code>
+<ul>
+<li><code>通用格式(VLESS+WS+TLS)</code></li>
+<li><code>格式化明文(VLESS+WS+TLS)</code></li>
+<li><code>二维码 VLESS(VLESS+TCP+TLS/XTLS)</code></li>
+</ul>
+</li>
+<li><code>VMess TCP TLS</code>
+<ul>
+<li><code>通用json(VMess+TCP+TLS)</code></li>
+<li><code>通用vmess(VMess+TCP+TLS)链接</code></li>
+<li><code>二维码 vmess(VMess+TCP+TLS)</code></li>
+</ul>
+</li>
+<li><code>VMess WS TLS CDN</code>
+<ul>
+<li><code>通用json(VMess+WS+TLS)</code></li>
+<li><code>通用vmess(VMess+WS+TLS)链接</code></li>
+<li><code>二维码 vmess(VMess+WS+TLS)</code></li>
+</ul>
+</li>
+<li><code>Trojan TLS</code>
+<ul>
+<li><code>Trojan(TLS)</code></li>
+<li><code>二维码 Trojan(TLS)</code></li>
+</ul>
+</li>
+<li><code>Trojan WS TLS</code>
+<ul>
+<li><code>Trojan-Go(WS+TLS) Shadowrocket</code></li>
+<li><code>二维码 Trojan-Go(WS+TLS) Shadowrocket</code></li>
+<li><code>Trojan-Go(WS+TLS) QV2ray</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="step-6--copying-configuration-details">Step 6 — Copying Configuration Details</h2>
+<p>The account configuration details you want are in a section headed <code>VLESS WS TLS CDN</code>.</p>
+<p>Look for the configuration preceded by:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">---&gt; 通用格式 Common format (VLESS+WS+TLS)
+</code></pre></div><p>Here is an example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">vless://ae7dfdb9-31ba-d546-3bd0-9b4d3f6f0915@www.cloudflare.com:443?encryption=none&amp;security=tls&amp;type=ws&amp;host=v2ray.your_domain.com&amp;path=%2fabcd1234ws#v2ray.your_domain.com_vless_ws
+</code></pre></div><p>Copy the account configuration details to a text editor. You will need them in a moment for your client.</p>
+<h2 id="step-7--configuring-proxying-on-cloudflare">Step 7 — Configuring Proxying on Cloudflare</h2>
+<p>Now go back to your Cloudflare account&rsquo;s <strong>DNS</strong> tab.</p>
+<p>In the <strong>Proxy status</strong> field, turn on proxying. The cloud icon beside your DNS <code>A</code> record should be orange.</p>
+<p><img src="/images/cloudflare-proxied.png" alt="Cloudflare proxied"></p>
+<p><strong>Save</strong> this change.</p>
+<h2 id="step-8--testing-with-client">Step 8 — Testing with Client</h2>
+<p>Before you go any further, test your camouflage site. In an ordinary browser, visit your fully qualified domain name on HTTPS (for example, <code>https://v2ray.your_domain.com</code>). You should see the camouflage site.</p>
+<p><img src="/images/amaze-admin.png" alt="Camouflage website"></p>
+<p>Now you know your camouflage site is working, you can carry on.</p>
+<p>Download and install the most recent version of the Qv2ray client for Linux, Windows, or macOS from <a href="https://github.com/Qv2ray/Qv2ray/releases">https://github.com/Qv2ray/Qv2ray/releases</a>. For the rest of this section, we will give instructions for Windows.</p>
+<p><img src="/images/qv2ray-github.png" alt="Qv2ray release assets on GitHub"></p>
+<p>Download the corresponding V2Ray core from <a href="https://github.com/v2fly/v2ray-core/releases">https://github.com/v2fly/v2ray-core/releases</a> (note that the GitHub account is now <strong>v2fly</strong>).</p>
+<p><img src="/images/v2ray-core-github.png" alt="V2Ray core release assets on GitHub"></p>
+<p>Unzip the downloaded <code>zip</code> file.</p>
+<p>Create a folder to hold the core. On Windows it should be named <code>C:\Users\your_user\AppData\Local\qv2ray\vcore</code>.</p>
+<p>Copy the files from the unzipped folder into place in the <code>vcore</code> folder.</p>
+<p><img src="/images/qv2ray-vcore-folder.png" alt="Qv2ray vcore folder"></p>
+<p>Run the Qv2ray installer by double-clicking on the executable, e.g. <code>qv2ray-2.7.0-pre2-win64.exe</code>. If Microsoft Defender SmartScreen appears, click <strong>More info</strong> then <strong>Run anyway</strong>. Run the installer, following the prompts.</p>
+<p>When the installation is complete, you will see the Qv2ray shortcut icon on your desktop.</p>
+<p><img src="/images/qv2ray-icon.png" alt="Qv2ray icon"></p>
+<p>Double-click the icon to launch Qv2ray.</p>
+<p><img src="/images/qv2ray-new.png" alt="Qv2ray new install"></p>
+<p>Press the <strong>Preferences</strong> button. On the <strong>Kernel Settings</strong> tab, specify your core executable path and assets directory. This is the folder you created named <code>C:\Users\your_user\AppData\Local\qv2ray\vcore</code> and the executable <code>v2ray.exe</code>.</p>
+<p><img src="/images/qv2ray-kernel-v2ray.png" alt="Qv2ray Kernel V2Ray"></p>
+<p>Click <strong>OK</strong>.</p>
+<p>Now that the kernel settings are configured, you can add your server configuration to the Qv2ray client.</p>
+<p>Copy the account configuration details (generated by the script and saved in your text editor) to your Windows clipboard.</p>
+<p>Press the <strong>Import</strong> button in Qv2ray to import the new configuration.</p>
+<p><img src="/images/qv2ray-import.png" alt="Qv2ray Import button"></p>
+<p>In the <strong>Share Link</strong> box, paste in the account configuration details from your Windows clipboard.</p>
+<p><img src="/images/qv2ray-import-link.png" alt="Qv2ray Import link"></p>
+<p>Click <strong>Import</strong>. The configuration details are imported from the link.</p>
+<p>Double-click the <strong>Default Group</strong> to expand it, then select the server you have just added.</p>
+<p><img src="/images/qv2ray-connect-edit.png" alt="Qv2ray Connect and Edit buttons"></p>
+<p>Press the Edit button for this server.</p>
+<p>There is one setting you must add manually, which is the <strong>Server Address (SNI)</strong> on the <strong>TLS Settings</strong> tab. Type the fully qualified domain name of your server.</p>
+<p><img src="/images/qv2ray-tls-settings.png" alt="Qv2ray Kernel V2Ray"></p>
+<p>Click <strong>OK</strong>.</p>
+<p>Click the Connect icon for this server. Notifications appear in Windows to say you are connected.</p>
+<p><img src="/images/qv2ray-connected.png" alt="Qv2ray connected"></p>
+<p>The system-wide proxy settings are automatically configured for you.</p>
+<p><img src="/images/qv2ray-system-proxy.png" alt="Qv2ray system proxy"></p>
+<p>On Windows, by default your Qv2ray proxy server will listen on <code>127.0.0.1</code> port <code>8889</code>. You can optionally check this in <strong>Settings</strong> &gt; <strong>Network &amp; Internet</strong> &gt; <strong>Proxy</strong> &gt; <strong>Manual proxy setup</strong>.</p>
+<p><img src="/images/windows-system-proxy.png" alt="Windows system proxy"></p>
+<p>In your browser, visit <a href="https://www.iplocation.net">https://www.iplocation.net</a> to confirm that your web browsing is now coming from your server location.</p>
+<p>When you have finished browsing, go back to your server in Qv2ray. (If you have closed the Qv2ray panel, you can open it again by clicking the Qv2ray icon in the system tray, which is at the bottom right of the Windows desktop.)</p>
+<p>Select your server and click the Disconnect icon.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>You now have a working VLESS + WS + TLS + CDN server that you&rsquo;ve tested with the Qv2ray client.</p>
+<p>You can find more documentation for the script on GitHub in <a href="https://github.com/mack-a/v2ray-agent/blob/master/documents/en/README_EN.md">English</a> and <a href="https://github.com/mack-a/v2ray-agent/blob/master/README.md">中文</a>. The documentation includes suggestions for the best architectures, routes, and combinations.</p>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://v2how.github.io/tags/vless/">vless</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/websocket/">websocket</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/tls/">tls</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/cdn/">cdn</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/server/">server</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/ubuntu/">ubuntu</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04%2f&amp;text=How%20to%20Create%20a%20VLESS%20WebSocket%20TLS%20CDN%20Server%20on%20Ubuntu%2020.04&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04%2f&amp;title=How%20to%20Create%20a%20VLESS%20WebSocket%20TLS%20CDN%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04%2f&amp;title=How%20to%20Create%20a%20VLESS%20WebSocket%20TLS%20CDN%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04%2f&amp;title=How%20to%20Create%20a%20VLESS%20WebSocket%20TLS%20CDN%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-11-vless-ws-tls-cdn-server-ubuntu-20-04%2f&amp;description=How%20to%20Create%20a%20VLESS%20WebSocket%20TLS%20CDN%20Server%20on%20Ubuntu%2020.04" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/post/2021-02-26-brook-server-client-ubuntu-20-04/">How to Create a Brook Server and Client on Ubuntu 20.04</a></li>
+                
+                    <li><a href="/post/2021-02-19-tor-browser-standalone-tor-ubuntu-20-04-copy/">How to Install Tor Browser or Standalone Tor on Ubuntu 20.04</a></li>
+                
+                    <li><a href="/post/2021-02-18-camouflage-telegram-mtproto-proxy-ubuntu-20-04/">How to Build a Camouflaged Telegram MTProto Proxy Server on Ubuntu 20.04</a></li>
+                
+                    <li><a href="/post/2021-02-15-v2ray-tor-on-ramp-ubuntu-20-04/">How to Build a V2Ray Tor On-Ramp on Ubuntu 20.04</a></li>
+                
+                    <li><a href="/post/2021-02-12-xray-vless-xtls-server-ubuntu-20-04/">How to Create an Xray VLESS XTLS Server on Ubuntu 20.04</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://v2how.github.io/post/2021-02-26-brook-server-client-ubuntu-20-04/" data-toggle="tooltip" data-placement="top" title="How to Create a Brook Server and Client on Ubuntu 20.04">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:amyw32@protonmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Amy
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2021
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://v2how.github.io">v2how</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.80.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://v2how.github.io/js/main.js"></script>
+<script src="https://v2how.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://v2how.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
