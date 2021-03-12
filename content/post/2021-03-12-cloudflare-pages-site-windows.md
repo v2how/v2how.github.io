@@ -6,14 +6,14 @@ tags: ["hugo", "cloudflare"]
 
 ## Introduction
 
-Cloudflare Pages is currently in Beta.
+[Cloudflare Pages](https://blog.cloudflare.com/cloudflare-pages) is currently in Beta.
 
 This tutorial will show you how to create a static site on Cloudflare Pages using the Hugo static site generator from a Windows PC.
 
 ## Prerequisites
 
 - Open an account on GitHub https://github.com and verify your email address
-- Open an account on Cloudflare https://www.cloudflare.com, verify your email address, and request access to the Cloudflare Pages Beta
+- Open an account on Cloudflare https://www.cloudflare.com, verify your email address, and [request access to the Cloudflare Pages Beta](https://www.cloudflare.com/pages-jamstack-platform-beta-sign-up)
 
 ## Step 1 — Installing Git
 
