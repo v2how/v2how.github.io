@@ -155,12 +155,12 @@ When you are done, close your browser, and press **CTRL**+**C** to stop Hugo run
 
 ## Step 5 — Creating a Hugo Post
 
-Create a new post. This example is named `2021-03-11-cloudflare-pages-site-windows`, but you should choose a name of your own.
+Create a new post. This example is named `2021-03-12-cloudflare-pages-site-windows`, but you should choose a name of your own.
 
 ```
 cd C:\Hugo\sites\my-hugo-site
 
-hugo new post/2021-03-11-cloudflare-pages-site-windows.md
+hugo new post/2021-03-12-cloudflare-pages-site-windows.md
 ```
 
 Edit the file in Notepad.
