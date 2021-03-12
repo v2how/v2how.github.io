@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Creating a Cloudflare Pages Site from a Windows PC - v2how</title>
+  <meta name="description" content="Introduction Cloudflare Pages is currently in Beta.
+This tutorial will show you how to create a static site on Cloudflare Pages using the Hugo static site generator from a Windows PC.
+Prerequisites  Open an account on GitHub https://github.com and verify your email address Open an account on Cloudflare https://www.cloudflare.com, verify your email address, and request access to the Cloudflare Pages Beta  Step 1 — Installing Git Open a browser on your PC and visit https://git-scm.">
+  <meta name="author" content="Amy"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "v2how",
+    
+    "url": "https:\/\/v2how.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/v2how.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/v2how.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/v2how.github.io\/post\/2021-03-12-cloudflare-pages-site-windows\/",
+          "name": "Creating a cloudflare pages site from a windows p c"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Amy"
+  },
+  "headline": "Creating a Cloudflare Pages Site from a Windows PC",
+  "description" : "Introduction Cloudflare Pages is currently in Beta.\nThis tutorial will show you how to create a static site on Cloudflare Pages using the Hugo static site generator from a Windows PC.\nPrerequisites  Open an account on GitHub https:\/\/github.com and verify your email address Open an account on Cloudflare https:\/\/www.cloudflare.com, verify your email address, and request access to the Cloudflare Pages Beta  Step 1 — Installing Git Open a browser on your PC and visit https:\/\/git-scm.",
+  "inLanguage" : "en",
+  "wordCount":  964 ,
+  "datePublished" : "2021-03-12T00:00:00",
+  "dateModified" : "2021-03-12T00:00:00",
+  "image" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
+  "keywords" : [ "hugo, cloudflare" ],
+  "mainEntityOfPage" : "https:\/\/v2how.github.io\/post\/2021-03-12-cloudflare-pages-site-windows\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/v2how.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/v2how.github.io\/images\/amy-avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Creating a Cloudflare Pages Site from a Windows PC" />
+<meta property="og:description" content="Introduction Cloudflare Pages is currently in Beta.
+This tutorial will show you how to create a static site on Cloudflare Pages using the Hugo static site generator from a Windows PC.
+Prerequisites  Open an account on GitHub https://github.com and verify your email address Open an account on Cloudflare https://www.cloudflare.com, verify your email address, and request access to the Cloudflare Pages Beta  Step 1 — Installing Git Open a browser on your PC and visit https://git-scm.">
+<meta property="og:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
+<meta property="og:url" content="https://v2how.github.io/post/2021-03-12-cloudflare-pages-site-windows/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="v2how" />
+
+  <meta name="twitter:title" content="Creating a Cloudflare Pages Site from a Windows PC" />
+  <meta name="twitter:description" content="Introduction Cloudflare Pages is currently in Beta.
+This tutorial will show you how to create a static site on Cloudflare Pages using the Hugo static site generator from a Windows PC.
+Prerequisites …">
+  <meta name="twitter:image" content="https://v2how.github.io/images/amy-avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://v2how.github.io/images/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <link rel="alternate" href="https://v2how.github.io/index.xml" type="application/rss+xml" title="v2how"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://v2how.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://v2how.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://v2how.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SW1P8SGNST"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SW1P8SGNST');
+</script>
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://v2how.github.io">v2how</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="v2how" href="https://v2how.github.io">
+            <img class="avatar-img" src="https://v2how.github.io/images/amy-avatar-icon.png" alt="v2how" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Creating a Cloudflare Pages Site from a Windows PC</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on March 12, 2021
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;964&nbsp;words
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Amy
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <h2 id="introduction">Introduction</h2>
+<p>Cloudflare Pages is currently in Beta.</p>
+<p>This tutorial will show you how to create a static site on Cloudflare Pages using the Hugo static site generator from a Windows PC.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Open an account on GitHub <a href="https://github.com">https://github.com</a> and verify your email address</li>
+<li>Open an account on Cloudflare <a href="https://www.cloudflare.com">https://www.cloudflare.com</a>, verify your email address, and request access to the Cloudflare Pages Beta</li>
+</ul>
+<h2 id="step-1--installing-git">Step 1 — Installing Git</h2>
+<p>Open a browser on your PC and visit <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a>.</p>
+<p>Download the latest 64-bit installer for Git on Windows. It will have a name that looks like <code>Git-x.x.x-64-bit.exe</code>.</p>
+<p>Run the installer.</p>
+<ol>
+<li>If asked if you want to allow this app to make changes to your device, click <strong>Yes</strong>.</li>
+<li>Accept the license.</li>
+<li>Accept the default destination location of <code>C:\Program Files\Git</code>.</li>
+<li>Accept the default components.</li>
+<li>Accept the default Start Menu folder.</li>
+<li>Accept the default editor of <code>vim</code>.</li>
+<li>Accept the default name of initial branch.</li>
+<li>Accept the default PATH environment.</li>
+<li>Accept the default OpenSSL library.</li>
+<li>Accept the default line endings.</li>
+<li>Accept the default terminal emulator.</li>
+<li>Accept the default behavior of <code>git pull</code>.</li>
+<li>Accept the default credential helper.</li>
+<li>Accept the default extra options.</li>
+<li>Accept the default experimental features, and click <strong>Install</strong>.</li>
+</ol>
+<p>Wait while the Setup installs Git on your computer.</p>
+<p>Click <strong>Finish</strong> when the installation is complete.</p>
+<p>At the end of the install, <code>C:\Program Files\Git\cmd</code> has been added to your PATH. You can check the install by opening a Command Prompt (<strong>Win</strong>+<strong>R</strong> and enter <code>cmd</code>) and issuing the commands:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">echo %PATH%
+
+git --version
+</code></pre></div><p><img src="/images/git-added-to-path.png" alt="Git added to path"></p>
+<p>Set up your initial Git global variables. Substitute your actual name and email address into the following commands:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git config --global user.name &#34;John Doe&#34;
+git config --global user.email johndoe@example.com
+git config --global push.default simple
+</code></pre></div><h2 id="step-2--installing-hugo">Step 2 — Installing Hugo</h2>
+<p>Create new directories <code>C:\Hugo\bin</code> and <code>C:\Hugo\sites</code>.</p>
+<p><img src="/images/hugo-directories.png" alt="Hugo directories"></p>
+<p>Open a browser on your PC and visit <a href="https://github.com/gohugoio/hugo/releases">https://github.com/gohugoio/hugo/releases</a></p>
+<p>Download the latest binary <code>hugo_extended_x.x.x_Windows-64bit.zip</code>.</p>
+<p>Unzip the downloaded zip file.</p>
+<p>Copy the <code>hugo.exe</code> application into <code>C:\Hugo\bin</code>.</p>
+<p>Add <code>C:\Hugo\bin</code> to your PATH:</p>
+<ol>
+<li>Right-click on the Windows icon bottom left of your screen, and select <strong>System</strong>.</li>
+<li>Scroll down and click <strong>Advanced system settings</strong>.</li>
+<li>Control Panel opens.</li>
+<li>Click <strong>Environment Variables</strong>.</li>
+<li>Select <strong>Path</strong>.</li>
+<li>Click <strong>Edit</strong>.</li>
+<li>Click <strong>New</strong>.</li>
+<li>Type <code>C:\Hugo\bin</code>.</li>
+<li>Click <strong>OK</strong>.</li>
+<li>Click <strong>OK</strong>.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<p><img src="/images/environment-variables.png" alt="Windows environment variables"></p>
+<p>Sign out and sign back in again.</p>
+<p><code>C:\Hugo\bin</code> has now been appended to your PATH.</p>
+<h2 id="step-3--creating-a-hugo-site">Step 3 — Creating a Hugo Site</h2>
+<p>Opening a Command Prompt (<strong>Win</strong>+<strong>R</strong> and enter <code>cmd</code>). Change into the Hugo <code>sites</code> directory:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd C:\Hugo\sites
+</code></pre></div><p>Create a new site named <code>my-hugo-site</code> (or another name, if you prefer):</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">hugo new site my-hugo-site
+</code></pre></div><p>Change into the directory for your new site:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd my-hugo-site
+</code></pre></div><p>Initialize this directory as a Git repository by issuing the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git init
+</code></pre></div><h2 id="step-4--adding-a-hugo-theme">Step 4 — Adding a Hugo Theme</h2>
+<p>Hugo sites start without a theme. You must add one before you can do anything with the site. We will use the example of the Terminal theme. Issue the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git submodule add https://github.com/panr/hugo-theme-terminal.git themes/terminal
+</code></pre></div><p>The theme comes with an example site in its own folder. In Windows File Explorer, navigate to <code>C:\Hugo\sites\my-hugo-site\themes\terminal\exampleSite</code>.</p>
+<p>There are three items: a folder <code>content</code>, a folder <code>static</code>, and a file <code>config.toml</code>.</p>
+<p>Copy all three up into the root of the site, <code>C:\Hugo\sites\my-hugo-site</code>.</p>
+<p><img src="/images/example-site.png" alt="Hugo example site"></p>
+<p>Edit the file <code>config.toml</code> in Notepad. Correct the base URL to simply <code>/</code>. Correct the theme directory name to simply <code>terminal</code>. Save the file and close Notepad.</p>
+<p><img src="/images/config-toml.png" alt="Hugo config.toml"></p>
+<p>You can check your work so far with the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">hugo serve
+</code></pre></div><p>Open a browser and visit <code>localhost:1313</code>.</p>
+<p><img src="/images/localhost-1313.png" alt="Hugo on localhost port 1313"></p>
+<p>When you are done, close your browser, and press <strong>CTRL</strong>+<strong>C</strong> to stop Hugo running in your Command Prompt window.</p>
+<h2 id="step-5--creating-a-hugo-post">Step 5 — Creating a Hugo Post</h2>
+<p>Create a new post. This example is named <code>2021-03-11-cloudflare-pages-site-windows</code>, but you should choose a name of your own.</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd C:\Hugo\sites\my-hugo-site
+
+hugo new post/2021-03-11-cloudflare-pages-site-windows.md
+</code></pre></div><p>Edit the file in Notepad.</p>
+<p>Completely remove the line <code>draft: true</code>.</p>
+<p>Add whatever other content you want.</p>
+<p><img src="/images/hugo-new-post-notepad.png" alt="Hugo new post in Windows Notepad"></p>
+<p>Save the file, and close Notepad.</p>
+<p>Delete the file <code>hello.md</code> that came with the theme.</p>
+<p>You can check your work so far by again issuing the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">hugo serve
+</code></pre></div><p>Open a browser and visit <code>localhost:1313</code>. Click through to the body of your post.</p>
+<p>When you are done, close your browser, and press <strong>CTRL</strong>+<strong>C</strong> in the Command Prompt windows to stop the Hugo server.</p>
+<h2 id="step-6--creating-a-github-repository">Step 6 — Creating a GitHub Repository</h2>
+<p>Log in to your GitHub account.</p>
+<p>Create a new GitHub repository.</p>
+<p><img src="/images/github-new-repository.png" alt="GitHub create new repository"></p>
+<ol>
+<li>Give it a name, e.g. <code>my-hugo-site</code>.</li>
+<li>Description is optional.</li>
+<li>It may be public or private, as you prefer.</li>
+<li>Leave it empty &ndash; no README, no gitgnore, no license.</li>
+<li>Click <strong>Create repository</strong>.</li>
+</ol>
+<h2 id="step-7--pushing-your-site-to-github">Step 7 — Pushing Your Site to GitHub</h2>
+<p>Once you&rsquo;ve created a new repository on GitHub, push your local repository to GitHub. In a Command Prompt window, issue the commands:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">cd C:\Hugo\sites\my-hugo-site
+</code></pre></div><p>In the next command, replace <code>yourgithubusername</code> by your actual user name on GitHub:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">git remote add origin https://github.com/yourgithubusername/my-hugo-site
+
+git branch -M main
+
+git add .
+
+git commit -m &#34;Initial commit&#34;
+
+git push -u origin main
+</code></pre></div><h2 id="step-8--deploying-with-cloudflare-pages">Step 8 — Deploying with Cloudflare Pages</h2>
+<p>Log in to your Cloudflare account.</p>
+<p>If you have been granted access to Cloudflare Pages Beta, you will see a link for <strong>Pages (Beta)</strong>. Click that link.</p>
+<p><img src="/images/cloudflare-pages-beta-link.png" alt="Cloudflare Pages Beta link"></p>
+<ol>
+<li>Click <strong>Create a project</strong>.</li>
+<li>Click <strong>Connect GitHub account</strong>.</li>
+<li>Click <strong>Install and Authorize</strong>.</li>
+<li>Select your new GitHub repository that you created above, e.g. <code>my-hugo-site</code>, and click <strong>Begin setup</strong>.</li>
+<li>Set <strong>Production branch</strong> to <code>main</code>, <strong>Build command</strong> to <code>hugo</code>, and <strong>Build output directory</strong> to <code>public</code>.</li>
+<li>In the <strong>Environment variables</strong>, add <code>HUGO_VERSION</code> and set it to <code>0.80.0</code>.</li>
+<li>Click <strong>Save and Deploy</strong>.</li>
+</ol>
+<p><img src="/images/cloudflare-environment-variables.png" alt="Cloudflare Environment variables"></p>
+<p>You will see the progress of the stages of the build: Initializing build environment; cloning Git repository; Building application; and Deploying to Cloudflare&rsquo;s global network.</p>
+<p>Once you&rsquo;ve deployed your site, you&rsquo;ll receive a unique subdomain for your project in the <code>pages.dev</code> domain. For example, <a href="https://my-hugo-site.pages.dev">https://my-hugo-site.pages.dev</a>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Every time you commit new code, Cloudflare Pages will automatically rebuild your project and deploy it.</p>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://v2how.github.io/tags/hugo/">hugo</a>&nbsp;
+            
+              <a href="https://v2how.github.io/tags/cloudflare/">cloudflare</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-12-cloudflare-pages-site-windows%2f&amp;text=Creating%20a%20Cloudflare%20Pages%20Site%20from%20a%20Windows%20PC&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-12-cloudflare-pages-site-windows%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-12-cloudflare-pages-site-windows%2f&amp;title=Creating%20a%20Cloudflare%20Pages%20Site%20from%20a%20Windows%20PC" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-12-cloudflare-pages-site-windows%2f&amp;title=Creating%20a%20Cloudflare%20Pages%20Site%20from%20a%20Windows%20PC" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-12-cloudflare-pages-site-windows%2f&amp;title=Creating%20a%20Cloudflare%20Pages%20Site%20from%20a%20Windows%20PC" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fv2how.github.io%2fpost%2f2021-03-12-cloudflare-pages-site-windows%2f&amp;description=Creating%20a%20Cloudflare%20Pages%20Site%20from%20a%20Windows%20PC" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://v2how.github.io/post/2021-03-11-shadowsocks-rust-docker-ubuntu-20-04/" data-toggle="tooltip" data-placement="top" title="How to Build a Shadowsocks-Rust Server with Docker on Ubuntu 20.04">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:amyw32@protonmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Amy
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2021
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://v2how.github.io">v2how</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.80.0</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://v2how.github.io/js/main.js"></script>
+<script src="https://v2how.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://v2how.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

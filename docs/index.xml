@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
     <webMaster>amyw32@protonmail.com (Amy)</webMaster>
-    <lastBuildDate>Thu, 11 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating a Cloudflare Pages Site from a Windows PC</title>
+      <link>https://v2how.github.io/post/2021-03-12-cloudflare-pages-site-windows/</link>
+      <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/post/2021-03-12-cloudflare-pages-site-windows/</guid>
+      <description>Introduction Cloudflare Pages is currently in Beta.
+This tutorial will show you how to create a static site on Cloudflare Pages using the Hugo static site generator from a Windows PC.
+Prerequisites  Open an account on GitHub https://github.com and verify your email address Open an account on Cloudflare https://www.cloudflare.com, verify your email address, and request access to the Cloudflare Pages Beta  Step 1 — Installing Git Open a browser on your PC and visit https://git-scm.</description>
+    </item>
+    
     <item>
       <title>How to Build a Shadowsocks-Rust Server with Docker on Ubuntu 20.04</title>
       <link>https://v2how.github.io/post/2021-03-11-shadowsocks-rust-docker-ubuntu-20-04/</link>

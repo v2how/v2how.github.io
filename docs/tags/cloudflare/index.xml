@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloudflare on v2how</title>
+    <link>https://v2how.github.io/tags/cloudflare/</link>
+    <description>Recent content in cloudflare on v2how</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>amyw32@protonmail.com (Amy)</managingEditor>
+    <webMaster>amyw32@protonmail.com (Amy)</webMaster>
+    <lastBuildDate>Fri, 12 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://v2how.github.io/tags/cloudflare/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating a Cloudflare Pages Site from a Windows PC</title>
+      <link>https://v2how.github.io/post/2021-03-12-cloudflare-pages-site-windows/</link>
+      <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
+      <author>amyw32@protonmail.com (Amy)</author>
+      <guid>https://v2how.github.io/post/2021-03-12-cloudflare-pages-site-windows/</guid>
+      <description>Introduction Cloudflare Pages is currently in Beta.
+This tutorial will show you how to create a static site on Cloudflare Pages using the Hugo static site generator from a Windows PC.
+Prerequisites  Open an account on GitHub https://github.com and verify your email address Open an account on Cloudflare https://www.cloudflare.com, verify your email address, and request access to the Cloudflare Pages Beta  Step 1 — Installing Git Open a browser on your PC and visit https://git-scm.</description>
+    </item>
+    
+  </channel>
+</rss>
